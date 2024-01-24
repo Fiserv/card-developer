@@ -20,6 +20,14 @@
   "getStartedFilePath": "/docs/gettingstarted/getting-started.md",
   "apiVersions": [
       {
+        "version": "card-2.8.0 (latest)",
+        "versionType": "minor",
+        "releaseNotesPath": "docs/release-notes/2022/march.md",
+        "apiSpecFileNames": [
+          "card-2.8.0"
+          ]
+      }, 
+      {
         "version": "account-1.8.0",
         "versionType": "major",
         "releaseNotesPath": "docs/release-notes/2022/march.md",
