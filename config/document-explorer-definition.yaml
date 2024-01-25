@@ -75,6 +75,8 @@
       link: docs/release-notes/dispute/dispute-overview.md
     - title: Dispute Sandbox
       link: docs/release-notes/dispute/dispute-sandbox.md
+    - title: Lane's Dispute Sandbox
+      link: docs/release-notes/dispute/new-dispute-sandbox.md
 - sections:
   - title: Fraud
     sections:
