@@ -8,12 +8,16 @@ To test the API, take these steps.
 If you do not receive the Sandbox alert, verify if you have the required Fiserv Root CA and Intermediate CA certificates placed in the server trust-store. The Root CA and Intermediate CA certificates can be downloaded from the Keys tab of the developer application from the Card Developer portal.
 
 1. Log in to the Cards API Portal.
+
 2. Select **Approvals** > **Company Apps**. The list of existing company applications already subscribed displays.
+
 3. Select the **Add App** + button. The Add Company App page displays.
+
 
 ![](assets/images/add-company-app-page.png)
 
 4. Enter this required information:
+
    
  * **App Name**—Name of the application.
    
@@ -21,9 +25,11 @@ If you do not receive the Sandbox alert, verify if you have the required Fiserv 
    
 5. Select the check box for Sandbox Card Risk Mitigation: Fraud Alert API. The Fraud Alert API - additional fields section displays.
 
+
 ![](assets/images/fraud-alert-api-additional-fields-section.png)
 
 6. Enter these details:
+
 
 
  * **Hostname** or **IP address**—Hostname or IP address where the outbound fraud alert API from Fiserv is to be pushed. Only HTTPS protocol is supported.
