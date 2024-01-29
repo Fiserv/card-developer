@@ -25,6 +25,7 @@
         "releaseNotesPath": "docs/release-notes/2022/march.md",
         "apiSpecFileNames": [
           "account-1.8.0"
+          "redeempoints-1.0.2"
           ]
       },
       {
