@@ -1,10 +1,9 @@
 # Card Address Schema
 
-### Version: 1.0.1
+#### Version: 1.0.1
 
-## Header
-
-``` 
+## Schema
+```
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
