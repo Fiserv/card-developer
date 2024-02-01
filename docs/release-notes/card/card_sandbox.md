@@ -12226,7 +12226,7 @@ Negative case with debit cardNumber and nonTransToken
 
 **HTTP Method:** POST
 
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/transactions/search?filter=summary
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=detail
 ```
 {
       "nonTransToken": "pSAZIXCAXrAo4001",
@@ -12285,7 +12285,7 @@ Negative case with debit cardNumber and nonTransToken
 
 **HTTP Method:** POST
 
-**Target URL:**https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=detail
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=detail
 ```
 {
       "cardNumber": "4000200030004001",
