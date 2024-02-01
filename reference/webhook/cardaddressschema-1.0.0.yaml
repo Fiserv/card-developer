@@ -51,14 +51,12 @@ paths:
         schema:
           $ref: '#/definitions/GetPointRequest'
       responses:
-        "200":
-          description: Successful
-          headers:
-            x-fapi-interaction-id:
-              type: string
-              description: Represents a transaction ID created with each request.
-          schema:
-            $ref: '#/definitions/GetPointResponse'
+        "header":
+          description: Header
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/GetPointResponse'
         "400":
           description: Bad Request
           headers:
