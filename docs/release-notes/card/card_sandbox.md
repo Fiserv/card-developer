@@ -11,6 +11,7 @@ This case activates a card.
 #### Request
 **HTTP Method:** PUT
 
+
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations
 ```
 {
