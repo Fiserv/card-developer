@@ -7,7 +7,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "description": "This event is generated when Prior Card Logic is invoked",
+  "description": “Event is generated when applying for new card.”,
   "properties": {
     "header": {
       "type": "object",
