@@ -1,6 +1,6 @@
 ### Manage Developers
 
-**Step 1**: Invite developers to the portal via the Manage Developers link once logged in.
+**Step 1**: Invite developers to the Card Developer Workspace via the Memebers tab.
 
 ![](assets/images/manage-developer-graphic-1.png)
 
