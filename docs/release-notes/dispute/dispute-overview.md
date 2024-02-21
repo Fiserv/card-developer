@@ -48,15 +48,15 @@ Dispute API enables users to manage dispute cases for multiple or a single trans
 
 <span style="color:#ff6600;">**Dispute Details**</span> enables users to manage dispute cases. 
 
-Search by Card Number: Retrieves dispute case details for a given card number.  
+**Search by Card Number**: Retrieves dispute case details for a given card number.  
 
-Search by Case Id: Retrieves dispute case details for a given case.
+**Search by Case Id**: Retrieves dispute case details for a given case.
 
-Search Case Item details: Retrieves dispute case items details for a disputed transaction.
+**Search Case Item details**: Retrieves dispute case items details for a disputed transaction.
 
-Retrieve document by Case Item Id: Retrieves  a document or image attached to a given case item id. 
+**Retrieve document by Case Item Id**: Retrieves  a document or image attached to a given case item id. 
 
-Retrieve Questionnaire by Case Item Id: Retrieves  the completed questionnaire answers for a given case item.
+**Retrieve Questionnaire by Case Item Id**: Retrieves  the completed questionnaire answers for a given case item.
  
 
 <span style="color:#ff6600;">**Dispute Update**</span> enables users to add notes and upload documents to dispute cases.
