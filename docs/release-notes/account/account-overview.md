@@ -45,7 +45,6 @@ Account API enables a financial institution or account holder to manage and main
 </div>
 
 
-
 **<span style="color:#ff6600;">Details</span>** feature enables entities to retrieve basic and detailed account data for integration within consumer-facing or representative-facing channels to improve customer servicing.
 
 **Search**: Provides access to customer account details based on the account information
@@ -59,6 +58,7 @@ Account API enables a financial institution or account holder to manage and main
 **<span style="color:#ff6600;">Limits</span>** feature enables  users to retrieve and update the credit limit, cash limit, or the temporary credit limit for an account number.
 
 **Search** : Provides access to account limits based on the account information
+
 **Update** : Provides access to update account limits based on the account information
  
 
