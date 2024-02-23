@@ -123,7 +123,7 @@ Examples:
 ef-AS; ef-i - an FI can opt out of AUS; an FAQ; es-ql - an SQL query; an HTML file; an hour
 fid (as pronounced) - enter a FIID in the field; a URL
 
-<div class="row" style="text-align:center;" markdown=1><img src="./assets/images/red-x-graphic.png"  width="40"/></div>
+<div class="row" style="text-align:center;" markdown=1><img src="./assets/images/red-x-graphic.png"  width="10"/></div>
 
 2. Don't use an article (a, an, the) at the start of a bulleted list or a field description. This helps to create parallel structure in sentences.
 
