@@ -8006,7 +8006,7 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
-      deprecated: false
+      : false
   /v1/cards/atmPreferences:
     patch:
       tags:
@@ -8958,7 +8958,7 @@ paths:
       - Limits
       x-child-product-name: Cards v2.8.0
       x-group-name: Limits
-      x-proxy-name: Card Limit Search V2 (Deprecated)
+      x-proxy-name: Card Limit Search V2 
       summary: Returns the limit values for a given card.
       operationId: cardLimitSearchV2
       parameters:
@@ -9138,7 +9138,7 @@ paths:
       - Limits
       x-child-product-name: Cards v2.8.0
       x-group-name: Limits
-      x-proxy-name: Update Daily Limits
+      x-proxy-name: Update Daily Limits (Deprecated)
       summary: Override the daily limit values for a specific card. Applies to debit cards only.
       operationId: updateDailyLimits
       parameters:
