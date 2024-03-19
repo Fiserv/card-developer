@@ -70,7 +70,7 @@
   - title: Company
     sections:
     - title: Company Overview
-      link:
+      link:  docs/release-notes/company/company-overview.md
     - title: Company Sandbox
       link: docs/release-notes/company/company-sandbox.md
 - sections:
@@ -87,6 +87,7 @@
       link: docs/release-notes/fraud/fraud_overview.md
     - title: Fraud Sandbox
       link: docs/release-notes/fraud/new-fraud-sandbox.md
+      - sections:
 - sections:
   - title: Reward
     sections:
