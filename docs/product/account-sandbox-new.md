@@ -7,7 +7,7 @@ Tests must use only requests given here.
 
 #### Request
 
-**HTTP METHOD:** POST
+### HTTP METHOD: POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/accounts/v1/accounts/search?filter=summary
 
