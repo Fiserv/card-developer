@@ -3,6 +3,7 @@
 ## Company API endpoints
 
 **Details**
+
 ## Search Account
 Tests must use only requests given here.
 
