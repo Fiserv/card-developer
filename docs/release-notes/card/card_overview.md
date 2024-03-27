@@ -39,9 +39,9 @@
 
 *   ![](assets/images/security-card.png)
     
-    #### Security
+    #### Securityto reduce chances of fraud
     
-    Increased touchpoints to deactivate or re-activate a card, increasing fraud mitigation
+    Increased touchpoints to deactivate or re-activate a card, to reduce chances of fraud.
 
 </div>
 <div class="col-md-4" markdown=1>
