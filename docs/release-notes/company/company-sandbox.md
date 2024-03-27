@@ -1,5 +1,7 @@
 # Test Cases
-**Details**
+
+## Company
+
 ## Search Account
 Tests must use only requests given here.
 
