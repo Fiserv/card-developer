@@ -2657,7 +2657,7 @@ components:
           description: Date time of the error from a services.
   parameters:
     warningInfo:
-      $ref: '#/components/schemas/Warning'
+      $ref: '#/components/schemas/WarningDetail'
     omahaUserIdParam:
       name: omahaUserId
       in: header
