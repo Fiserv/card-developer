@@ -2639,7 +2639,7 @@ components:
           type: array
           description: List of multiple errors that may cause/triggerthe general error.
           items:
-            $ref: '#/components/schemas/warningDetail'
+            $ref: '#/components/schemas/WarningDetail'
     WarningDetail:
       type: object
       properties:
