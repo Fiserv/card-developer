@@ -2624,7 +2624,6 @@ components:
           type: string
           description: Human details  of the error.
     Warning:
-      type: object
       properties:
         message:
           type: string
@@ -2641,7 +2640,6 @@ components:
           items:
             $ref: '#/components/schemas/WarningDetail'
     WarningDetail:
-      type: object
       properties:
         code:
           type: string
