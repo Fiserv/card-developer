@@ -2704,15 +2704,6 @@ components:
       example: APIMPortal, CardConsole
       x-mandatory: CREDIT, DEBIT,CREDIT_GATEWAY
       x-validations: Not blank,No CRLF
-    interactionId:
-      in: header
-      description: unique transaction ID created for each request for tracking purposes
-      required: false
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: 95ad42fb-afd1-2121-b794-3ed29342ks42
     clientIdParam:
       name: x-fapi-financial-id
       in: header
@@ -2851,6 +2842,17 @@ components:
         detail: The service was not able to process this request.
         instance: /payments/v1/hold
         status: 422
+  headers:
+    interactionId:
+      name: x-fapi-interaction-id
+      in: header
+      description: unique transaction ID created for each request for tracking purposes
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: 95ad42fb-afd1-2121-b794-3ed29342ks42
   securitySchemes:
     bearerAuth:
       type: http
