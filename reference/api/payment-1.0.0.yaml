@@ -2654,8 +2654,6 @@ components:
           type: string
           description: Date time of the error from a services.
   parameters:
-    warningInfo:
-      $ref: '#/components/schemas/Warning'
     omahaUserIdParam:
       name: omahaUserId
       in: header
@@ -2705,7 +2703,6 @@ components:
       x-mandatory: CREDIT, DEBIT,CREDIT_GATEWAY
       x-validations: Not blank,No CRLF
     interactionId:
-      name: x-fapi-interaction-id
       in: header
       description: unique transaction ID created for each request for tracking purposes
       required: false
