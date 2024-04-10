@@ -3,7 +3,7 @@ openapi: 3.0.0
 info:
   title: Payment
   description: Payment Domain Service API Documentation
-  version: 1.0.0
+  version: 1.0.0-March-2024
 servers:
 - url: https://swaggerhub.onefiserv.net/virts/EXTERNAL-PORTAL-APIS/Payment/1.0.0-March-2024
   description: SwaggerHub API Auto Mocking
