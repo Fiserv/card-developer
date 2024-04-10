@@ -2705,7 +2705,6 @@ components:
       x-mandatory: CREDIT, DEBIT,CREDIT_GATEWAY
       x-validations: Not blank,No CRLF
     interactionId:
-      name: x-fapi-interaction-id
       in: header
       description: unique transaction ID created for each request for tracking purposes
       required: false
