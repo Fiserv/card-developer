@@ -14,10 +14,10 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: Payment Hold
-  description: Payment Hold Resources that apply only for Credit
 - name: Payment Action
   description: Payment Action Resources that apply only for Credit
+- name: Payment Hold
+  description: Payment Hold Resources that apply only for Credit
 - name: Payment Detail
   description: Payment Detail Resources that apply only for Credit
 paths:
@@ -67,12 +67,12 @@ paths:
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -81,7 +81,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -90,7 +90,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -99,7 +99,7 @@ paths:
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -108,7 +108,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -117,7 +117,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -126,7 +126,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -135,7 +135,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -221,12 +221,12 @@ paths:
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -235,7 +235,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -244,7 +244,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -253,7 +253,7 @@ paths:
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -262,7 +262,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -271,7 +271,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -280,7 +280,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -289,7 +289,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -418,7 +418,7 @@ paths:
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -427,7 +427,7 @@ paths:
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -436,7 +436,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -445,7 +445,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -460,7 +460,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -469,7 +469,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -478,7 +478,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -487,7 +487,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -574,12 +574,12 @@ paths:
           description: Created
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -588,7 +588,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -597,7 +597,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -606,7 +606,7 @@ paths:
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -615,7 +615,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -624,7 +624,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -633,7 +633,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -642,7 +642,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -725,6 +725,9 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -733,7 +736,7 @@ paths:
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -742,7 +745,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -751,7 +754,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -760,7 +763,7 @@ paths:
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -769,7 +772,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -778,7 +781,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -787,7 +790,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -796,7 +799,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -854,12 +857,12 @@ paths:
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -868,7 +871,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -877,7 +880,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -886,7 +889,7 @@ paths:
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -895,7 +898,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -904,7 +907,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -913,7 +916,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -922,7 +925,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -981,12 +984,12 @@ paths:
           description: No Content
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -995,7 +998,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1004,7 +1007,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1013,7 +1016,7 @@ paths:
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1022,7 +1025,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1031,7 +1034,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1040,7 +1043,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1049,7 +1052,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1150,6 +1153,9 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1158,7 +1164,7 @@ paths:
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1167,7 +1173,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1176,7 +1182,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1185,7 +1191,7 @@ paths:
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1194,7 +1200,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1203,7 +1209,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1212,7 +1218,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1221,7 +1227,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1286,7 +1292,7 @@ paths:
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1298,7 +1304,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1310,7 +1316,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1322,7 +1328,7 @@ paths:
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1334,7 +1340,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1346,7 +1352,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1358,7 +1364,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1370,7 +1376,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1427,11 +1433,14 @@ paths:
       responses:
         "204":
           description: Payment Hold released successfully OR Payment Hold updated successfully
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1443,7 +1452,7 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1455,7 +1464,7 @@ paths:
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1467,7 +1476,7 @@ paths:
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1479,7 +1488,7 @@ paths:
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1491,7 +1500,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1503,7 +1512,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1515,7 +1524,7 @@ paths:
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/parameters/interactionId'
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1545,7 +1554,7 @@ components:
         detail:
           type: string
           description: Specific explanation to the occurence of the problem.
-          example: We had a problem getting your credit and debit card information.
+          example: We had a problem getting/creating your payment information
         instance:
           type: string
           description: A URI reference that identifies the specific occurence of the problem.
@@ -1831,28 +1840,32 @@ components:
         paymentAmount:
           type: string
           description: Amount of payment.
+          example: "10.00"
         paymentType:
           type: string
           description: Type of payment
           enum:
-          - IMMEDIATE_PAYMENT
           - ONETIME_ACH
           - RECURRING_ACH
         routingNumberBankId:
           type: string
           description: Routing Number/Bank Identification number attached with the account number to identify the financial institution.
+          example: "12345678"
         bankAccountNumber:
           type: string
           description: Account number used for one time ACH payment.
+          example: XXXXX6789
         paymentAccountType:
           type: string
           description: Type of account.
+          example: SAVINGS
           enum:
           - CHECKING
           - SAVINGS
         recurringPaymentType:
           type: string
           description: 'Type of ACH recurring payment for this account. Possible values: Pay Minimum Due, Current Balance, Full Statement Balance and Fixed Payment Amount'
+          example: PAY MINIMUM DUE
         recurringStartDate:
           type: string
           description: Date when the recurring ACH payment starts.
@@ -1866,18 +1879,22 @@ components:
         recurringCalendarDay:
           type: string
           description: Day of the month for the recurring ACH payment.
+          example: "25"
         recurrenceDate:
           type: string
           description: Date the recurring ACH payment is scheduled.
+          example: ON_TIME_PAYMENT_DUE
           enum:
           - ON_TIME_PAYMENT_DUE
           - SPECIFIC_DAY_MONTH
         registrationId:
           type: string
           description: One-time payment registration identification associated with the account.
+          example: "1234567"
         autoPaymentChargeDdaFlag:
           type: string
-          description: Valid values are PAY_MINIMUM_DUE,FULL_STATEMENT_BALANCE,CURRENT_BALANCE,FIXED_PAYMENT_AMOUNT
+          description: Valid values are 1- PAY_MINIMUM_DUE,5 - FULL_STATEMENT_BALANCE,4 - CURRENT_BALANCE,7 - FIXED_PAYMENT_AMOUNT
+          example: "1"
         paymentPostDate:
           type: string
           format: date
@@ -1887,12 +1904,16 @@ components:
           description: Confirmation number for Scheduled Payment.
         convenienceFeeRefundAmount:
           type: string
+          description: The refund amount
+          example: "0.00"
         recurringPaymentId:
           type: string
           description: Id for Recurring Payment
+          example: "12345"
         isDisabled:
           type: boolean
           description: Will indicate if the payment is disabled or not
+          example: false
         disabledDate:
           type: string
           description: Date that Payment was disabled
@@ -1900,67 +1921,68 @@ components:
           example: 2024-09-09
         demandDepositAccount:
           type: string
-        disabledReason:
-          type: string
-          description: Reason for Payment disabled
+          description: The deposit account
+          example: "12345678"
         recurringIntervalType:
           type: string
+          description: Interval type of the recurring payment
+          example: Monthly
         intervalParam1:
           type: string
+          description: Interval Parameter
+          example: Days
         intervalParam2:
           type: string
+          description: Interval Parameter
+          example: "25"
         convFeeAmount:
           type: string
-        reference:
-          type: string
+          description: Convenience Fee Amount
+          example: "0.00"
         transactionResultCode:
           type: string
-        scheduleType:
-          type: string
-        eftaAccountType:
-          type: string
+          description: The result code of the transaction
+          example: "273"
         savingsAccount:
           type: string
+          description: Savings Account Number
+          example: "12345678"
         transitRoutingAccount:
           type: string
+          description: The transit rounting account number
+          example: "12345678"
         autoPaymentStartDate:
           type: string
+          description: The start date of the payment
+          format: date
+          example: 2023-09-09
         autoPaymentEndDate:
           type: string
-        autoPaymentDesignatedAmount:
-          type: string
-        autoPaymentEnrollmentTypeCode:
-          type: string
-        paymentCount:
-          type: string
-        amountPaid:
-          type: string
-        targetAmount:
-          type: string
+          description: The end date of the payment
+          format: date
+          example: 2023-09-08
         nextPayDate:
           type: string
-        nextPayDateFlag:
-          type: string
+          description: The next pay date
+          example: 2025-09-09
         createddate:
           type: string
+          description: Created date
+          example: 2025-09-09
         automaticPaymentCode:
           type: string
-        demandDepositAccountIdentifier:
-          type: string
-        savingsAccountIdentifier:
-          type: string
-        taxAmount:
-          type: string
+          description: The automatic payment code
+          example: "1"
         authorizationMedium:
           type: string
           description: If the consumer is providing their registration information via a self-service interface (i.e. Web) where they are directly inputting their registration data then AuthorizationMedium should be set to the same values as your PaymentChannel, valid values are Unknown, Web, IVR, Walkin, Voice, Fax, Mail.
         paymentMedium:
           type: string
           description: Indicates the Payment Medium used for this transaction, valid values are Unknown, e-Check, CreditCard, CommercialCreditCard, CheckCard, BusinessCheck, PinlessDebit, PINDebit, POS, Cash, ACHCredit, LockBox, RemoteCapture, EFT Credit, Fed Wire, IAT ACH Debit, Other EFT .
-        failedCount:
+        savingsAccountIdentifier:
           type: string
-        paymentChannel:
-          type: string
+          description: Savings account Id. The first 4 digits are masked
+          example: XXXXX6789
     SchedulePaymentsSearchRequest:
       required:
       - accountNumber
@@ -2844,10 +2866,7 @@ components:
         status: 422
   headers:
     interactionId:
-      name: x-fapi-interaction-id
-      in: header
       description: unique transaction ID created for each request for tracking purposes
-      required: false
       style: simple
       explode: false
       schema:
