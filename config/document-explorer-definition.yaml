@@ -47,7 +47,7 @@
       link: docs/gettingstarted/environments.md
     - title: Manage Developers
       link: docs/gettingstarted/manage-developers.md
-    - title: Registration
+    - title: RegistrationProduct
       link: docs/gettingstarted/registration.md
     - title: Validate APIs in Sandbox
       link: docs/gettingstarted/validate-apis-in-sandbox.md
@@ -150,6 +150,8 @@
       link: docs/release-notes/fraud/fraud-release-note.md
     - title: Reward
       link: docs/release-notes/reward/reward-release-note.md
+    - title: Payment
+      link: docs/release-notes/payment/payment-release-note.md
     - title: Webhook
       link: docs/release-notes/webhook/webhook-release-note.md 
 - sections:
