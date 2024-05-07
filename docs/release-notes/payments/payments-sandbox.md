@@ -356,18 +356,17 @@ This API is used for a registered account.
 
 ``` 
 {
-    "accountNumber": "123456789",
-      
-   "deleteRegisteredAccount": {
-    "registrationId": "1234567",
-    "accountType": "CHECKING",
-    "firstName": "JOHN",
-    "lastName": "DOE",
-    "fullName": "JOHN DOE",
-    "authorizationMedium": "Web",
-    "paymentMedium": "e-Check",
-    "lookupReference": "123456789",
-    "agreedToTerms": true
+	"accountNumber": "123456789",
+	"deleteRegisteredAccount": {
+	    "registrationId": "1234567",
+	    "accountType": "CHECKING",
+	    "firstName": "JOHN",
+	    "lastName": "DOE",
+	    "fullName": "JOHN DOE",
+	    "authorizationMedium": "Web",
+	    "paymentMedium": "e-Check",
+	    "lookupReference": "123456789",
+	    "agreedToTerms": true
   }
 }
 ``` 
