@@ -2,7 +2,7 @@
 
 ## <span style="color:#ff6600;">Payments API Endpoints</span>
 
-## Payment Search
+## Payment Search 
 
 Tests must use only requests given here.
 ### Payment Search
