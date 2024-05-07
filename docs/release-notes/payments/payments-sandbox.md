@@ -309,9 +309,8 @@ This API is used for a registered account.
 ``` 
 {
     "accountNumber": "123456789",
-    "registrationId": "1234567",
     "addRegisteredAccount": {
-        "registrationId": null,
+        "registrationId": "1234567",
         "bankRoutingNumber": "123456789",
         "accountType": "SAVINGS",
         "bankAccountNumber": "123456789",
@@ -356,8 +355,7 @@ This API is used for a registered account.
 
 ``` 
 {
-    "accountNumber": "123456789",
-      
+   "accountNumber": "123456789",
    "deleteRegisteredAccount": {
     "registrationId": "1234567",
     "accountType": "CHECKING",
