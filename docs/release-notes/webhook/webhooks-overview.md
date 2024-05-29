@@ -7,7 +7,7 @@ Notifications are sent in the form of events that have a predefined structure to
  * Information-only which require no specific action.
  * Time-sensitive that require your action within a predefined time interval.
 
- 
+ NEEDS ICONS
 
 **<span style="color:#ff6600;">Availability:</span>** Webhooks
 
