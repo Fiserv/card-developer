@@ -105,9 +105,9 @@
     sections:
     - title: Webhook Overview
       link: docs/release-notes/webhook/webhook-overview.md
-- sections:
-  - title: Webhook Event Streaming
-    sections:
+     sections:
+   - title: Webhook Event Streaming
+       sections:
     - title: Webhook Events
       link: docs/webhook/section-header.md
     - title: Card Activation
