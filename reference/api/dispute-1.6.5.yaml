@@ -712,8 +712,7 @@ paths:
                       messageid: 25557-84290371-1
   /v1/cases/{caseId}/caseItems/{caseItemId}/document:
     post:
-      tags:
-     Update
+      tags: Update
       x-child-product-name: Dispute v1.6.5
       x-group-name:  Update
       x-proxy-name: Case Item Doc Upload
