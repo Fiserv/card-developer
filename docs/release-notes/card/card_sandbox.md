@@ -3951,15 +3951,15 @@ You must remove the nonTransToken field from the response template before using 
 
 ## Compromised Cards
 
-**Credit**
+**Credit and Debit**
 
-### Search for Compromised Cards
-This case returns a list of compromised cards for credit cards. The request will have one of the following required parameters - cardnumber, networkalert or fromdate and to-date.
+### Get Compromised Cards
+This API returns a list of compromised cards for both debit and credit. The request will have one of the following required parameters; cardnumber, networkalert or fromdate and todate.
 
 #### Request
 **HTTP Method:** POST
 
-**Target URL:** [https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/search](https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/search)
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/search
 ```
 {
   "cardNumber": "4000200030004000",
@@ -3988,50 +3988,50 @@ This case returns a list of compromised cards for credit cards. The request will
   }
 ```
 
-**Debit**
-
-### Search for Compromised Cards
-This case returns a list of compromised cards for debit cards. The request will have one of the following required parameters - cardNumber, networkAlert or fromDate and toDate.
-
-#### Request
-**HTTP Method:** POST
-
-**Target URL:** [https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/search](https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/search)
-```
-{
-  "cardNumber": "4000200030004000",
-  "networkAlert": "CompDebCard1234",
-  "fromDate": "2021-07-20",
-  "toDate": "2021-12-28",
-  "pageLimit": 50,
-  "pageOffset": 1
-}
-```
-##### Response
-**HTTP Code:** 200 OK
-```
-{
-"compromisedCards": [
-    {
-      "cardNumber": "400020XXXXXX4000",
-      "clientId": "string",
-      "networkAlert": "CompDebCard1234",
-      "networkAlertDate": "2021-12-30",
-      "severityLevel": "A",
-      "compromiseSource": "FALCOMPCARD TEST 1",
-      "sourceAlertDescription": "NO ACTION TAKEN"
-    }
-   ]
-  }
-```
 **Credit**
 
-### Get Compromised Card Details
-This case returns a details of compromised credit cards for the provided cardnumber.
+### Get Details of Compromised Card 
+This case returns the details of compromised cards for crdit when a credit card number is submitted.
 
 #### Request
 **HTTP Method:** POST
-**Target URL:** [https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations](https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/search)
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/details/search
+```
+{
+  "cardNumber": "4000200030004000",
+  "networkAlert": "CompCard1234"
+}
+```
+##### Response
+**HTTP Code:** 200 OK
+```
+{
+  "debitOnly": null,
+  "creditOnly": {
+    "system": "0000",
+    "principal": "0000",
+    "agent": "0000",
+    "cardStatus": "L–Lost/Stolen",
+    "accountStatus": "A–Authorization prohibited",
+    "previousAction": "NO ACTION TAKEN",
+    "dateLastMaintainance": "2021-07-20",
+    "expiryDate": "2025-07-20",
+    "cardStatusReasonCode": "88–Fraud",
+    "compromisedDate": "2021-07-20",
+    "account": "1451550129",
+    "transferredAccount": "Yes",
+    "transferredCard": "Yes"
+  }
+}
+```
+**Debit**
+
+### Get Details of Compromised Card 
+This case returns the details of compromised cards for debit when a debit card number is submitted.
+
+#### Request
+**HTTP Method:** POST
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/details/search
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4043,66 +4043,13 @@ This case returns a details of compromised credit cards for the provided cardnum
 ```
 {
   "debitOnly": {
-    "eftRiskAlertNumber": "string",
+    "eftRiskAlertNumber": "62800",
     "dateLastMaintainance": "2021-07-20"
   },
-  "creditOnly": {
-    "system": "0000",
-    "principal": "0000",
-    "agent": "0000",
-    "cardStatus": "L–Lost/Stolen",
-    "accountStatus": "A–Authorization prohibited",
-    "previousAction": "NO ACTION TAKEN",
-    "dateLastMaintainance": "2021-07-20",
-    "expiryDate": "2025-07-20",
-    "cardStatusReasonCode": "88–Fraud",
-    "compromisedDate": "string",
-    "account": "1451550129",
-    "transferredAccount": "Yes",
-    "transferredCard": "Yes"
-  }
+  "creditOnly": null
 }
 ```
 
-**Debit**
-
-### Get Compromised Card Details
-This case returns a details of compromised debit cards for the provided cardnumber.
-
-#### Request
-**HTTP Method:** POST
-**Target URL:** [https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations](https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/search)
-```
-{
-   "cardNumber": "4000200030004000",
-  "networkAlert": "CompCard1234"
-}
-```
-##### Response
-**HTTP Code:** 200 OK
-```
-{
-  "debitOnly": {
-    "eftRiskAlertNumber": "string",
-    "dateLastMaintainance": "2021-07-20"
-  },
-  "creditOnly": {
-    "system": "0000",
-    "principal": "0000",
-    "agent": "0000",
-    "cardStatus": "L–Lost/Stolen",
-    "accountStatus": "A–Authorization prohibited",
-    "previousAction": "NO ACTION TAKEN",
-    "dateLastMaintainance": "2021-07-20",
-    "expiryDate": "2025-07-20",
-    "cardStatusReasonCode": "88–Fraud",
-    "compromisedDate": "string",
-    "account": "1451550129",
-    "transferredAccount": "Yes",
-    "transferredCard": "Yes"
-  }
-}
-```
 
 
 ## Demographics

@@ -1,6 +1,6 @@
 # Test Cases
 
-## <span style="color:#ff6600;">Fraud API Endpoints</span>
+<span style="color:#ff6600;">**Fraud API Endpoints**</span>
 
 ## Case
 
@@ -136,7 +136,7 @@ Returns the case history details for a given case.
       {
          "createdDateTime": "2021-07-20T07:00:00Z",
          "DateTime": "2021-07-20T07:00:00Z",
-         ""requestedUser": "Smith",
+         "requestedUser": "Smith",
          "description": "No Contact Found due to INVALID data."
       }
    ]
@@ -689,7 +689,7 @@ Returns specified transactions associated with a case based on filter value "AUT
       "merchantState": "NJ",
       "messageType": "136",
       "pin": "X",
-      "realTime#### Response": "4250",
+      "realTimeResponse": "4250",
       "starScore": "0",
       "tokenAssuranceLevel": "23",
       "tokenId": "5046490000000004",
@@ -953,7 +953,7 @@ Successful.
 ```
 ## Exemptions
 ### Retrieve Fraud Travel Exemptions Countries List.
-Retrieve Countries list for Fraud Travel Exemptions. locationFilter value will be COUNTRY for fetcing the Counteries list.
+Retrieve Countries list for Fraud Travel Exemptions. locationFilter value will be COUNTRY for fetching the Countries list.
 
 #### Request
 **HTTP METHOD:** GET
@@ -985,7 +985,7 @@ Retrieve Countries list for Fraud Travel Exemptions. locationFilter value will b
 }
 ```
 ### Retrieve Fraud Travel Exemptions States List.
-Retrieve States list for Fraud Travel Exemptions. locationFilter value will be STATE for fetcing the States list.
+Retrieve States list for Fraud Travel Exemptions. locationFilter value will be STATE for fetching the States list.
 
 #### Request
 **HTTP METHOD:** GET
@@ -1030,9 +1030,9 @@ BAD Request Response for locations for Fraud Travel Exemptions without locationF
 {
     "status": "400",
     "path": "/api/fraud/v1/exemptions/locations",
-    "instance": "/cs/fraud/v1/exemptions/travel/locations",
-    "type": "https://card.developer.fiserv.com/fraud/error#invalid",
-    "title": "Invalid **Request**"
+   "instance": "/cs/fraud/v1/exemptions/travel/locations",
+    "type": "https://card.developer.fiserv.com/fraud/error#invalid-request",
+    "title": "Invalid Request"
 
 }
 ```
@@ -1106,16 +1106,18 @@ Search for fraud cases rules based on required field caseNumber and optional fie
   ]
 }
 ```
+## Verification
 
-### Verification CardAuthInfo Using CardNumber,Member Number,OTP and JWT
+### Verification CardAuthInfo Using CardNumber, Member Number, OTP and JWT
 Retrieves CV2 and expirationDate for given card by validating OTP and JWT.
 #### Request
 **HTTP METHOD:** POST
-**Target URL: **https://card-sandbox.api.fiservapps.com/cs/fraud/v1/verification/cardAuthInfo
+
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/fraud/v1/verification/cardAuthInfo
 ```
 {
   "cardNumber": "4000200030004000",
-  "me**Target URL:**: "0",
+  "memberNumber": "0",
   "otp": "123456",
   "jwt": "eyJ0eXAiOiJKV1QiLCJlbmMiOiJBMTI4R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.WrliT8nLQOTRnXldrYj0brobAyi6M7-U8_iHovmTH1VAZksc4mOGQCfaSx-sbDNjdkpeznR8lU1sHOX26qom94jBO6uePEw1cBbTHLpOSEPDYiWS6SzTgxguF7zT2g5Ui1HHi2GKgPtH5L0XC_QqP5TIs3A15fqpAnvMaSwW9O_GDRzxnsUDCgEZCkwQOuEpWYDbM7r7yKrfAlkWKOHOlZuUtvJvg3k8p-1qwKpuGexhWXQdgKsWphBWbMzbindOIefIo4VTrOVMxWOdP_bLNId0E0CBLxSpRHX1u3EeAjUykUdifT2CP4bb6kbJf4pp0dRc_uPZGJLj7faPyq6UeQ.zTLJMNI8bjGh-KBy.FW0W0ihL2sj7pYin2iY1gavS4W-yPswjKmrb6-ROwHgEOscfeGGLmUihzoV6vy9KvTJ9ytnIPqh-K94UsShUJ0-KgsY4_eWyUwx4IYpYaJkPeUVd4ni_1eZMBy6-hPr3n39DES_kXfnv3MJOiZZj0I-GJXw99WBV7xhl7KZcFKyMXYnszyboV8Xi2iZqHglvEoYRjKLvOlEq2j4pJoMRVfBB8oIOZm6uyCaOnyuWuE_Lg1HeuNMnHddTm8gexDAfwj3WYHkJazsN1PZVhPZVImyKwCNM.TOYk3lw2SKYamQL7XiLXlg"
 }
@@ -1124,7 +1126,8 @@ Retrieves CV2 and expirationDate for given card by validating OTP and JWT.
 **HTTP Code:** 200 OK
 ```
 {
-  "cardNumber": "4000200030004000",**Target URL:**282",
+  "cardNumber": "4000200030004000",
+  "CV2": "282",
   "expirationDate": "10/28"
 }
 ```
@@ -1133,6 +1136,7 @@ Retrieves CV2 and expirationDate for given card by validating OTP and JWT.
 Retrieves CV2 and expirationDate for given card by validating OTP and JWT.
 #### Request
 **HTTP METHOD:** POST
+
 **Target URL: **https://card-sandbox.api.fiservapps.com/cs/fraud/v1/verification/cardAuthInfo
 ```
 {
@@ -1150,12 +1154,12 @@ Retrieves CV2 and expirationDate for given card by validating OTP and JWT.
   "expirationDate": "10/28"
 }
 ```
-## Verification
 
 ### Verification CardAuthInfo Using NTT, Member Number, OTP and JWT
 Retrieves CV2 and expirationDate for given card by validating OTP and JWT..
 #### Request
 **HTTP METHOD:** POST
+
 **Target URL: **https://card-sandbox.api.fiservapps.com/cs/fraud/v1/verification/cardAuthInfo
 ```
 {
@@ -1175,10 +1179,11 @@ Retrieves CV2 and expirationDate for given card by validating OTP and JWT..
 }
 ```
 
-### Verification CardAuthInfo Using NTT,OTP and JWT
-Retrieves CV2 and expirationDate for given card by validating OTP and JWT..
+### Verification CardAuthInfo Using NTT, OTP and JWT
+Retrieves CV2 and expirationDate for given card by validating OTP and JWT.
 #### Request
 **HTTP METHOD:** POST
+
 **Target URL: **https://card-sandbox.api.fiservapps.com/cs/fraud/v1/verification/cardAuthInfo
 ```
 {
@@ -1201,6 +1206,7 @@ Retrieves CV2 and expirationDate for given card by validating OTP and JWT..
 Retrieves CV2 and expirationDate for given card by validating OTP and JWT.
 #### Request
 **HTTP METHOD:** POST
+
 **Target URL: **https://card-sandbox.api.fiservapps.com/cs/fraud/v1/verification/cardAuthInfo
 ```
 {
@@ -1223,6 +1229,7 @@ Retrieves CV2 and expirationDate for given card by validating OTP and JWT.
 Retrieves allowed and available media addresses for cardholder's Verification. Possible media address types are Voice, Text, and Email. Media addresses are semi-masked for cardholder's confidentiality.
 #### Request
 **HTTP METHOD:** PUT
+
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/fraud/v3/verification/search
 ```
 {
@@ -1252,6 +1259,7 @@ Retrieves allowed and available media addresses for cardholder's Verification. P
 Retrieves allowed and available media addresses for cardholder's Verification. Possible media address types are Voice, Text, and Email. Media addresses are semi-masked for cardholder's confidentiality.
 #### Request
 **HTTP METHOD:** PUT
+
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/fraud/v3/verification/search
 ```
 {
@@ -1266,7 +1274,7 @@ Retrieves allowed and available media addresses for cardholder's Verification. P
     "nonTransToken": "piUVBJKZGfks4000",
     "memberNumber": "0",
     "contact": {
-        "emailAddress": "ale***** Response.com",
+        "emailAddress": "ale******@example.com",
         "homePhone": "******0001",
         "workPhone": "******0001",
         "cellPhone": "******0001",
@@ -1278,7 +1286,9 @@ Retrieves allowed and available media addresses for cardholder's Verification. P
 ### Retrieve Verification Options Using cardNumber without nonTransToken
 Retrieves allowed and available media addresses for cardholder's Verification. Possible media address types are Voice, Text, and Email. Media addresses are semi-masked for cardholder's confidentiality.
 #### Request
-**HTTP METHOD:** URL: https://card-sandbox.api.fiservapps.com/cs/fraud/v3/verification/search
+**HTTP METHOD:** POST
+
+**Target URL:**  https://card-sandbox.api.fiservapps.com/cs/fraud/v3/verification/search
 ```
 {
   "cardNumber": "4000100020003000"
@@ -1303,7 +1313,9 @@ Retrieves allowed and available media addresses for cardholder's Verification. P
 ### Retrieve Verification Options Using nonTransToken Only
 Retrieves allowed and available media addresses for cardholder's Verification. Possible media address types are Voice, Text, and Email. Media addresses are semi-masked for cardholder's confidentiality.
 #### Request
-**HTTP METHOD:** URL: https://card-sandbox.api.fiservapps.com/cs/fraud/v3/verification/search
+**HTTP METHOD:** POST
+
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/fraud/v3/verification/search
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000"
@@ -1319,7 +1331,7 @@ Retrieves allowed and available media addresses for cardholder's Verification. P
     "contact": {
         "emailAddress": "ale******@example.com",
         "homePhone": "******0001",
-        "workPhon### Response***0001",
+        "workPhone": "******0001",
         "cellPhone": "******0001",
         "textAddress": "******0001"
     }
@@ -1354,7 +1366,7 @@ Retrieves allowed and available media addresses for cardholder's Verification. P
             "cellPhone": "******3222"
         },
         "email": {
-            "emailAddress": "gle*********@gmail.com"
+            "emailAddress": "ale******@example.com"
         },
         "text": {
             "homePhone": "******2222",
@@ -1474,6 +1486,7 @@ Retrieves a one time passcode for cardholder's verification. Generated passcode 
 Retrieves a one time passcode for cardholder's verification. Generated passcode expires in 10 mins. Passcode is delivered on selected media address.
 #### Request
 **HTTP METHOD:** POST
+
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/fraud/v3/verification/otp
 ```
   {
@@ -1635,6 +1648,7 @@ Retrieves a one time passcode for cardholder's verification. Generated passcode 
 #### Request
 
 **HTTP METHOD:** POST
+
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/fraud/v3/verification/otp
 ```
   {
@@ -1848,7 +1862,7 @@ Retrieves a one time use passcode for cardholder's verification. Generated passc
 
 ``` 
 {
-    "cardNumber": ""***********4000",
+    "cardNumber": "***********4000",
     "cardMemberNumber": "0",
     "cardType": "CREDIT",
     "otpId": "1234567",
@@ -1982,7 +1996,6 @@ Deprecated. Use v2.
 }
 ```
 ## Fraud Alert
-## Test Cases
 ### Notify Cardholder
 Provides information to identify the given cardholder on the third party vendor’s system along with case and transaction data to allow the cardholder identify if a transaction is a fraud transaction. The URL is determined by the client when this service is configured by Fiserv.
 
@@ -1990,6 +2003,7 @@ Provides information to identify the given cardholder on the third party vendor�
 **HTTP METHOD:** POST
 
 **Target URL:** /client/provided/uri
+
 
 ``` 
 {
@@ -2190,14 +2204,15 @@ No Response body on success.
 ```
 No Response body for a successful test.
 ```
-## Fraud Alert
 ### Outbound API and References
 **References**
-Refer to these pages for important reference information.
+See following linked pages for key references.
 
-[Fraud Alert Reference Outbound API](?path=/docs/gettingstarted/fred1.md)
+[Fraud Alert Reference Outbound API](?path=/docs/release-notes/fraud/fraud-alert-outbound-api.md)
 
 [Fraud Alert Reference Codes](?path=/docs/release-notes/fraud/fraud-alert-reference-codes.md)
+
+## Travel Exemptions
 
 ### Search Travel Exemptions
 This operation searches and retrieves any existing travel exemptions created by a cardholder. Two travel exemption lists are possible. To add, update or remove travel exemptions, this search Request must be conducted first to understand what and if any lists exist for a cardholder. The following Request example for the cardholder, with PAN 222297976430017, returns 2 exemption lists with effective start and end dates, and the FI-applied exclusion codes.
@@ -2578,7 +2593,7 @@ Important! A cardholder can have a maximum of two travel plans on a specified ca
 ```
 ### References
 
-Refer to these pages for important reference information.
+See following linked pages for key references.
 
 [Country Currency Codes](?path=/docs/release-notes/fraud/country-currency-codes.md)
 
