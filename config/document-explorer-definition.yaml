@@ -101,7 +101,7 @@
   - title: Reward
     sections:
     - title: uChoose® Overview
-      link: docs/release-notes/reward/reward_overview.md
+      link: docs/release-notes/reward/reward_overview_tst.md
     - title: Reward Sandbox
       link: docs/release-notes/reward/reward_sandbox.md
 - sections:
