@@ -1,8 +1,8 @@
-# Account overview
+# Account Overview
 
-Account API provides financial institutions and account holders API features to manage and maintain their account information through various touchpoints.
+Account API provides financial institutions or account holders API endpoints to manage and maintain their account information through various touchpoints.
 
-**<span style="color:#ff6600;">Platform support</span>**: **CSL**=Credit Select 
+**<span style="color:#ff6600;">Platform Support</span>**: **CSL**=Credit Select 
 
 
 **<span style="color:#ff6600;">Availability:</span>** Debit Enhanced EPOC, Credit Gateway
@@ -20,16 +20,16 @@ Account API provides financial institutions and account holders API features to 
 
 *   ![](assets/images/access-account-information.png)
     
-    #### Access account information
+    #### Access Account Information
     
-   Retrieve account-specific data for the customer or the finanical institution.
+   Retrieve account-specific data for the customer or the finanical institution
 
 </div>
 <div class="col-md-4" markdown=1>
 
 *   ![](assets/images/retrieve-statements.png)
 
-    #### Retrieve statements
+    #### Retrieve Statements
     
    View statement information along with transactions.
 
@@ -38,31 +38,31 @@ Account API provides financial institutions and account holders API features to 
 
 *   ![](assets/images/retrieve-account-limits.png)
     
-    #### Retrieve account limits
+    #### Retrieve Account Limits
     
-   Retrieve account limits which includes credit, temporary credit, and cash limits.
+   Retrieve account limits which includes credit, temporary credit and cash limits.
     
 </div>
 </div>
 
 
-**<span style="color:#ff6600;">Details</span>** feature retrieves basic and detailed account data for integration within consumer-facing or representative-facing channels to improve customer servicing.
+**<span style="color:#ff6600;">Details</span>** feature enables entities to retrieve basic and detailed account data for integration within consumer-facing or representative-facing channels to improve customer servicing.
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Search**: Access to customer account details based on the account information.
+**Search**: Provides access to customer account details based on the account information
  
 
-**<span style="color:#ff6600;">Statements</span>** feature retrieves account billing statements. The detailed statement information retrieves all the individual transactions billed on a statement. 
+**<span style="color:#ff6600;">Statements</span>** feature provides information about billing statements available for the account. Detailed statement information provides all the individual transactions billed on a statement. 
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Search**:  retrieves account level statements for all cards.
+**Search**:  Provides account level statements for all cards related to account
               
 
-**<span style="color:#ff6600;">Limits</span>** gives users options to retrieve and update an account  credit limit, cash limit, or the temporary credit limit with a known account number.
+**<span style="color:#ff6600;">Limits</span>** feature enables  users to retrieve and update the credit limit, cash limit, or the temporary credit limit for an account number.
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Search**: retrieves account limits.
+**Search** : Provides access to account limits based on the account information
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Update**: retrieves updated account limits information.
+**Update** : Provides access to update account limits based on the account information
  
 
-**<span style="color:#ff6600;">Transaction</span>**  feature gives users options to retrieve summary or details of account holders recent account transactions. Users have options to search for single or for multiple transactions using specific the search criteria multiple dates and multiple merchant.
+**<span style="color:#ff6600;">Transaction</span>**    feature enables account holders to retrieve recent account transactions  as well as allow account holders to search for multiple transactions by specific search criteria, multiple dates and multiple merchant.
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Search**: retrieves transaction details of a given accounts based on criteria submitted. 
+**Search**: Retrieves transaction details of a given account based on the criteria submitted. 
