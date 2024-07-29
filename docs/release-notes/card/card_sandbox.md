@@ -2,13 +2,14 @@
 
 <span style="color:#ff6600;">**Card API Endpoints**</span>
 
-When testing these endpoints, please use the test cases and test data from the Sandbox.
+
+Tests must use only requests given here.
 
 ## Activations
 
 **Credit**
 
-### Credit Activate v1: Activate inactive card
+### Activate Inactive Credit Card
 This case activates a card.
 
 #### Request
@@ -29,7 +30,7 @@ This case activates a card.
   }
 ```
 
-### Credit Activate v1: Search for inactive card
+### Search for Details Inactive Credit Card
 This case demonstrates when the card is inactive.
 
 #### Request
@@ -50,7 +51,7 @@ This case demonstrates when the card is inactive.
   }
 ```
 
-### Credit Activate v1: Search for active card
+### Search for Details Active Credit Card
 This case demonstrates when the card is active.
 
 #### Request
@@ -73,7 +74,7 @@ This case demonstrates when the card is active.
 
 **Debit**
 
-### Debit Activate v1: Activate inactive card using card number
+### Activate Inactive Debit Card with Card Number
 This case activates a debit card.
 
 #### Request
@@ -101,7 +102,7 @@ This case activates a debit card.
       "verificationCallerID": "9900020"
   }
 ```
-### Debit Activate v1: Activate inactive card using NTT
+### Activate Inactive Debit Card with NTT
 #### Request
 **HTTP Method:** PUT
 
@@ -127,7 +128,7 @@ This case activates a debit card.
       "verificationCallerID": "9900020"
   }
 ```
-### Debit Activate v1: Search for inactive card using card number
+### Search for Details Inactive Debit Card
 This case demonstrates when the debit card is inactive.
 
 #### Request
@@ -152,7 +153,7 @@ This case demonstrates when the debit card is inactive.
   }
 ```
 
-### Debit Activate v1: Search for inactive card using NTT
+### Search for Details Inactive Debit Card with NTT
 #### Request
 **HTTP Method:** POST
 
@@ -175,7 +176,7 @@ This case demonstrates when the debit card is inactive.
   }
 ```
 
-### Debit Activate v1: Search for active card using card number
+### Search for Details Activate Debit Card
 This case demonstrates when the debit card is activated.
 
 #### Request
@@ -202,7 +203,7 @@ This case demonstrates when the debit card is activated.
   }
 ```
 
-### Debit Activate v1: Search for active card using NTT
+### Search for Details Activate Debit Card with NTT
 #### Request
 **HTTP Method:** POST
 

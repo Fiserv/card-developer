@@ -1,6 +1,8 @@
-# Dispute overview
+# Dispute Overview
 
-Dispute API gives financial institutions and cardholders a way to manage dispute cases for single or multiple transactions.
+Dispute API gives users a way to manage dispute cases for multiple or a single transaction.
+
+ 
 
 **<span style="color:#ff6600;">Availability:</span>** Debit Enhanced EPOC, Credit Gateway
 
@@ -17,49 +19,49 @@ Dispute API gives financial institutions and cardholders a way to manage dispute
 
 *   ![](assets/images/case-details.png)
     
-    #### Case details
+    #### Case Details
     
-   View status, case history and transactions of an existing dispute case.
+   View the status, case history and transactions of an existing dispute case.
 
 </div>
 <div class="col-md-4" markdown=1>
 
 *   ![](assets/images/ease-of-access.png)
 
-    #### Ease of access
+    #### Ease of Access
     
-    Retrieve dispute case information of a cardholder.
+    Enable users to easily retrieve dispute case information for a cardholder.
 
 </div>
 <div class="col-md-4" markdown=1>
 
 *   ![](assets/images/access-card.png)
     
-    #### Reduce operational expenses
+    #### Reduce Operational Expenses
     
-   Reduce time to dispute servicing by eliminating “swivel chair” process.
+   Reduce time allocated to dispute servicing by eliminating “swivel chair” process.
     
 </div>
 </div>
 
 
 
-<span style="color:#ff6600;">**Dispute details**</span> feature helps manage dispute cases. 
-* **Search by card number**: retrieve dispute case details for a specifiedcard number.  
-* **Search by case ID**: retrieve dispute case details for a specified case.
-* **Search case item details**: retrieve dispute case items details for a specified transaction.
-* **Retrieve document by case Item ID**: retrieve  a document or image attached to a specified case item ID.
-* **Retrieve questionnaire by case item ID**: retrieve  the completed questionnaire answers for a given case item.
+<span style="color:#ff6600;">**Dispute Details**</span> enables users to manage dispute cases. 
+* **Search by Card Number**: Retrieves dispute case details for a given card number.  
+* **Search by Case ID**: Retrieves dispute case details for a given case.
+* **Search Case Item details**: Retrieves dispute case items details for a disputed transaction.
+* **Retrieve document by Case Item ID**: Retrieves  a document or image attached to a given case item id. <br>
+* **Retrieve Questionnaire by Case Item ID**: Retrieves  the completed questionnaire answers for a given case item.
  
 
-<span style="color:#ff6600;">**Dispute update**</span> feature can add notes and upload documents to dispute cases.
-* **Upload document by case item ID**: attach a document or image to a dispute case.
-* **Add note**: for specified dispute case.
-* **Delete by case ID**: to cancel specified dispute cases.
-* **Delete by case item ID**: to cancel specified dispute case items using its unique case ID.
+<span style="color:#ff6600;">**Dispute Update**</span> enables users to add notes and upload documents to dispute cases.
+* **Upload Document by Case Item ID**: Allows to attach a document or image to a dispute case.
+* **Add Note**: Update a given dispute case with notes.
+* **Delete by Case ID**: Cancels dispute case.
+* **Delete by Case Item Id**: Cancels dispute case Items for a given Case Id.
  
 
-<span style="color:#ff6600;">**Dispute Create**</span> feature can initiate and finalize a new claim and delete a Case Id in draft status.
-* **Create case**: create a dispute case for a card number's specified transactions.
-* **Submit case questionnaire**: submit a questionnaire for a case item.
-* **Finalize case**: to complete intake process.
+<span style="color:#ff6600;">**Dispute Create**</span> enables users to initiate and finalize a new claim and delete a Case Id in draft status.
+* **Create Case**: Creates a dispute case for given transactions of a particular card number.
+* **Submit Case Questionnaire**: Submits the questionnaire for a case item.
+* **Finalize Case**: Finalize the case intake for a case.
