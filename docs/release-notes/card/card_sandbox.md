@@ -343,8 +343,6 @@ This case demonstrates when the debit card is activated.
 }
 ```
 
-## Add Credit Card
-
 ### Debit Add v2: Using card number
 This case adds a new debit card using a card number.
 
@@ -1868,85 +1866,6 @@ This case retrieves a card number using NTT.
 }
 ```
 
-**NTT Search**
-### Using Card Number Only
-#### Request
-**HTTP Method:** POST
-
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
-```
-{
-    "cardNumber": "4000200030004000"
-}
-```
-#### Response
-**HTTP Code:** 200 OK
-```
-{
-    "cardNumber": "400020XXXXXX4000",
-    "nonTransToken": "piUVBJKZGfks4000"
-}
-```
-
-
-### Using Card Number, Full Card and Token
-#### Request
-**HTTP Method:** POST
-
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
-```
-{
-    "cardNumber": "4000200030004000",
-    "responseFormat": "FULL_CARD_AND_TOKEN"
-}
-```
-#### Response
-**HTTP Code**: 200 OK
-```
-{
-    "cardNumber": "4000200030004000",
-    "nonTransToken": "piUVBJKZGfks4000"
-}
-```
-### Using Card Number, Masked Card Only
-#### Request
-**HTTP Method:** POST
-
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
-```
-{
-    "cardNumber": "4000200030004000",
-    "responseFormat" : "MASKED_CARD_ONLY"
-}
-```
-#### Response
-**HTTP Code:** 200 OK
-```
-{
-    "cardNumber": "400020XXXXXX4000"
-}
-```
-
-
-
-### Using Card Number, Token Only
-#### Request
-**HTTP Method:** POST
-
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
-```
-{
-    "cardNumber": "4000200030004000",
-    "responseFormat" : "TOKEN_ONLY"
-}
-```
-#### Response
-**HTTP Code:** 200 OK
-```
-{
-    "nonTransToken": "piUVBJKZGfks4000"
-}
-```
 
 ## Audit
 ### Debit Audit v1: Retrieve details of audit records for card
@@ -3616,13 +3535,8 @@ This case is a Demographics search.
 **HTTP Code:** 204 No Content
 
 
-**Version 2**
-
-
-
-**Demographics Search**
 ## Search
-### Search cardholder demographics.
+### Search cardholder demographics
 
 #### Request
 **HTTP Method:** POST
@@ -3787,6 +3701,130 @@ This case is a Demographics search.
       ]
   }
 ```
+### Demographics search 
+Search cardholder demographics.
+
+#### Request
+**HTTP Method:** POST
+
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cardholders/demographics/search
+```
+{
+      "cardNumber": "4000200030004000"
+  }
+```
+#### Response
+**HTTP Code:** 200 OK
+```{
+      "cardholderDemographics": {
+          "cardNumber": "4000200xxxxxx4000",
+          "accountNumber": "xxxxx6789",
+          "externalCustomerId": "xxxxx6789",
+          "additionalInfo": {
+              "prefix": "Dr.",
+              "cardholderName": "John Smith",
+              "association": "PRIMARY",
+              "vip": true,
+              "gender": "NOT_SPECIFIED",
+              "dateOfBirth": "2014-10-02",
+              "employeeCode": "123-00-5678",
+              "motherMaidenName": "Smith",
+              "empId": "123-000-5678",
+              "ssnOrTaxId": "123-00-5678",
+              "ein": "123-00-5678",
+              "dnaPersonId": "123-00-5678",
+              "isDeceased": true,
+              "memoLine1": "This customer is hard of hearing.",
+              "memoLine2": "Customer called wife is deceased.",
+              "verificationText": "Please request to speak to Sr. not Jr.",
+              "employerName": "Fiserv",
+              "personalizedEmbossingText": "Jesse Doe",
+              "duplicateStatementsSecondary": true,
+              "duplicateLettersSecondary": true,
+              "specialHandling": "NONE"
+          },
+          "address": [
+              {
+                  "addressType": "PRIMARY",
+                  "addressLine1": "123 Any Street",
+                  "addressLine2": "123 Any Lane",
+                  "addressLine3": "123 Any Lane",
+                  "addressLine4": "123 Any Lane",
+                  "city": "New Jersey",
+                  "stateCode": "NJ",
+                  "zipCode": "12345",
+                  "countryCode": "USA",
+                  "isCardMailer": true,
+                  "isPinMailer": true,
+                  "addressCategoryCode": "PERMANENT",
+                  "beginDate": "2014-10-02",
+                  "endDate": "2014-10-02"
+              }
+          ],
+          "tcpa": [
+              {
+                  "tcpaType": "ENFACT",
+                  "consentForVoice": true,
+                  "consentForText": true,
+                  "lastUpdatedDate": "2020-01-01",
+                  "lastUpdatedBy": "Jesse Doe"
+              }
+          ],
+          "contact": {
+              "voice": {
+                  "homePhoneNumber": "000-555-0000",
+                  "workPhoneNumber": "000-555-0000",
+                  "mobilePhoneNumber": "000-555-0000",
+                  "textAddress": "000-555-0000"
+              },
+              "email": {
+                  "emailAddress": "jessedoe@example.com"
+              },
+              "text": {
+                  "homePhoneNumber": "000-555-0000",
+                  "workPhoneNumber": "000-555-0000",
+                  "mobilePhoneNumber": "000-555-0000",
+                  "textAddress": "000-555-0000"
+              },
+              "enfact": {
+                  "enfactLanguagePreference": "ENGLISH"
+              },
+              "enfactVoice": {
+                  "homePhone": true,
+                  "workPhone": true,
+                  "mobilePhone": true,
+                  "emailAddress": true,
+                  "textAddress": true
+              },
+              "enfactText": {
+                  "homePhone": true,
+                  "workPhone": true,
+                  "mobilePhone": true,
+                  "emailAddress": true,
+                  "address": true,
+                  "mobileText": true
+              },
+              "stepUpText": {
+                  "homePhone": true,
+                  "workPhone": true,
+                  "mobilePhone": true,
+                  "emailAddress": true,
+                  "address": true,
+                  "mobileText": true
+              },
+              "stepUpVoice": {
+                  "homePhone": true,
+                  "workPhone": true,
+                  "mobilePhone": true,
+                  "emailAddress": true,
+                  "address": true,
+                  "mobileText": true
+              }
+          }
+      }
+  }
+```
+
 ## Update
 ### ATM Preferences Using Card Number and NTT
 #### Request
@@ -4152,134 +4190,7 @@ H**TTP Method:** PATCH
 #### Response
 **HTTP Code:** 204 No Content
 
-**Version 1**
 
-
-
-**Search**
-### Demographics Search
-Search cardholder demographics.
-
-#### Request
-**HTTP Method:** POST
-
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cardholders/demographics/search
-```
-{
-      "cardNumber": "4000200030004000"
-  }
-```
-#### Response
-**HTTP Code:** 200 OK
-```{
-      "cardholderDemographics": {
-          "cardNumber": "4000200xxxxxx4000",
-          "accountNumber": "xxxxx6789",
-          "externalCustomerId": "xxxxx6789",
-          "additionalInfo": {
-              "prefix": "Dr.",
-              "cardholderName": "John Smith",
-              "association": "PRIMARY",
-              "vip": true,
-              "gender": "NOT_SPECIFIED",
-              "dateOfBirth": "2014-10-02",
-              "employeeCode": "123-00-5678",
-              "motherMaidenName": "Smith",
-              "empId": "123-000-5678",
-              "ssnOrTaxId": "123-00-5678",
-              "ein": "123-00-5678",
-              "dnaPersonId": "123-00-5678",
-              "isDeceased": true,
-              "memoLine1": "This customer is hard of hearing.",
-              "memoLine2": "Customer called wife is deceased.",
-              "verificationText": "Please request to speak to Sr. not Jr.",
-              "employerName": "Fiserv",
-              "personalizedEmbossingText": "Jesse Doe",
-              "duplicateStatementsSecondary": true,
-              "duplicateLettersSecondary": true,
-              "specialHandling": "NONE"
-          },
-          "address": [
-              {
-                  "addressType": "PRIMARY",
-                  "addressLine1": "123 Any Street",
-                  "addressLine2": "123 Any Lane",
-                  "addressLine3": "123 Any Lane",
-                  "addressLine4": "123 Any Lane",
-                  "city": "New Jersey",
-                  "stateCode": "NJ",
-                  "zipCode": "12345",
-                  "countryCode": "USA",
-                  "isCardMailer": true,
-                  "isPinMailer": true,
-                  "addressCategoryCode": "PERMANENT",
-                  "beginDate": "2014-10-02",
-                  "endDate": "2014-10-02"
-              }
-          ],
-          "tcpa": [
-              {
-                  "tcpaType": "ENFACT",
-                  "consentForVoice": true,
-                  "consentForText": true,
-                  "lastUpdatedDate": "2020-01-01",
-                  "lastUpdatedBy": "Jesse Doe"
-              }
-          ],
-          "contact": {
-              "voice": {
-                  "homePhoneNumber": "000-555-0000",
-                  "workPhoneNumber": "000-555-0000",
-                  "mobilePhoneNumber": "000-555-0000",
-                  "textAddress": "000-555-0000"
-              },
-              "email": {
-                  "emailAddress": "jessedoe@example.com"
-              },
-              "text": {
-                  "homePhoneNumber": "000-555-0000",
-                  "workPhoneNumber": "000-555-0000",
-                  "mobilePhoneNumber": "000-555-0000",
-                  "textAddress": "000-555-0000"
-              },
-              "enfact": {
-                  "enfactLanguagePreference": "ENGLISH"
-              },
-              "enfactVoice": {
-                  "homePhone": true,
-                  "workPhone": true,
-                  "mobilePhone": true,
-                  "emailAddress": true,
-                  "textAddress": true
-              },
-              "enfactText": {
-                  "homePhone": true,
-                  "workPhone": true,
-                  "mobilePhone": true,
-                  "emailAddress": true,
-                  "address": true,
-                  "mobileText": true
-              },
-              "stepUpText": {
-                  "homePhone": true,
-                  "workPhone": true,
-                  "mobilePhone": true,
-                  "emailAddress": true,
-                  "address": true,
-                  "mobileText": true
-              },
-              "stepUpVoice": {
-                  "homePhone": true,
-                  "workPhone": true,
-                  "mobilePhone": true,
-                  "emailAddress": true,
-                  "address": true,
-                  "mobileText": true
-              }
-          }
-      }
-  }
-```
 ## Update
 ### Update ATM Preferences
 #### Request
