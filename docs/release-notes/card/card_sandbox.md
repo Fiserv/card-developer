@@ -3311,62 +3311,6 @@ This case retrieves the cardholder information using card number.
 ```
 #### Response
 **HTTP Code:** 204 No Content
-### Update ATM Preferences Using Card Number and NTT
-#### Request
-**HTTP Method:** PATCH
-
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/atmPreferences
-```
-{
-      "cardNumber": "4000200030004000",
-      "nonTransToken": "piUVBJKZGfks4000",
-      "atmPreferences": {
-          "languageCode": "ENGLISH",
-          "amount": 240,
-          "accountType": "SAVINGS",
-          "receiptOption": "ASK_ME"
-      }
-  }
-```
-#### Response
-**HTTP Code:** 200 OK
-```
-{
-      "cardholderCardsDetails": [
-          {
-              "cardholderDetails": {
-                  "cardholderName": "Doe, John H"
-              },
-              "cards": [
-                  {
-                      "cardNumber": "4000200030004000",
-                      "nonTransToken": "piUVBJKZGfks4000",
-                      "accountNumbers": [
-                          "123456789",
-                          "987654321"
-                      ],
-                      "memberNumber": "0",
-                      "cardStatus": "NORMAL",
-                      "statusReasonCode": "LOST",
-                      "cardActivationStatus": "NOT_ACTIVATED",
-                      "cardType": "DEBIT",
-                      "association": "PRIMARY",
-                      "zipCode": "12345",
-                      "phone": "1005550001",
-                      "cellPhone": "1005550001",
-                      "homePhone": "1005550001",
-                      "workPhone": "1005550001",
-                      "textAddress": "0005550000",
-                      "dateOfBirth": "1990-08-24",
-                      "expirationDate": "10/28",
-                      "emailAddress": "jessedoe@example.com",
-                      "cardClass": "VSCK"
-                  }
-              ]
-          }
-      ]
-  }
-```
 
 ### Debit Details v2: Cardholder search using card number, token only format
 This case retrieves the cardholder information using card number.
