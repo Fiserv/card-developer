@@ -156,7 +156,7 @@
       link: docs/release-notes/payments/payment-release-note.md
     - title: Reward
       link: docs/release-notes/reward/reward-release-note.md
-    - title: Webokk
+    - title: Webhook
       link: docs/release-notes/webook/webhook-release-note.md
 
 - sections:
