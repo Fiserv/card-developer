@@ -104,10 +104,10 @@
       link: docs/release-notes/reward/reward_overview.md
     - title: Reward Sandbox
       link: docs/release-notes/reward/reward_sandbox.md
+    - title: Overview Release Notes
 - sections:
-  - title: 
+  - title: Webhook
     sections:
-    - title: Overview
       link: docs/release-notes/webhook/webhook-overview.md
     - title: Card activation
       link: docs/release-notes/webhook/cardactivation-1.0.0.md
