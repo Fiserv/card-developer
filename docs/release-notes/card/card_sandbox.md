@@ -8141,4 +8141,3 @@ Retrieve the status of debit card.
       "statusReasonCode": "LOST"
   }
   ```
-
