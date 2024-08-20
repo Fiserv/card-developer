@@ -1,9 +1,7 @@
 # Test Cases
 
 <span style="color:#ff6600;">**Card API Endpoints**</span>
-
-
-Tests must use only requests given here.
+When testing these endpoints, please use the test cases and test data from the Sandbox.
 
 ## Activations
 
