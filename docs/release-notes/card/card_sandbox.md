@@ -26,7 +26,7 @@ This case activates a card.
   }
 ```
 
-### Search for Details Inactive Credit Card
+### Credit Activate v1: Search for inactive card
 This case demonstrates when the card is inactive.
 
 #### Request
@@ -47,7 +47,7 @@ This case demonstrates when the card is inactive.
   }
 ```
 
-### Search for Details Active Credit Card
+### Credit Activate v1: Search for active card
 This case demonstrates when the card is active.
 
 #### Request
@@ -70,7 +70,7 @@ This case demonstrates when the card is active.
 
 
 
-### Activate Inactive Debit Card with Card Number
+### Debit Activate v1: Activate inactive card using card number
 This case activates a debit card.
 
 #### Request
@@ -126,7 +126,7 @@ This case activates a card using NTT.
       "verificationCallerID": "9900020"
   }
 ```
-### Search for Details Inactive Debit Card
+### Debit Activate v1: Search for inactive card using card number
 This case demonstrates when the debit card is inactive.
 
 #### Request
@@ -176,7 +176,7 @@ This case demonstrates when the debit card is inactive.
   }
 ```
 
-### Search for Details Activate Debit Card
+### Debit Activate v1: Search for active card using card number
 This case demonstrates when the debit card is activated.
 
 #### Request
