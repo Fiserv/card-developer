@@ -5,3 +5,4 @@
 *  For inquiries or assistance, please contact our support team using [Client360](https://client360.fiservapps.com/Client360/login).
  
 ![](assets/images/registration-note-2.png)
+
