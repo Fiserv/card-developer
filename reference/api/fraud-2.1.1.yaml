@@ -3,12 +3,10 @@ openapi: 3.0.0
 info:
   title: Fraud
   description: Fraud API enable financial institutions to manage and mitigate fraud losses as well as give cardholders additional security for their cards.
-  version: 1.8.0
+  version: 2.1.1-Aug-24
 servers:
 - url: https://card.api.fiservapps.com/cs/fraud
   description: Production url
-- url: https://card-certification.api.fiservapps.com/cs/fraud
-  description: Certification url
 - url: https://card-sandbox.api.fiservapps.com/cs/fraud
   description: Sandbox url
 security:
@@ -18,22 +16,17 @@ tags:
   description: Resources to search and update  fraud case details.
 - name: Verification
   description: Digital providers have the ability to request verification of a cardholder via an Text, Voice or Email OTP.
-- name: Exemptions
-  description: Digital providers have the ability to retrieve state and country List.
 paths:
   /v1/cases/search:
     post:
       tags:
       - Case
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Case
-      x-proxy-name: Search Fraud Cases
       summary: Search for fraud cases based on request criteria. CaseNumber sent to the customers will be a combination of tenantcode and caseNumber(2 digit tenantcode code and upto 12 digits caseNumber). Sometimes there could be a '-' between the tenantcode and caseNumber depending on how the communication went to the clients (text, voice, email). API is handling the tenantcode in a separate field 'caseTenant'.
       operationId: searchFraudCases
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -155,19 +148,19 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Case
+      x-proxy-name: Search fraud cases v1
   /v1/cases/case:
     post:
       tags:
       - Case
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Case
-      x-proxy-name: Get Fraud Case Details
       summary: Returns all the case details including the status.
       operationId: getFraudCaseDetails
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -289,19 +282,19 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Case
+      x-proxy-name: Get fraud case details v1
   /v1/cases/history:
     post:
       tags:
       - Case
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Case
-      x-proxy-name: Get Fraud Case History
       summary: Returns the case history details for a given case.
       operationId: getFraudCaseHistory
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -423,19 +416,19 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Case
+      x-proxy-name: Get fraud case history v1
   /v1/cases/transactions:
     post:
       tags:
       - Case
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Case
-      x-proxy-name: Get Fraud Case Auth Transactions
       summary: Returns specified transactions associated to a case.
       operationId: getFraudCaseAuthTransactions
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -569,19 +562,19 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Case
+      x-proxy-name: Get fraud case auth transactions v1
   /v1/cases/rules:
     post:
       tags:
       - Case
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Case
-      x-proxy-name: Get Fraud Case Rules
       summary: Returns specified rules associated to a case.
       operationId: getFraudCaserules
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -703,19 +696,19 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Case
+      x-proxy-name: Get fraud case rules v1
   /v1/cases:
     patch:
       tags:
       - Case
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Case
-      x-proxy-name: Update Fraud Case Details
       summary: Updates the Fraud Case details.
       operationId: updateFraudCaseDetails
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -851,19 +844,19 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Case
+      x-proxy-name: Update fraud case details v1
   /v1/verification/search:
     post:
       tags:
       - Verification
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Verification
-      x-proxy-name: Get Verification Option (Deprecated)
       summary: Retrieves media addresses and methods that can be used for cardholder verification. Possible methods are Voice, Text and Email. Media addresses are semi-masked for cardholder's confidentiality.
       operationId: getVerificationOption
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Each request requires an access token. Refer to the Portal for more documentation (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api). Tokens expire after 15 minutes. Provide the value as follows in the header: Authorization:: Bearer'
         required: true
         style: simple
         explode: false
@@ -992,19 +985,19 @@ paths:
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (unique messageID included below)
                       messageid: 25557-84290371-1
       deprecated: true
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: Get verification option v1 (deprecated)
   /v2/verification/search:
     post:
       tags:
       - Verification
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Verification
-      x-proxy-name: Get Verification Option V2
       summary: Retrieves media addresses and methods that can be used for cardholder verification. Possible methods are Voice, Text and Email. Media addresses are semi-masked for cardholder's confidentiality.
       operationId: getVerificationOptionV2
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -1013,7 +1006,7 @@ paths:
         example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
       - name: userId
         in: header
-        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api
         required: false
         style: simple
         explode: false
@@ -1132,20 +1125,161 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (unique messageID included below)
                       messageid: 25557-84290371-1
+      deprecated: true
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: Get verification option v2 (deprecated)
+  /v3/verification/search:
+    post:
+      tags:
+      - Verification
+      summary: Retrieves media addresses and methods that can be used for cardholder verification. Possible methods are Voice, Text and Email. Media addresses are semi-masked for cardholder's confidentiality.
+      operationId: getVerificationOptionV3
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "12345678"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerificationSearchRequestV3'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationSearchResponsev3'
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400Error'
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401Error'
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403Error'
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404Error'
+        "405":
+          description: Method Not Allowed
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "409":
+          description: Resource conflict
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409Error'
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/415Error'
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "429":
+          description: Too Many Requests
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (unique messageID included below)
+                      messageid: 25557-84290371-1
       deprecated: false
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: Get verification option v3
   /v1/verification/otp:
     post:
       tags:
       - Verification
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Verification
-      x-proxy-name: Passcode Generation (Deprecated)
       summary: Generate a one time passcode for Cardholder verification. Generated passcode expires in 10 mins and is delivered to selected media address.
       operationId: passcodeGeneration
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -1274,19 +1408,19 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Fiserv ETSD at 888-243-2543 (unique messageID included below)
                       messageid: 25557-84290371-1
       deprecated: true
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: Passcode generation v1 (deprecated)
   /v2/verification/otp:
     post:
       tags:
       - Verification
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Verification
-      x-proxy-name: Passcode Generation V2
       summary: Generate a one time passcode for Cardholder verification. Generated passcode expires in 10 mins and is delivered to selected media address.
       operationId: passcodeGenerationV2
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -1414,19 +1548,164 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Fiserv ETSD at 888-243-2543 (unique messageID included below)
                       messageid: 25557-84290371-1
+      deprecated: true
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: Passcode generation v2 (deprecated)
+  /v3/verification/otp:
+    post:
+      tags:
+      - Verification
+      summary: Generate a one time passcode for Cardholder verification. Generated passcode expires in 10 mins and is delivered to selected media address.
+      operationId: passcodeGenerationV3
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "12345678"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasscodeGenerateRequestV3'
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasscodeGenerateResponsev3'
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400Error'
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401Error'
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403Error'
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404Error'
+        "405":
+          description: Method Not Allowed
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "409":
+          description: Resource conflict
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409Error'
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/415Error'
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "429":
+          description: Too Many Requests
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/429Error'
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Fiserv ETSD at 888-243-2543 (unique messageID included below)
+                      messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: Passcode generation v3
   /v1/verification/validation:
     post:
       tags:
       - Verification
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Verification
-      x-proxy-name: OTP Validation (Deprecated)
       summary: Validation of a one time passcode sent to a selected media address and method. Note passcode expires in 10 minutes.
       operationId: otpValidation
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -1555,19 +1834,19 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (unique messageID included below)
                       messageid: 25557-84290371-1
       deprecated: true
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: OTP validation v1 (deprecated)
   /v2/verification/validation:
     post:
       tags:
       - Verification
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Verification
-      x-proxy-name: OTP Validation V2
       summary: Validation of a one time passcode sent to a selected media address and method. Note passcode expires in 10 minutes.
       operationId: otpValidationV2
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -1695,19 +1974,198 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request. Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (unique messageID included below)
                       messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: OTP validation v2
+  /v1/verification/cardAuthInfo:
+    post:
+      tags:
+      - Verification
+      summary: Validate OTP and retrieve card expiration date and CV2. This API should be used in the order of - 1) /v3/verification/search 2) /v3/verification/otp 3) /v1/verification/cardAuthInfo.
+      operationId: getCardAuthInfoV1
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "12345678"
+      requestBody:
+        description: getDigitalSecureCardAuthRequest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cardAuthInfoRequestV1'
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cardAuthInfoResponseV1'
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                DigitalSecuredCardAuthV1Search400:
+                  $ref: '#/components/examples/cardAuthInfoV1Search400'
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                DigitalSecuredCardAuthV1Search401:
+                  $ref: '#/components/examples/cardAuthInfoV1Search401'
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                DigitalSecuredCardAuthV1Search403:
+                  $ref: '#/components/examples/cardAuthInfoV1Search403'
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                DigitalSecuredCardAuthV1Search404:
+                  $ref: '#/components/examples/cardAuthInfoV1Search404'
+        "405":
+          description: Method Not Allowed
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                DigitalSecuredCardAuthV1Search405:
+                  $ref: '#/components/examples/cardAuthInfoV1Search405'
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                DigitalSecuredCardAuthV1Search406:
+                  $ref: '#/components/examples/cardAuthInfoV1Search406'
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                DigitalSecuredCardAuthV1Search415:
+                  $ref: '#/components/examples/cardAuthInfoV1Search415'
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                DigitalSecuredCardAuthV1Search422:
+                  $ref: '#/components/examples/cardAuthInfoV1Search422'
+        "429":
+          description: Too Many Requests
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                DigitalSecuredCardAuthV1Search429:
+                  $ref: '#/components/examples/cardAuthInfoV1Search429'
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: Get card auth info v1
   /v1/verification/history:
     post:
       tags:
       - Verification
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Verification
-      x-proxy-name: Get Verification History 
       summary: Returns verification history details for a given card number.
       operationId: getVerificationHistory
       parameters:
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -1829,13 +2287,147 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Fiserv ETSD at 888-243-2543. Your unique messageID is included below.
                       messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: Get verification history v1
+  /v1/cards/token:
+    post:
+      tags:
+      - Verification
+      summary: This operation returns a JWT which is valid for 15 minutes.
+      operationId: getJWTToken
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "12345678"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JWTRequest'
+      responses:
+        "200":
+          description: Successful
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400Error'
+        "401":
+          description: Unauthorized Access
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401Error'
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403Error'
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404Error'
+        "405":
+          description: Method Not Allowed
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/415Error'
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "429":
+          description: Too Many Requests
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: Internal Server Error
+                    developerInfo:
+                      developerMessage: Internal Server Error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Fiserv ETSD at 888-243-2543. Your unique messageID is included below.
+                      messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Verification
+      x-proxy-name: Get JWT token v1
   /v1/exemptions/travel/locations:
     get:
       tags:
       - Exemptions
-      x-child-product-name: Fraud v1.8.0
-      x-group-name: Exemptions
-      x-proxy-name: Get Country State List
       summary: Retrieve a list of countries, or the states list from locations.
       operationId: getCountryStateList
       parameters:
@@ -1859,7 +2451,7 @@ paths:
         example: "12345678"
       - name: Authorization
         in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
         required: true
         style: simple
         explode: false
@@ -1967,8 +2559,102 @@ paths:
                       developerMessage: internal server error
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
+      x-child-product-name: Fraud v2.1.1
+      x-group-name: Exemptions
+      x-proxy-name: Get country state list v1
 components:
   schemas:
+    cardAuthInfoRequestV1:
+      required:
+      - jwt
+      - otp
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: |
+            Unique number assigned to each cardholder record. Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber will be used. Maximum length 19 digits.
+          format: numeric
+          example: "4000200030004000"
+        nonTransToken:
+          type: string
+          description: |
+            Non-transactional token associated with a card. Non-transactional token associated with a card.
+            Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber is used. Length can be between 16 and 19.
+          format: alphanumeric
+          example: piUVBJKZGfks4000
+        memberNumber:
+          maxLength: 1
+          type: string
+          description: |
+            Unique number associated with each member of the card. Based on the card prefix setup. If the member number is not passed, defaults to 0 (zero). Applies to debit cards only.
+          format: numeric
+          example: "0"
+        otp:
+          type: string
+          description: Unique reference number. Serves as acknowledgement of successful passcode generation.
+          example: "1234567"
+        jwt:
+          type: string
+          description: Javascript Web Token (JWT), JWT provided for one card can only be used to set the PIN for that particular card. Valid for 15 minutes only.
+          example: eyJ0eXAiOiJKV1QiLCJlbmMiOiJBMTI4R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.WrliT8nLQOTRnXldrYj0brobAyi6M7-U8_iHovmTH1VAZksc4mOGQCfaSx-sbDNjdkpeznR8lU1sHOX26qom94jBO6uePEw1cBbTHLpOSEPDYiWS6SzTgxguF7zT2g5Ui1HHi2GKgPtH5L0XC_QqP5TIs3A15fqpAnvMaSwW9O_GDRzxnsUDCgEZCkwQOuEpWYDbM7r7yKrfAlkWKOHOlZuUtvJvg3k8p-1qwKpuGexhWXQdgKsWphBWbMzbindOIefIo4VTrOVMxWOdP_bLNId0E0CBLxSpRHX1u3EeAjUykUdifT2CP4bb6kbJf4pp0dRc_uPZGJLj7faPyq6UeQ.zTLJMNI8bjGh-KBy.FW0W0ihL2sj7pYin2iY1gavS4W-yPswjKmrb6-ROwHgEOscfeGGLmUihzoV6vy9KvTJ9ytnIPqh-K94UsShUJ0-KgsY4_eWyUwx4IYpYaJkPeUVd4ni_1eZMBy6-hPr3n39DES_kXfnv3MJOiZZj0I-GJXw99WBV7xhl7KZcFKyMXYnszyboV8Xi2iZqHglvEoYRjKLvOlEq2j4pJoMRVfBB8oIOZm6uyCaOnyuWuE_Lg1HeuNMnHddTm8gexDAfwj3WYHkJazsN1PZVhPZVImyKwCNM.TOYk3lw2SKYamQL7XiLXlg
+      description: |
+        The OTP and JWT token are mandatory in the request in order to validate and provide expiration date and CV2 in the response.
+    cardAuthInfoResponseV1:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: |
+            Unique number assigned to each cardholder record. Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber will be used. Maximum length 19 digits.
+          format: alphanumeric
+          example: "4000200030004000"
+        nonTransToken:
+          type: string
+          description: |
+            Non-transactional token associated with a card. Non-transactional token associated with a card.
+            Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber is used. Length can be between 16 and 19.
+          format: alphanumeric
+          example: piUVBJKZGfks4000
+        memberNumber:
+          maxLength: 1
+          type: string
+          description: |
+            Unique number associated with each member of the card. Based on the card prefix setup. If the member number is not passed, defaults to 0 (zero). Applies to debit cards only.
+          format: numeric
+          example: "0"
+        CV2:
+          type: string
+          description: Card CV2
+          example: "282"
+        expirationDate:
+          type: string
+          description: Card Expiration Date.
+          format: MM/YY
+          example: 10/28
+    "4xxError":
+      type: object
+      properties:
+        type:
+          type: string
+          description: An URI reference that identifies the problem type
+          example: https://card.developer.fiserv.com/cards/error#invalid-request
+        title:
+          type: string
+          description: Short summary of the problem.
+          example: Invalid Request
+        detail:
+          type: string
+          description: Specific explanation to the occurrence of the problem.
+          example: We had a problem getting your credit and debit card information.
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem.
+          example: /v1/cards/details
+        status:
+          type: number
+          description: The HTTP status code generated by the origin server for this occurrence of the problem.
+          example: 400
     "400Error":
       type: object
       properties:
@@ -2107,6 +2793,29 @@ components:
           type: number
           description: The HTTP status code generated by the origin server for this occurance of the problem.
           example: 415
+    "429Error":
+      type: object
+      properties:
+        type:
+          type: string
+          description: An URI reference that identifies the problem type
+          example: Too Many Requests
+        title:
+          type: string
+          description: Short summary of the problem.
+          example: Too Many Requests
+        detail:
+          type: string
+          description: Specific explanation to the occurence of the problem.
+          example: Daily Passcode limit reached. Step Up Authentication is disabled for 7 hours.
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurence of the problem.
+          example: /cs/fraud/v3/verification/otp
+        status:
+          type: number
+          description: The HTTP status code generated by the origin server for this occurance of the problem.
+          example: 429
     AssociatedRulesAndTransactions:
       type: object
       properties:
@@ -2329,6 +3038,10 @@ components:
           type: string
           description: Masked card number of the primary cardholder, not including a member number.
           example: 400020XXXXXX4000
+        memberNumber:
+          type: string
+          description: Unique 3-digit member number associated with the cardholder record.
+          example: "0"
         caseNumber:
           type: string
           description: The case number provided to the cardholder.
@@ -2343,6 +3056,15 @@ components:
           description: Date and time case was created.
           format: date-time
           example: 2021-07-20T07:00:00Z
+        caseClosedDateTime:
+          type: string
+          description: Date and time case was closed.
+          format: date-time
+          example: 2021-07-21T07:00:00Z
+        archived:
+          type: string
+          description: Indicates if case is archived. You can only view an archived case and not update. Valid values are No, Yes
+          example: "No"
         name:
           type: string
           description: Selected cardholder's name.
@@ -2351,10 +3073,35 @@ components:
           type: string
           description: Alternate name for the cardholder, such as primary cardholder's mother's maiden name.
           example: Smith
+        cardTrackerSeverity:
+          type: string
+          description: |-
+            Provides the level of severity if, and when, a card has been compromised. Valid values are
+            'Blank'=Card is not compromised.
+
+            'A'=Fraud warning clients only. Cards have high risk of becoming fraudulent. Recommended action- reissue.
+
+            'B'=Fraud warning clients only. Cards have medium risk of becoming fraudulent. Recommended actions- are Reissue for aggressive fraud strategies, providing the maximum fraud savings possible for the issuer in the long term. Blocking, monitoring, or selective reissue for less aggressive fraud strategies, minimizing customer impact.
+            'C'=Fraud warning clients only. Cards have low risk of becoming fraudulent. Recommended actions- Blocking, monitoring, or selective reissue.
+
+            'D'=Fraud warning clients only. Reserved for future use. '1'=Severe level of compromise consisting of full track date, card number, PIN, CVV/CVC, CVV2/CVC2, and cardholder personal data.
+
+            '2'=Compromised card number, expiration date, CVV/CVC, and CVV2/CVC2. '3'=Compromised card number and expiration date.
+
+            '4'=Compromised card number only.
+
+            '5'=User-defined level for any card number. Use this value even if the card has not been compromised.
+
+            '6'=Alert was sent for this card and then retracted. No compromise. Note- If the card appears in multiple alerts, the highest severity rating is displayed in this field.
+          example: "5"
         fraudApproach:
           type: string
           description: Fraud approach chosen by the institution to define the score at which a case is created. Valid values could be 'Custom', 'Minimum', 'Average', 'Moderate', 'Aggressive', 'No Maturation'
           example: Custom
+        lastFraudCode:
+          type: string
+          description: Last Fraud Code
+          example: CASE_FRAUD_TYPE_APP_FRD
         languagePreference:
           type: string
           description: Cardholder's language preference. Either Engish or Spanish
@@ -3108,7 +3855,7 @@ components:
         mediaAddress:
           type: string
           description: Value of the selected mediatype.
-          example: '******7366'
+          example: '******0001'
     PasscodeGenerateResponse:
       type: object
       properties:
@@ -3143,7 +3890,101 @@ components:
         mediaAddress:
           type: string
           description: Value of the selected mediatype.
-          example: '******7366'
+          example: '******0001'
+    PasscodeGenerateRequestV3:
+      required:
+      - mediaAddress
+      - mediaType
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: |
+            Unique number assigned to each cardholder record. Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber will be used. Maximum length 19 digits.
+          format: numeric
+          example: "4000200030004000"
+        nonTransToken:
+          type: string
+          description: |
+            Non-transactional token associated with a card. Non-transactional token associated with a card.
+            Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber is used. Length can be between 16 and 19.
+          format: alphanumeric
+          example: piUVBJKZGfks4000
+        memberNumber:
+          maxLength: 1
+          type: string
+          description: |
+            Unique number associated with each member of the card. Based on the card prefix setup. If the member number is not passed, defaults to 0 (zero).  Applies to debit cards only.
+          format: numeric
+          example: "0"
+        jwtTokenFlag:
+          type: boolean
+          description: |
+            Javascript Web Token Flag (JWT), Indicates JWT to be created or not.
+          example: true
+          default: false
+        mediaType:
+          type: string
+          description: Possible values for media type are voice, text, email.
+          example: TEXT
+          enum:
+          - VOICE
+          - TEXT
+          - EMAIL
+        mediaAddress:
+          type: string
+          description: Value of the selected mediatype.
+          example: '******0001'
+    PasscodeGenerateResponsev3:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: |
+            Unique number assigned to each cardholder record. Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber will be used. Maximum length 19 digits.
+          format: numeric
+          example: 400020XXXXXX4000
+        nonTransToken:
+          type: string
+          description: |
+            Non-transactional token associated with a card. Non-transactional token associated with a card.
+            Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber is used. Length can be between 16 and 19.
+          format: alphanumeric
+          example: piUVBJKZGfks4000
+        memberNumber:
+          type: string
+          description: |
+            Unique number associated with each member of the card. Based on the card prefix setup. If the member number is not passed, defaults to 0 (zero).  Applies to debit cards only.
+          format: numeric
+          example: "0"
+        otpId:
+          type: string
+          description: Unique reference number. Serves as acknowledgement of successful passcode generation.
+          example: "1234567"
+        jwt:
+          type: string
+          description: Javascript Web Token (JWT), JWT provided for one card can only be used to set the PIN for that particular card. Valid for 15 minutes only.
+          example: eyJ0eXAiOiJKV1QiLCJlbmMiOiJBMTI4R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.WrliT8nLQOTRnXldrYj0brobAyi6M7-U8_iHovmTH1VAZksc4mOGQCfaSx-sbDNjdkpeznR8lU1sHOX26qom94jBO6uePEw1cBbTHLpOSEPDYiWS6SzTgxguF7zT2g5Ui1HHi2GKgPtH5L0XC_QqP5TIs3A15fqpAnvMaSwW9O_GDRzxnsUDCgEZCkwQOuEpWYDbM7r7yKrfAlkWKOHOlZuUtvJvg3k8p-1qwKpuGexhWXQdgKsWphBWbMzbindOIefIo4VTrOVMxWOdP_bLNId0E0CBLxSpRHX1u3EeAjUykUdifT2CP4bb6kbJf4pp0dRc_uPZGJLj7faPyq6UeQ.zTLJMNI8bjGh-KBy.FW0W0ihL2sj7pYin2iY1gavS4W-yPswjKmrb6-ROwHgEOscfeGGLmUihzoV6vy9KvTJ9ytnIPqh-K94UsShUJ0-KgsY4_eWyUwx4IYpYaJkPeUVd4ni_1eZMBy6-hPr3n39DES_kXfnv3MJOiZZj0I-GJXw99WBV7xhl7KZcFKyMXYnszyboV8Xi2iZqHglvEoYRjKLvOlEq2j4pJoMRVfBB8oIOZm6uyCaOnyuWuE_Lg1HeuNMnHddTm8gexDAfwj3WYHkJazsN1PZVhPZVImyKwCNM.TOYk3lw2SKYamQL7XiLXlg
+        status:
+          type: string
+          description: SUCCESS or FAILURE.
+          example: SUCCESS
+        statusDescription:
+          type: string
+          description: Additional information about status.
+          example: SUCCESS
+        mediaType:
+          type: string
+          description: Possible values for media type are voice, text, email.
+          example: TEXT
+          enum:
+          - VOICE
+          - TEXT
+          - EMAIL
+        mediaAddress:
+          type: string
+          description: Value of the selected mediatype.
+          example: '******0001'
     RulesItems:
       type: object
       properties:
@@ -3337,7 +4178,7 @@ components:
           example: "1005550001"
         contactStatus:
           type: string
-          description: Indicates whether the OTP was successfully sent to the cardholder or call was disconnected. SENT applies to TEXT, VOICE, EMAIL. DISCONNECTED applies to VOICE. Possible values are SENT, DISCONNECTED and 24 HR LIMIT REACHED.
+          description: Indicates whether the OTP was successfully sent to the cardholder or call was disconnected. SENT applies to TEXT, VOICE, EMAIL. DISCONNECTED applies to VOICE
           example: SENT
           enum:
           - SENT
@@ -3354,6 +4195,24 @@ components:
           type: string
           description: User ID of the person who last completed OTP verification for the cardholder.
           example: smith
+    JWTRequest:
+      required:
+      - cardNumber
+      type: object
+      properties:
+        cardNumber:
+          maxLength: 19
+          minLength: 16
+          type: string
+          description: Card number, between 16 to 19 digits.
+          example: "4000100020003000"
+    JWTResponse:
+      type: object
+      properties:
+        jwt:
+          type: string
+          description: Javascript Web Token (JWT) provided for one card can only be used to verify the details for that particular card. Valid for 15 minutes only.
+          example: eyJ0eXAiOiJKV1QiLCJlbmMiOiJBMTI4R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.WrliT8nLQOTRnXldrYj0brobAyi6M7-U8_iHovmTH1VAZksc4mOGQCfaSx-sbDNjdkpeznR8lU1sHOX26qom94jBO6uePEw1cBbTHLpOSEPDYiWS6SzTgxguF7zT2g5Ui1HHi2GKgPtH5L0XC_QqP5TIs3A15fqpAnvMaSwW9O_GDRzxnsUDCgEZCkwQOuEpWYDbM7r7yKrfAlkWKOHOlZuUtvJvg3k8p-1qwKpuGexhWXQdgKsWphBWbMzbindOIefIo4VTrOVMxWOdP_bLNId0E0CBLxSpRHX1u3EeAjUykUdifT2CP4bb6kbJf4pp0dRc_uPZGJLj7faPyq6UeQ.zTLJMNI8bjGh-KBy.FW0W0ihL2sj7pYin2iY1gavS4W-yPswjKmrb6-ROwHgEOscfeGGLmUihzoV6vy9KvTJ9ytnIPqh-K94UsShUJ0-KgsY4_eWyUwx4IYpYaJkPeUVd4ni_1eZMBy6-hPr3n39DES_kXfnv3MJOiZZj0I-GJXw99WBV7xhl7KZcFKyMXYnszyboV8Xi2iZqHglvEoYRjKLvOlEq2j4pJoMRVfBB8oIOZm6uyCaOnyuWuE_Lg1HeuNMnHddTm8gexDAfwj3WYHkJazsN1PZVhPZVImyKwCNM.TOYk3lw2SKYamQL7XiLXlg
     ValidationRequest:
       required:
       - cardNumber
@@ -3473,6 +4332,30 @@ components:
           description: Member number of the cardholder.
           example: "0"
           default: "0"
+    VerificationSearchRequestV3:
+      title: verificationSearchRequest
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: |
+            Unique number assigned to each cardholder record. Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber will be used. Maximum length 19 digits.
+          format: numeric
+          example: "4000200030004000"
+        nonTransToken:
+          type: string
+          description: |
+            Non-transactional token associated with a card. Non-transactional token associated with a card.
+            Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber is used. Length can be between 16 and 19.
+          format: alphanumeric
+          example: piUVBJKZGfks4000
+        memberNumber:
+          maxLength: 1
+          type: string
+          description: |
+            Unique number associated with each member of the card. Based on the card prefix setup. If the member number is not passed, defaults to 0 (zero).  Applies to debit cards only.
+          format: numeric
+          example: "0"
     VerificationSearchResponse:
       type: object
       properties:
@@ -3487,6 +4370,30 @@ components:
           example: "0"
         contact:
           $ref: '#/components/schemas/VerificationContact'
+    VerificationSearchResponsev3:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: |
+            Unique number assigned to each cardholder record. Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber will be used. Maximum length 19 digits.
+          format: numeric
+          example: 400020XXXXXX4000
+        nonTransToken:
+          type: string
+          description: |
+            Non-transactional token associated with a card. Non-transactional token associated with a card.
+            Either cardNumber or nonTransToken must be included in the request. If both are included, only cardNumber is used. Length can be between 16 and 19.
+          format: alphanumeric
+          example: piUVBJKZGfks4000
+        memberNumber:
+          type: string
+          description: |
+            Unique number associated with each member of the card. Based on the card prefix setup. If the member number is not passed, defaults to 0 (zero).  Applies to debit cards only.
+          format: numeric
+          example: "0"
+        contact:
+          $ref: '#/components/schemas/VerificationContactV3'
     CountryLocationResponse:
       type: object
       properties:
@@ -3525,6 +4432,24 @@ components:
           type: string
           description: Name of location.
           example: ALABAMA
+    PINValidationResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: PIN validated succesfully.
+    CVVValidationResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: CVV validated succesfully.
+    SSNValidationResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: SSN validated succesfully.
     VerificationContact:
       type: object
       properties:
@@ -3575,6 +4500,30 @@ components:
           type: string
           description: Cardholder's semi-masked textAddress which is enabled to receive passcode via text.
           example: '******3585'
+    VerificationContactV3:
+      type: object
+      properties:
+        emailAddress:
+          type: string
+          description: Email address of the cardholder
+          format: email
+          example: ale******@example.com
+        homePhone:
+          type: string
+          description: 'Home phone number of the primary cardholder. Applies to debit and credit cards. '
+          example: '******0001'
+        workPhone:
+          type: string
+          description: 'Work phone number of the primary cardholder. Applies to debit and credit cards. '
+          example: '******0001'
+        cellPhone:
+          type: string
+          description: Cellphone number of the primary cardholder. Applies to debit and credit cards.
+          example: '******0001'
+        textAddress:
+          type: string
+          description: Cardholder’s text address
+          example: '******0001'
     Warning:
       type: object
       properties:
@@ -3636,7 +4585,7 @@ components:
     authorizationParam:
       name: Authorization
       in: header
-      description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+      description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://developer.fiserv.com/product/CardDeveloper/api/?type=post&path=/token&branch=main&version=api).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
       required: true
       style: simple
       explode: false
@@ -3679,6 +4628,70 @@ components:
         - COUNTRY
         - STATE
       example: COUNTRY
+  examples:
+    cardAuthInfoV1Search400:
+      value:
+        type: https://card.developer.fiserv.com/cards/error#invalid-request
+        title: Invalid Request
+        detail: Either cardNumber or nonTransToken should be included
+        instance: /v1/verification/cardAuthInfo
+        status: 400
+    cardAuthInfoV1Search401:
+      value:
+        type: https://card.developer.fiserv.com/cards/error#unauthorized
+        title: Unauthorized
+        detail: Invalid Access Token
+        instance: /v1/verification/cardAuthInfo
+        status: 401
+    cardAuthInfoV1Search403:
+      value:
+        type: https://card.developer.fiserv.com/cards/error#forbidden
+        title: Forbidden
+        detail: Unauthorized to perform request.
+        instance: /v1/verification/cardAuthInfo
+        status: 403
+    cardAuthInfoV1Search404:
+      value:
+        type: https://card.developer.fiserv.com/cards/error#resource-not-found
+        title: Resource Not Found
+        detail: No matching search results found or you do not have sufficient access rights to get search results matching your criteria.
+        instance: /v1/verification/cardAuthInfo
+        status: 404
+    cardAuthInfoV1Search405:
+      value:
+        type: https://card.developer.fiserv.com/cards/error#method-not-allowed
+        title: Method Not Allowed
+        detail: The HTTP method requested is not acceptable for this endpoint.
+        instance: /v1/verification/cardAuthInfo
+        status: 405
+    cardAuthInfoV1Search406:
+      value:
+        type: https://card.developer.fiserv.com/cards/error#not-acceptable
+        title: Not Acceptable
+        detail: The content type being requested is not provided by this service.
+        instance: /v1/verification/cardAuthInfo
+        status: 406
+    cardAuthInfoV1Search415:
+      value:
+        type: https://card.developer.fiserv.com/cards/error#unsupported-mediatype
+        title: Unsupported Media type
+        detail: The payload format is unsupported.
+        instance: /v1/verification/cardAuthInfo
+        status: 415
+    cardAuthInfoV1Search422:
+      value:
+        type: https://card.developer.fiserv.com/cards/error#unprocessable-content
+        title: Unprocessable Content
+        detail: The service was not able to process this request.
+        instance: /v1/verification/cardAuthInfo
+        status: 422
+    cardAuthInfoV1Search429:
+      value:
+        type: https://card.developer.fiserv.com/cards/error#TooManyRequests
+        title: Too Many Requests
+        detail: We had a problem getting your credit and debit card information.
+        instance: /v1/verification/cardAuthInfo
+        status: 429
   headers:
     interactionId:
       description: unique transaction ID created for each request for tracking purposes
