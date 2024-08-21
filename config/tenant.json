@@ -30,7 +30,7 @@
           "dispute-1.6.5",
           "travel-2.0.1",
           "fraudalert-2.0.0",
-          "fraud-2.0.0",
+    
           "rewards-1.0.0",
           "addpoints-1.0.2",
           "payment-1.0.0",
@@ -48,7 +48,7 @@
           "account-1.8.0",
           "card-2.10.0",
           "dispute-1.6.3",
-          "fraud-1.8.0"
+    
           ]
       }
   ],
