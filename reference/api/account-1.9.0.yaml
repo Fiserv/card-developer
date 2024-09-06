@@ -12,22 +12,22 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Account Details
+- name: Details
   description: Search for Account Details.
-- name: AcctLimits
-  description: Update the credit limit, cash limit, or the temporary credit limit based on account number.
-- name: Account Statements
+- name: Limits
+  description: Search and Update the credit limit, cash limit, or the temporary credit limit based on account number.
+- name: Statements
   description: Search for Account statements.
-- name: Account Transaction
+- name: Transactions
   description: Search for Account transactions.
 paths:
   /v1/accounts/statements/search:
     post:
       tags:
-      - Account Statements
+      - Statements
       x-child-product-name: Account v1.9.0
       x-proxy-name: Get Statements
-      x-group-name: Account Statements
+      x-group-name: Statements
       
       summary: Search for statement information given the account. Applies to credit only.
       operationId: getStatements
@@ -209,10 +209,10 @@ paths:
   /v1/accounts/statements/pdf/search:
     post:
       tags:
-      - Account Statements
+      - Statements
       x-child-product-name: Account v1.9.0
       x-proxy-name: Search Statement By Year and Month
-      x-group-name: Account Statements
+      x-group-name: Statements
       
       summary: Retrieves the PDF Statement based on the account number.
       operationId: SearchStatementByYearMonth
@@ -280,10 +280,10 @@ paths:
   /v1/accounts/statements/pdf/{docId}:
     get:
       tags:
-      - Account Statements
+      - Statements
       x-child-product-name: Account v1.9.0
       x-proxy-name: Download PDF Binary
-      x-group-name: Account Statements
+      x-group-name: Statements
       
       summary: Returns the binary in the PDF format based on the documentId provided in the request.
       operationId: downloadPDFBinary
@@ -355,10 +355,10 @@ paths:
   /v1/accounts/search:
     post:
       tags:
-      - Account Details
+      - Details
       x-child-product-name: Account v1.9.0
       x-proxy-name: Get Account
-      x-group-name: Account Details
+      x-group-name: Details
       
       summary: Returns account information for the given account number based on the filter criteria passed which could be either 'summary' or 'detail'. Applies for credit only.
       operationId: getAccount
@@ -523,10 +523,10 @@ paths:
   /v1/accounts/limits/search:
     post:
       tags:
-      - Account Limits
+      - Limits
       x-child-product-name: Account v1.9.0
       x-proxy-name: Accounts Limit Search Request
-      x-group-name: Account Limits
+      x-group-name: Limits
       
       summary: Returns the limit values for a given account.
       operationId: AccountsLimitSearchRequest
@@ -646,10 +646,10 @@ paths:
   /v1/limits:
     patch:
       tags:
-      - Account Limits
+      - Limits
       x-child-product-name: Account v1.9.0
       x-proxy-name: Update Limits
-      x-group-name: Account Limits
+      x-group-name: Limits
       
       summary: Used to update the credit limit, cash limit, or the temporary credit limit based on account number. The user must provide an update to one of the limit fields. Applies to credit cards only.
       operationId: updateLimits
@@ -765,10 +765,10 @@ paths:
   /v1/accounts/transactions/search:
     post:
       tags:
-      - Account Transaction
+      - Transaction
       x-child-product-name: Account v1.9.0
       x-proxy-name: Get Account Transactions
-      x-group-name: Account Transaction
+      x-group-name: Transaction
       
       summary: Retrieves the list of Transactions for the account based on the filter criteria passed in the request. Only applicable for credit.
       operationId: getAccountTransactions
