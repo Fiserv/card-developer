@@ -876,7 +876,7 @@ paths:
         - Create
       x-child-product-name: Dispute v1.7.0
       x-group-name: Create
-      x-proxy-name: Create claim v2
+      x-proxy-name: Create claim v2 (deprecated)
       summary: "Creates a dispute case for given transactions of a particular card number."
       operationId: createClaimV2
       parameters:
@@ -981,6 +981,7 @@ paths:
           headers:
             'x-fapi-interaction-id':
               $ref: '#/components/headers/interactionId'
+        deprecated: true
   /v1/cases/{caseId}/questionnaire:
     post:
       tags:
