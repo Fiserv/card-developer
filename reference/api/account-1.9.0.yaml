@@ -13,12 +13,181 @@ security:
 - BearerAuth: []
 tags:
 - name: Account Details
+  description: Search for Account Details.
 - name: AcctLimits
+  description: Update the credit limit, cash limit, or the temporary credit limit based on account number.
 - name: Account Statements
+  description: Search for Account statements.
 - name: Account Transaction
-- name: Account Update
-
+  description: Search for Account transactions.
 paths:
+  /v1/accounts/search:
+    post:
+      tags:
+      - Account Details
+      x-child-product-name: Account v1.9.0
+      x-proxy-name: Get Account
+      x-group-name: Account Details
+      summary: Returns account information for the given account number based on the filter criteria passed which could be either 'summary' or 'detail'. Applies for credit only.
+      operationId: getAccount
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: x-fapi-userId
+        in: header
+        description: User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: JOHNDOE
+      - name: x-fapi-financial-id
+        in: header
+        description: The 8-digit unique financial institute id assigned to each FI by Fiserv.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "0012345678"
+      - name: filter
+        in: query
+        description: "Retrieve summary or detail response for account search results. Defaults to 'summary'. \n\nfilter value of 'summary' only includes these fields  \n- accountType  \n- description \n- customerName  \n- association  \n- accountStatus  \n\nfilter value of 'detail' includes all the fields in the response.\n"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: summary
+      requestBody:
+        description: accountSearchRequest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountSearchRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountSearchResponse'
+              examples:
+                Account Search - Summary:
+                  $ref: '#/components/examples/AccountSearchResponseSummary'
+                Account Search - Detail:
+                  $ref: '#/components/examples/AccountSearchResponseDetail'
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                AccountSearch400:
+                  $ref: '#/components/examples/AccountSearch400'
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                AccountSearch401:
+                  $ref: '#/components/examples/AccountSearch401'
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                AccountSearch403:
+                  $ref: '#/components/examples/AccountSearch403'
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                AccountSearch404:
+                  $ref: '#/components/examples/AccountSearch404'
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                AccountSearch406:
+                  $ref: '#/components/examples/AccountSearch406'
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                AccountSearch415:
+                  $ref: '#/components/examples/AccountSearch415'
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/4xxError'
+              examples:
+                AccountSearch422:
+                  $ref: '#/components/examples/AccountSearch422'
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
+      deprecated: false
   /v1/accounts/statements/search:
     post:
       tags:
@@ -347,173 +516,7 @@ paths:
       x-child-product-name: Account v1.9.0
       x-proxy-name: Download PDF Binary
       x-group-name: Account Statements
-  /v1/accounts/search:
-    post:
-      tags:
-      - Account Details
-      summary: Returns account information for the given account number based on the filter criteria passed which could be either 'summary' or 'detail'. Applies for credit only.
-      operationId: getAccount
-      parameters:
-      - name: Authorization
-        in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-      - name: x-fapi-userId
-        in: header
-        description: User on behalf of whom the request is being made. userId must be alphanumeric.
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: JOHNDOE
-      - name: x-fapi-financial-id
-        in: header
-        description: The 8-digit unique financial institute id assigned to each FI by Fiserv.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: "0012345678"
-      - name: filter
-        in: query
-        description: "Retrieve summary or detail response for account search results. Defaults to 'summary'. \n\nfilter value of 'summary' only includes these fields  \n- accountType  \n- description \n- customerName  \n- association  \n- accountStatus  \n\nfilter value of 'detail' includes all the fields in the response.\n"
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-        example: summary
-      requestBody:
-        description: accountSearchRequest
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountSearchRequest'
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountSearchResponse'
-              examples:
-                Account Search - Summary:
-                  $ref: '#/components/examples/AccountSearchResponseSummary'
-                Account Search - Detail:
-                  $ref: '#/components/examples/AccountSearchResponseDetail'
-        "400":
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch400:
-                  $ref: '#/components/examples/AccountSearch400'
-        "401":
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch401:
-                  $ref: '#/components/examples/AccountSearch401'
-        "403":
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch403:
-                  $ref: '#/components/examples/AccountSearch403'
-        "404":
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch404:
-                  $ref: '#/components/examples/AccountSearch404'
-        "406":
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch406:
-                  $ref: '#/components/examples/AccountSearch406'
-        "415":
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch415:
-                  $ref: '#/components/examples/AccountSearch415'
-        "422":
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch422:
-                  $ref: '#/components/examples/AccountSearch422'
-        "500":
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
-      deprecated: false
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Get Account
-      x-group-name: Account Details
+      
   /v1/accounts/limits/search:
     post:
       tags:
