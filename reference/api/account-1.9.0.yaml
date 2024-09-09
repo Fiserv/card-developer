@@ -16,6 +16,7 @@ tags:
 - name: AcctLimits
 - name: Account Statements
 - name: Account Transaction
+- name: Account Update
 
 paths:
   /v1/accounts/statements/search:
