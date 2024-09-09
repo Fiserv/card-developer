@@ -520,7 +520,7 @@ paths:
     post:
       tags:
       - Account Limits
-      summary: Returns the limit values for a given account.
+      summary: Returns the limit values for a given account This one works.
       operationId: AccountsLimitSearchRequest
       parameters:
       - name: Authorization
