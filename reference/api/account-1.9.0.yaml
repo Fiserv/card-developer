@@ -3,28 +3,33 @@ openapi: 3.0.0
 info:
   title: Accounts
   description: Accounts Domain. All times will be in UTC standards.
-  version: 1.9.0-Jun-24
+  version: 1.8.0
 servers:
 - url: https://card.api.fiservapps.com/cs/accounts
   description: Production url
+- url: https://card-certification.api.fiservapps.com/cs/accounts
+  description: Certification url
 - url: https://card-sandbox.api.fiservapps.com/cs/accounts
   description: Sandbox url
 security:
 - BearerAuth: []
 tags:
-- name: Account Details
+- name: Details
   description: Search for Account Details.
-- name: AcctLimits
-  description: Update the credit limit, cash limit, or the temporary credit limit based on account number.
-- name: Account Statements
+- name: Limits
+  description: Search and Update the credit limit, cash limit, or the temporary credit limit based on account number.
+- name: Statements
   description: Search for Account statements.
-- name: Account Transaction
+- name: Transactions
   description: Search for Account transactions.
 paths:
   /v1/accounts/statements/search:
     post:
       tags:
-      - Account Statements
+      - Statements
+      x-child-product-name: Accounts v1.8.0
+      x-proxy-name: Get Statements
+      x-group-name: Statements
       summary: Search for statement information given the account. Applies to credit only.
       operationId: getStatements
       parameters:
@@ -202,13 +207,13 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Get Statements
-      x-group-name: Account Statements
   /v1/accounts/statements/pdf/search:
     post:
       tags:
-      - Account Statements
+      - Statements
+      x-child-product-name: Accounts v1.8.0
+      x-proxy-name: Search Statement By Year and Month
+      x-group-name: Statements
       summary: Retrieves the PDF Statement based on the account number.
       operationId: SearchStatementByYearMonth
       parameters:
@@ -272,87 +277,13 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Search Statement By Year and Month
-      x-group-name: Account Statements
-  /v1/accounts/statements/pdf/{docId}:
-    get:
-      tags:
-      - Account Statements
-      summary: Returns the binary in the PDF format based on the documentId provided in the request.
-      operationId: downloadPDFBinary
-      parameters:
-      - name: Authorization
-        in: header
-        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-      - name: x-fapi-financial-id
-        in: header
-        description: The 8-digit unique financial institute id assigned to each FI by Fiserv.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: "0012345678"
-      - name: docId
-        in: path
-        description: The documentId for any given statement.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          maxLength: 85
-          minLength: 1
-          pattern: ^[A-F0-9]+$
-          type: string
-          example: E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB
-      responses:
-        "200":
-          description: A binary PDF file from the documentId reference.
-          content:
-            application/pdf:
-              schema:
-                type: string
-                format: binary
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "422":
-          description: Unprocessable Entity
-        "500":
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
-      deprecated: false
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Download PDF Binary
-      x-group-name: Account Statements
   /v1/accounts/search:
     post:
       tags:
-      - Account Details
+      - Details
+      x-child-product-name: Accounts v1.8.0
+      x-proxy-name: Get Account
+      x-group-name: Details
       summary: Returns account information for the given account number based on the filter criteria passed which could be either 'summary' or 'detail'. Applies for credit only.
       operationId: getAccount
       parameters:
@@ -513,14 +444,14 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Get Account
-      x-group-name: Account Details
   /v1/accounts/limits/search:
     post:
       tags:
-      - Account Limits
-      summary: Returns the limit values for a given account This one works.
+      - Limits
+      x-child-product-name: Accounts v1.8.0
+      x-proxy-name: Accounts Limit Search Request
+      x-group-name: Limits
+      summary: Returns the limit values for a given account.
       operationId: AccountsLimitSearchRequest
       parameters:
       - name: Authorization
@@ -635,13 +566,13 @@ paths:
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
       deprecated: false
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Accounts Limit Search Request
-      x-group-name: Account Limits
   /v1/limits:
     patch:
       tags:
-      - Account Limits
+      - Limits
+      x-child-product-name: Accounts v1.8.0
+      x-proxy-name: Update Limits
+      x-group-name: Limits
       summary: Used to update the credit limit, cash limit, or the temporary credit limit based on account number. The user must provide an update to one of the limit fields. Applies to credit cards only.
       operationId: updateLimits
       parameters:
@@ -753,13 +684,13 @@ paths:
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
       deprecated: false
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Update Limits
-      x-group-name: Account Limits
   /v1/accounts/transactions/search:
     post:
       tags:
-      - Account Transaction
+      - Transactions
+      x-child-product-name: Accounts v1.8.0
+      x-proxy-name: Get Account Transactions
+      x-group-name: Transactions
       summary: Retrieves the list of Transactions for the account based on the filter criteria passed in the request. Only applicable for credit.
       operationId: getAccountTransactions
       parameters:
@@ -943,9 +874,6 @@ paths:
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
       deprecated: false
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Get Account Transactions
-      x-group-name: Account Transaction
 components:
   schemas:
     "400Error":
@@ -1174,6 +1102,7 @@ components:
           type: string
           description: Date and time of the transaction.
           format: date-time
+          example: 2014-10-02T15:01:23.045Z
         transactedCardOrAccountNumber:
           type: string
           description: transactedCardOrAccountNumber field is for monetary transactions.It will have the following possible values- card number (card type transactions), account number (account type transactions) or spaces (system generated transactions).
@@ -1287,6 +1216,7 @@ components:
           type: string
           description: Posting date of the transaction.
           format: date
+          example: 2014-10-02
         detailTransactionIdentifier:
           type: string
           description: Detail around transaction id of particular transaction
@@ -1413,6 +1343,7 @@ components:
           type: string
           description: Date on which the account reached the highest balance.
           format: date
+          example: 2022-01-09
         highBalanceAmount:
           type: string
           description: Highest balance reached on the account.
@@ -1429,6 +1360,7 @@ components:
           type: string
           description: Date of the last non-monetary maintenance update to the account.
           format: date
+          example: 2020-09-23
         lastStatementBalanceAmount:
           type: string
           description: Balance amount of the last statement.
@@ -1437,6 +1369,7 @@ components:
           type: string
           description: Date on which the status was last changed.
           format: date
+          example: 2020-09-23
         lifestyleCode:
           type: string
           description: The lifestyle index code.
@@ -1449,10 +1382,12 @@ components:
           type: string
           description: Date on which the next cycle is due.
           format: date
+          example: 2022-12-09
         openedDate:
           type: string
           description: Date on which the account was opened.
           format: date
+          example: 2020-09-23
         plasticCount:
           type: integer
           description: Number of plastic cards issued which are associated to the account.
@@ -1478,10 +1413,12 @@ components:
           type: string
           description: Date when active military service starts.
           format: date
+          example: 2021-12-23
         serviceEndDate:
           type: string
           description: Date when military service ends.
           format: date
+          example: 2021-11-23
         vip:
           type: boolean
           description: Indicates whether the primary account owner is a very important person (VIP).
@@ -1514,10 +1451,6 @@ components:
           type: string
           description: Account identifier on the system of record.
           example: "123456789"
-        priorAccountNumber:
-          type: string
-          description: Migrated account number.
-          example: "987456123"
         fromDate:
           type: string
           description: Defines the starting date range covered by the statement. If fromDate is given, toDate is required. If not given, the response will show 3 months of statement data.
@@ -1551,6 +1484,7 @@ components:
           type: string
           description: Date on which the statement was produced.
           format: date
+          example: 2021-12-30
         statementEndingBalance:
           type: string
           description: Ending balance of the account on this statement. Negative balances denoted with a negative sign such as -1500.00.
@@ -1694,7 +1628,7 @@ components:
           type: string
           description: The unique statement identifier related to the documentId.
           format: Date
-          example: 2022-05-31T00:00:00.000+0000
+          example: 2022-05-31
         docId:
           type: string
           description: The specific document Id reference to get the pdf binary.
@@ -1702,7 +1636,7 @@ components:
         link:
           type: string
           description: The link to GET call for the PDF Binary file of the statement.
-          example: https://card.dsp.apimz.onefiserv.net/v2/statements/search/pdf/E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB
+          example: https://card.dsp.apimz.onefiserv.net/v2/statements/search/pdf/356247932
     StatementTransactionsResponse:
       title: StatementTransactionsResponse
       type: object
@@ -1771,6 +1705,7 @@ components:
           type: string
           description: Posting date of the transaction.
           format: date
+          example: 2022-01-11
         transactedCardOrAccountNumber:
           type: string
           description: Card number or account number associated with the transaction. Value is masked.
@@ -1787,6 +1722,7 @@ components:
           type: string
           description: Date of the transaction.
           format: date
+          example: 2021-04-24
     UpdateCashLimit:
       title: CashLimit
       required:
@@ -1829,6 +1765,7 @@ components:
           type: string
           description: Date temporary limit expires. Must be in UTC format, Must be equal to or greater than today's processing date; maximum date is 2049-12-30.  Required if temporary 'amount' is updated.
           format: date
+          example: 2022-06-30
     AccountLimitSearchRequest:
       required:
       - accountNumber
@@ -1881,6 +1818,7 @@ components:
           type: string
           description: Date on which the temporary line of credit expires. This date must be equal to or greater than today's processing date.
           format: date
+          example: 2023-09-09
         billingCycle:
           type: string
           description: Billing cycle for the account.Possible values - 1-28
@@ -1897,10 +1835,12 @@ components:
           type: string
           description: Date on which the previous credit limit was assigned to the Account.
           format: date
+          example: 2022-09-08
         highBalanceDate:
           type: string
           description: Date on which the account reached the highest balance.
           format: date
+          example: 2022-09-07
         highBalanceAmount:
           type: string
           description: Highest balance reached by the account.
@@ -2166,27 +2106,27 @@ components:
         currentBalanceAmount: "3000.00"
         coveredByMilitaryLendingAct: true
         expirationDate: 02/2029
-        highBalanceDate: 2022-01-09T00:00:00.000+0000
+        highBalanceDate: 2022-01-09
         highBalanceAmount: "90.00"
         interestAccrualCode: "Y"
         plasticReplacementIndicator: "N"
-        lastNonMonetaryDate: 2020-09-23T00:00:00.000+0000
+        lastNonMonetaryDate: 2020-09-23
         lastStatementBalanceAmount: "2500.00"
-        lastStatusChangeDate: 2020-09-23T00:00:00.000+0000
+        lastStatusChangeDate: 2020-09-23
         lifestyleCode: "1234567"
         memberId: "411411"
-        nextCycleDate: 2022-12-09T00:00:00.000+0000
-        openedDate: 2020-09-23T00:00:00.000+0000
+        nextCycleDate: 2022-12-09
+        openedDate: 2020-09-23
         plasticCount: 1
         prepayCode: "0"
         secured: NOT_SECURED
         serviceMember: false
-        serviceStartDate: 2021-12-23T00:00:00.000+0000
-        serviceEndDate: 2021-11-23T00:00:00.000+0000
+        serviceStartDate: 2021-12-23
+        serviceEndDate: 2021-11-23
         vip: true
     StatementSearchResponsePDF:
       value:
-        statementDate: 2022-05-31T00:00:00.000+0000
+        statementDate: 2022-05-31
         docId: E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB
         link: https://card.dsp.apimz.onefiserv.net/v2/statements/search/pdf/356247932
     StatementSearchResponseSummary:
@@ -2195,7 +2135,7 @@ components:
         - "4257691000200020"
         - "4257691000200021"
         statementDetails:
-        - statementDate: 2021-12-30T00:00:00.000+0000
+        - statementDate: 2021-12-30
           statementEndingBalance: "1500.00"
           delinquentAmount: "100.00"
           statementFinanceChargeAmount: "10.00"
@@ -2207,7 +2147,7 @@ components:
         - "4257691000200020"
         - "4257691000200021"
         statementDetails:
-        - statementDate: 2021-12-30T00:00:00.000+0000
+        - statementDate: 2021-12-30
           statementEndingBalance: "1500.00"
           delinquentAmount: "100.00"
           statementFinanceChargeAmount: "10.00"
@@ -2250,11 +2190,11 @@ components:
                 merchantDescription: Store1
                 merchantCity: Newark
                 merchantState: NJ
-                postDate: 2022-01-11T00:00:00.000+0000
+                postDate: 2022-01-11
                 transactedCardOrAccountNumber: 400020XXXXXX4000
                 transactionAccountNumber: "1234567890124067"
                 transactionCode: "251"
-                transactionDate: 2021-04-24T00:00:00.000+0000
+                transactionDate: 2021-04-24
   headers:
     interactionId:
       description: unique transaction ID created for each request for tracking purposes
