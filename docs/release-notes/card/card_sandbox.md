@@ -7,40 +7,52 @@ When testing these endpoints, please use the test cases and test data from the S
 ## Activations
 
 ### Credit Activate v1: Activate inactive card
+
 This case activates a card.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations
+
 ```
 {
       "cardNumber": "4000100020003001"
   }
 ```
+
 ##### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardType": "CREDIT",
       "cardActivationStatus": "ACTIVATED"
-  }
+}
 ```
 
 ### Credit Activate v1: Search for inactive card
+
 This case demonstrates when the card is inactive.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
 ```
 {
       "cardNumber": "4000100020003001"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardType": "CREDIT",
@@ -49,19 +61,25 @@ This case demonstrates when the card is inactive.
 ```
 
 ### Credit Activate v1: Search for active card
+
 This case demonstrates when the card is active.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
 ```
 {
       "cardNumber": "4000200030004001"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardType": "CREDIT",
@@ -69,22 +87,26 @@ This case demonstrates when the card is active.
   }
 ```
 
-
-
 ### Debit Activate v1: Activate inactive card using card number
+
 This case activates a debit card.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations
+
 ```
 {
       "cardNumber": "4000100020003000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "400010XXXXXX3000",
@@ -99,20 +121,27 @@ This case activates a debit card.
       "verificationCallerID": "9900020"
   }
 ```
+
 ### Debit Activate v1: Activate inactive card using NTT
+
 This case activates a card using NTT.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations
+
 ```
 {
       "nonTransToken": "hggLkjgJGSwh3000"
   }
-```  
+```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "nonTransToken": "hggLkjgJGSwh3000",
@@ -127,20 +156,27 @@ This case activates a card using NTT.
       "verificationCallerID": "9900020"
   }
 ```
+
 ### Debit Activate v1: Search for inactive card using card number
+
 This case demonstrates when the debit card is inactive.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
 ```
 {
       "cardNumber": "4000100020003000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "400010XXXXXX3000",
@@ -153,19 +189,25 @@ This case demonstrates when the debit card is inactive.
 ```
 
 ### Debit Activate v1: Search for inactive card using NTT
+
 This case demonstrates when the debit card is inactive.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
 ```
 {
       "nonTransToken": "hggLkjgJGSwh3000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "nonTransToken": "hggLkjgJGSwh3000",
@@ -178,19 +220,25 @@ This case demonstrates when the debit card is inactive.
 ```
 
 ### Debit Activate v1: Search for active card using card number
+
 This case demonstrates when the debit card is activated.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
 ```
 {
       "cardNumber": "4000200030004000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "400020XXXXXX4000",
@@ -205,19 +253,25 @@ This case demonstrates when the debit card is activated.
 ```
 
 ### Debit Activate v1: Search for active card using NTT
+
 This case demonstrates when the debit card is activated.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
@@ -234,13 +288,16 @@ This case demonstrates when the debit card is activated.
 ## Add
 
 ### Credit Template v2: Retrieve template using account number
+
 This case retrieves a template to add a card using an account number.
 <i>This case retrieves an add card template using an account number.</i>
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
+
 ```
 {
     "creditOnly": {
@@ -248,11 +305,12 @@ This case retrieves a template to add a card using an account number.
     }
 }
 ```
-                        
+
 #### Response
+
 **HTTP Code:** 200 OK
 
-```     
+```
 {
     "cardNumber": "",
     "cardType": "CREDIT",
@@ -305,13 +363,16 @@ This case retrieves a template to add a card using an account number.
 }
 ```
 
-### Credit Add v2: Not using card number 
+### Credit Add v2: Not using card number
+
 This case adds a new credit card without using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
 ```
 {
  "cardNumber": "",
@@ -364,8 +425,11 @@ This case adds a new credit card without using a card number.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
+
 ```
 {
   "cardNumber": "4000200030004001",
@@ -421,22 +485,27 @@ This case adds a new credit card without using a card number.
 ```
 
 ### Debit Template v2: Retrieve template using card number
+
 This case retrieves template using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
 
-``` 
+```
 {
     "debitOnly": {
         "cardNumber": "4000200030004000"
     }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "",
@@ -518,15 +587,18 @@ This case retrieves template using a card number.
     }
 }
 ```
+
 ### Debit Template v2: Retrieve template using card number and member number
+
 This case retrieves template using a card number and member number.
 
 #### Request
+
 **HTTP Method:**POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
 
-``` 
+```
 {
     "debitOnly": {
         "cardNumber": "4000200030004000",
@@ -534,7 +606,9 @@ This case retrieves template using a card number and member number.
     }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
 
 ```
@@ -618,10 +692,13 @@ This case retrieves template using a card number and member number.
     }
  }
 ```
+
 ### Debit Template v2: Retrieve template using card class
+
 This case retrieves template using a card class.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
@@ -633,8 +710,11 @@ This case retrieves template using a card class.
     }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "",
@@ -715,11 +795,14 @@ This case retrieves template using a card class.
         ]
     }
  }
-```  
+```
+
 ### Debit Template v2: Retrieve template using NTT
+
 This case retrieves template using NTT.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
@@ -731,7 +814,9 @@ This case retrieves template using NTT.
     }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
 
 ```
@@ -815,13 +900,17 @@ This case retrieves template using NTT.
     }
  }
 ```
+
 ### Debit Add v2: Using card number
+
 This case adds a new debit card using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
 ```
 {
   "cardNumber": "4000100020003000",
@@ -899,8 +988,11 @@ This case adds a new debit card using a card number.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
+
 ```
 {
   "cardNumber": "400010XXXXXX3000",
@@ -983,12 +1075,15 @@ This case adds a new debit card using a card number.
 ```
 
 ### Debit Add v2: Not using card number
+
 This case adds a new debit card without using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
 ```
 {
   "cardNumber": "",
@@ -1066,8 +1161,11 @@ This case adds a new debit card without using a card number.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
+
 ```
 {
   "cardNumber": "4000100020003000",
@@ -1150,12 +1248,15 @@ This case adds a new debit card without using a card number.
 ```
 
 ### Debit Add v2: Not using card number, using full card and token response format
+
 This case adds a new debit card without using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
 ```
 {
   "cardNumber": "",
@@ -1236,8 +1337,11 @@ This case adds a new debit card without using a card number.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -1321,16 +1425,19 @@ This case adds a new debit card without using a card number.
 }
 ```
 
-### Debit Add v2: Not using card number, using masked card and token response format 
+### Debit Add v2: Not using card number, using masked card and token response format
+
 This case adds a new debit card without using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
 ```
 {
- 
+
   "cardNumber": "",
   "nonTransTokenFlag": true,
   "responseFormat": "MASKED_CARD_AND_TOKEN",
@@ -1409,8 +1516,11 @@ This case adds a new debit card without using a card number.
   }
  }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -1495,12 +1605,15 @@ This case adds a new debit card without using a card number.
 ```
 
 ### Debit Add v2: Not using card number, using token only response format
+
 This case adds a new debit card without using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
 ```
 {
   "cardNumber": "",
@@ -1581,8 +1694,11 @@ This case adds a new debit card without using a card number.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
+
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000",
@@ -1662,21 +1778,28 @@ This case adds a new debit card without using a card number.
     ]
   }
 }
-``` 
+```
+
 ### Debit NTT v1: Search using card number
+
 This case retrieves an NTT using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
 ```
 {
     "cardNumber": "4000200030004001"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "400020XXXXXX4001",
@@ -1684,22 +1807,27 @@ This case retrieves an NTT using a card number.
 }
 ```
 
+### Debit NTT v1: Search using card number, full card and token format
 
-### Debit NTT v1: Search using card number, full card and token format 
 This case retrieves an NTT using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
 ```
 {
     "cardNumber": "4000200030004001",
     "responseFormat" : "FULL_CARD_AND_TOKEN"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "4000200030004001",
@@ -1708,12 +1836,15 @@ This case retrieves an NTT using a card number.
 ```
 
 ### Debit NTT v1: Search using card number, masked card and token format
+
 This case retrieves an NTT using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
 ```
 {
     "cardNumber": "4000200030004001",
@@ -1721,21 +1852,37 @@ This case retrieves an NTT using a card number.
 }
 ```
 
+#### Response
+
+**HTTP Code:** 200 OK
+
+```
+{
+    "cardNumber": "400020XXXXXX4001",
+    "nonTransToken": "pSAZIXCAXrAo4001"
+}
+```
+
 ### Debit NTT v1: Search using NTT
+
 This case retrieves a card number using NTT.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
 ```
 {
     "nonTransToken": "pSAZIXCAXrAo4001"
 }
 ```
+
 #### Response
 
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "400020XXXXXX4001",
@@ -1744,42 +1891,53 @@ This case retrieves a card number using NTT.
 ```
 
 ### Debit NTT v1: Search using card number, token only format
+
 This case retrieves an NTT using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
 ```
 {
     "cardNumber": "4000200030004001",
     "responseFormat" : "TOKEN_ONLY"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "nonTransToken": "pSAZIXCAXrAo4001"
 }
 ```
 
+### Debit NTT v1: Generate using card number, without response format
 
-### Debit NTT v1: Generate using card number, without response format 
 This case generates an NTT using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt
+
 ```
 {
       "cardNumber": "4000200030004000",
       "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
+
 ```
 {
       "cardNumber": "400020XXXXXX4000",
@@ -1787,13 +1945,16 @@ This case generates an NTT using a card number.
 }
 ```
 
-###  Debit NTT v1: Generate using card number, full card and token format 
+### Debit NTT v1: Generate using card number, full card and token format
+
 This case generates an NTT using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -1801,8 +1962,11 @@ This case generates an NTT using a card number.
       "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
+
 ```
 {
        "cardNumber": "4000200030004000",
@@ -1811,12 +1975,15 @@ This case generates an NTT using a card number.
 ```
 
 ### Debit NTT v1: Generate using card number, masked card and token format
+
 This case generates an NTT using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -1824,8 +1991,11 @@ This case generates an NTT using a card number.
       "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
+
 ```
 {
       "cardNumber": "400020XXXXXX4000",
@@ -1833,13 +2003,16 @@ This case generates an NTT using a card number.
 }
 ```
 
-### Debit NTT v1: Generate using card number, token only format 
+### Debit NTT v1: Generate using card number, token only format
+
 This case generates an NTT using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -1847,8 +2020,11 @@ This case generates an NTT using a card number.
       "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
+
 ```
 {
      "nonTransToken": "piUVBJKZGfks4000"
@@ -1856,13 +2032,17 @@ This case generates an NTT using a card number.
 ```
 
 ## Audit
+
 ### Debit Audit v1: Retrieve details of audit records for card
+
 Retrieves the details of audit log records for card.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/audit/details
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -1873,8 +2053,11 @@ Retrieves the details of audit log records for card.
       "pageOffset": 1
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "400010xxxxxx4000",
@@ -1888,13 +2071,17 @@ Retrieves the details of audit log records for card.
       ]
   }
 ```
+
 ### Debit Audit v1: Retrieve audit records for a card for date range
+
 Retrieves the audit details of a given debit card for date range.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/audit/search
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -1904,8 +2091,11 @@ Retrieves the audit details of a given debit card for date range.
       "toDateTime": "2021-08-20T07:00:00Z"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
  "cardNumber": "400020XXXXXX4000",
@@ -1923,17 +2113,18 @@ Retrieves the audit details of a given debit card for date range.
 }
 ```
 
-
-
 ## Compromised Card
 
 ### Compromised Card v1: Get compromised cards list
+
 This API returns a list of compromised cards for both debit and credit. The request has one of the following required parameters; cardnumber, networkalert or fromdate and todate.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/search
+
 ```
 {
   "cardNumber": "400020003000400",
@@ -1942,8 +2133,11 @@ This API returns a list of compromised cards for both debit and credit. The requ
   "toDateTime": "2021-08-20T07:00:00Z"
 }
 ```
+
 ##### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "compromisedCards": [
@@ -1961,19 +2155,25 @@ This API returns a list of compromised cards for both debit and credit. The requ
 ```
 
 ### Credit Compromised Card v1: Get details of compromised card
+
 Returns details of compromised cards of type credit for the provided card number.
 
 #### Request
+
 **HTTP Method:** POST
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/details/search
+
 ```
 {
   "cardNumber": "4000200030004000",
   "networkAlert": "CompCard1234"
 }
 ```
+
 ##### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "debitOnly": null,
@@ -1995,21 +2195,26 @@ Returns details of compromised cards of type credit for the provided card number
 }
 ```
 
-
 ### Debit Compromised Card v1: Get details of compromised card
+
 Returns details of compromised cards of type debit for the provided card number.
 
 #### Request
+
 **HTTP Method:** POST
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/compromised/details/search
+
 ```
 {
   "cardNumber": "4000200030004001",
   "networkAlert": "CompCard123456"
 }
 ```
+
 ##### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "debitOnly": {
@@ -2023,19 +2228,25 @@ Returns details of compromised cards of type debit for the provided card number.
 ## Demographics
 
 ### Credit Demographics v4: Search using card number
+
 This case retrieves the demographics of a cardholder using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com /cs/cards/v4/cards/cardholders/demographics/search
+
 ```
 {
       "cardNumber": "4000200030004001"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardholderDemographics": [
@@ -2128,14 +2339,18 @@ This case retrieves the demographics of a cardholder using a card number.
         }
     ]
   }
-  ```
+```
+
 ### Credit Demographics v3: Update cardholder contact information using card number
+
 This case updates the contact information using a card number.
 
 #### Request
+
 **HTTP Method**: PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cardholders/contact
+
 ```
 {
        "cardNumber": "4000200030004001",
@@ -2206,16 +2421,21 @@ This case updates the contact information using a card number.
             }
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Credit Demographics v3: Update cardholder address using card number
+
 This case updates the address information using a card number.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com /cs/cards//v3/cardholders/address
+
 ```
 {
       "cardNumber": "4000200030004001",
@@ -2238,24 +2458,30 @@ This case updates the address information using a card number.
       ]
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
+### Debit Demographics v4: Search using card number
 
-### Debit Demographics v4: Search using card number 
 This case retrieves the demographics of a cardholder using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v4/cards/cardholders/demographics/search
+
 ```
 {
       "cardNumber": "4000200030004000",
       "memberNumber": "0"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
 
       "cardholderDemographics": [
@@ -2346,21 +2572,26 @@ This case retrieves the demographics of a cardholder using a card number.
           }
       ]
 
-
 ### Debit Demographics v4: Search using NTT
+
 This case retrieves the demographics of a cardholder using NTT.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v4/cards/cardholders/demographics/search
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000"
   }
 ```
+
 #### Response
-**HTTP Code:**  200 OK
+
+**HTTP Code:** 200 OK
+
 ```
 {
       "cardholderDemographics": [
@@ -2451,15 +2682,18 @@ This case retrieves the demographics of a cardholder using NTT.
           }
       ]
   }
-  ```
+```
 
 ### Debit Demographics v3: Update cardholder contact information using NTT
+
 This case updates the contact information using NTT.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cardholders/contact
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
@@ -2529,16 +2763,21 @@ This case updates the contact information using NTT.
       }
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit Demographics v3: Update cardholder contact information using card number
+
 This case updates the contact information using a card number.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cardholders/contact
+
 ```
 {
     "cardNumber": "4000200030004000",
@@ -2608,16 +2847,21 @@ This case updates the contact information using a card number.
       }
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit Demographics v3: Update cardholder address using card number
+
 This case updates the address information using a card number.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cardholders/address
+
 ```
 {
     "cardNumber": "4000200030004000",
@@ -2636,16 +2880,21 @@ This case updates the address information using a card number.
       ]
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit Demographics v3: Update cardholder address using NTT
+
 This case updates the address information using NTT.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cardholders/address
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
@@ -2664,17 +2913,23 @@ This case updates the address information using NTT.
       ]
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ## Details
+
 ### Credit Details v3: Update additional information using card number
+
 This case updates the additional information using card number.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cardholders/additionalInfo
+
 ```
 {
         "cardNumber": "4000200030004001",
@@ -2702,23 +2957,31 @@ This case updates the additional information using card number.
         }
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Credit Details v1: Search additional information using card number
+
 This case retrieves the additional information using card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cardholders/additionalInfo/search
+
 ```
 {
       "cardNumber": "4000200030004001"
  }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
 
@@ -2751,13 +3014,17 @@ This case retrieves the additional information using card number.
       }
 }
 ```
+
 ### Debit Details v3: Update additional information using card number
+
 This case updated the additional information using card number.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cardholders/additionalInfo
+
 ```
 {
 
@@ -2783,16 +3050,21 @@ This case updated the additional information using card number.
       }
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit Details v3: Update additional information using NTT
+
 This case updated the additional information using NTT.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cardholders/additionalInfo
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
@@ -2817,24 +3089,32 @@ This case updated the additional information using NTT.
       }
   }
 ```
+
 #### Response
+
 **HTTP Code**: 204 No Content
 
 ### Debit Details v1: Search additional information using card number
+
 This case retrieves the additional information using card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cardholders/additionalInfo/search
+
 ```
 {
       "cardNumber": "4000200030004000",
       "memberNumber": "0"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "400020XXXXXX4000",
@@ -2864,19 +3144,25 @@ This case retrieves the additional information using card number.
 ```
 
 ### Debit Details v1: Search additional information using NTT
+
 This case retrieves the additional information using NTT.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cardholders/additionalInfo/search
+
 ```
 {
     "nonTransToken": "piUVBJKZGfks4000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "400020XXXXXX4000",
@@ -2905,12 +3191,15 @@ This case retrieves the additional information using NTT.
 ```
 
 ### Debit Details v3: Update ATM preferences using NTT
+
 This case updates the ATM Preferences using a NTT.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/atmPreferences
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -2922,15 +3211,19 @@ This case updates the ATM Preferences using a NTT.
       }
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
-
 ### Debit Details v3: Update ATM preferences using NTT
+
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/atmPreferences
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
@@ -2942,24 +3235,32 @@ This case updates the ATM Preferences using a NTT.
       }
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit Details v1: Search ATM preferences using card number
+
 This case retrieves the ATM Preferences using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/atmPreferences/search
+
 ```
 {
       "cardNumber": "4000200030004000",
       "memberNumber": "0"
   }
 ```
+
 #### Response
-**HTTP Code:**  200 OK
+
+**HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "400020XXXXXX4000",
@@ -2982,19 +3283,25 @@ This case retrieves the ATM Preferences using a card number.
 ```
 
 ### Debit Details v1: Search ATM preferences using NTT
+
 This case retrieves the ATM preferences using NTT.
 
 #### Request
+
 H**TTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/atmPreferences/search
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "400020XXXXXX4000",
@@ -3017,12 +3324,15 @@ H**TTP Method:** PATCH
 ```
 
 ### Debit Details v2: Cardholder search using full card record
+
 This case retrieves the cardholder information using other commonly known information.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cardholders/search
+
 ```
 {
       "cardNumber": "4000100020003000",
@@ -3038,8 +3348,11 @@ This case retrieves the cardholder information using other commonly known inform
       "lastFourTaxIdOrSsn": "5678"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardholderCardsDetails": [
@@ -3077,12 +3390,12 @@ This case retrieves the cardholder information using other commonly known inform
   }
 ```
 
-
-
 ### Debit Details v2: Cardholder search using card number
+
 This case retrieves the cardholder information using a card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cardholders/search
@@ -3092,26 +3405,68 @@ This case retrieves the cardholder information using a card number.
       "cardNumber": "4000100020003000"
 }
 ```
-#### Response
-**HTTP Code:** 200 OK
-```
 
+#### Response
+
+**HTTP Code:** 200 OK
+
+```
+{
+      "cardholderCardsDetails": [
+          {
+              "cardholderDetails": {
+                  "cardholderName": "Doe, Jessie H"
+              },
+              "cards": [
+                  {
+                      "cardNumber": "4000100020003000",
+                      "accountNumbers": [
+                          "123456789",
+                          "987654321"
+                      ],
+                      "memberNumber": "0",
+                      "cardStatus": "NORMAL",
+                      "statusReasonCode": "LOST",
+                      "cardActivationStatus": "NOT_ACTIVATED",
+                      "cardType": "DEBIT",
+                      "association": "PRIMARY",
+                      "zipCode": "12345",
+                      "phone": "0005550001",
+                      "cellPhone": "1005550001",
+                      "homePhone": "1005550001",
+                      "workPhone": "1005550001",
+                      "textAddress": "0005550000",
+                      "dateOfBirth": "1990-08-24",
+                      "expirationDate": "10/28",
+                      "emailAddress": "jdoeh@example.com",
+                      "cardClass": "VSCK"
+                  }
+              ]
+          }
+      ]
+  }
 ```
 
 ### Debit Details v2: Cardholder search using NTT
+
 This case retrieves the cardholder information using NTT.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cardholders/search
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardholderCardsDetails": [
@@ -3151,20 +3506,26 @@ This case retrieves the cardholder information using NTT.
 ```
 
 ### Debit Details v2: Cardholder search using SSN or tax ID and last name
+
 This case retrieves the cardholder information using SSN or tax id and last name.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cardholders/search
+
 ```
 {
       "taxIdOrSsn": "123005678",
       "lastName": "Doe"
   }
 ```
+
 #### Response
-**HTTP Code:**  200 OK
+
+**HTTP Code:** 200 OK
+
 ```
 {
       "cardholderCardsDetails": [
@@ -3202,22 +3563,26 @@ This case retrieves the cardholder information using SSN or tax id and last name
   }
 ```
 
-
-
 ### Debit Details v2: Cardholder search using email
+
 This case retrieves the cardholder information using and email address.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cardholders/search
+
 ```
 {
       "emailAddress": "jdoe@example.com"
   }
 ```
+
 #### Response
-**HTTP Code:**  200 OK
+
+**HTTP Code:** 200 OK
+
 ```
 {
       "cardholderCardsDetails": [
@@ -3256,20 +3621,26 @@ This case retrieves the cardholder information using and email address.
 ```
 
 ### Debit Details v2: Cardholder search using account and phone numbers
+
 This case retrieves the cardholder information using account number and phone number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cardholders/search
+
 ```
 {
       "accountNumber": "987654321",
       "phone": "0005550000"
   }
 ```
+
 #### Response
+
 **HTTP Code**: 200 OK
+
 ```
 {
       "cardholderCardsDetails": [
@@ -3307,36 +3678,47 @@ This case retrieves the cardholder information using account number and phone nu
 ```
 
 ### Debit Details v2: Cardholder search using card number, full card and token format
+
 This case retrieves the cardholder information using card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cardholders/search
+
 ```
 {
       "cardNumber": "4000200030004000",
       "responseFormat": "FULL_CARD_AND_TOKEN"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit Details v2: Cardholder search using card number, token only format
+
 This case retrieves the cardholder information using card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cardholders/search
+
 ```
 {
       "cardNumber": "4000200030004000",
       "responseFormat": "TOKEN_ONLY"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardholderCardsDetails": [
@@ -3375,20 +3757,26 @@ This case retrieves the cardholder information using card number.
 ```
 
 ### Debit Details v2: Cardholder search using NTT, masked card only format
+
 This case retrieves the cardholder information using card number.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cardholders/search
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
       "responseFormat": "MASKED_CARD_ONLY"
  }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardholderCardsDetails": [
@@ -3429,20 +3817,26 @@ This case retrieves the cardholder information using card number.
 ## Display Digital Card
 
 ### Debit Digital Card Display v2: Search auth details using card number
+
 Retrieve card expiration date and CV2.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/authDetails
+
 ```
 {
     "cardNumber": "4000200030004000",
     "memberNumber": "0"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "400020XXXXXX4000",
@@ -3453,19 +3847,25 @@ Retrieve card expiration date and CV2.
 ```
 
 ### Debit Digital Card Display v2: Search auth details using NTT
+
 Retrieve card expiration date and CV2.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/authDetails
+
 ```
 {
     "nonTransToken": "piUVBJKZGfks4000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "400020XXXXXX4000",
@@ -3478,19 +3878,25 @@ Retrieve card expiration date and CV2.
 ## Limits
 
 ### Debit Limits v2: Search limits using card number
+
 Retrieves the limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/search
+
 ```
 {
   "cardNumber": "4000200030004000"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -3548,19 +3954,25 @@ Retrieves the limits for the selected cardholder record.
 ```
 
 ### Debit Limits v2: Search limits using NTT
+
 Retrieves the limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/search
+
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -3616,13 +4028,17 @@ Retrieves the limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Search limits using card number, token only response format
+
 Retrieves the limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/search
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -3630,8 +4046,11 @@ Retrieves the limits for the selected cardholder record.
   "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000",
@@ -3687,13 +4106,16 @@ Retrieves the limits for the selected cardholder record.
 }
 ```
 
-### Debit Limits v2: Search limits using card number, full card  and  token only response format.
+### Debit Limits v2: Search limits using card number, full card and token only response format.
+
 Retrieves the limits for the selected cardholder record
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/search
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -3701,8 +4123,11 @@ Retrieves the limits for the selected cardholder record
   "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -3758,13 +4183,17 @@ Retrieves the limits for the selected cardholder record
   }
 }
 ```
+
 ### Debit Limits v2: Search limits using card number, masked card only response format
+
 Retrieves the limits for the selected cardholder record
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/search
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -3772,8 +4201,11 @@ Retrieves the limits for the selected cardholder record
   "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -3828,13 +4260,17 @@ Retrieves the limits for the selected cardholder record
   }
 }
 ```
+
 ### Debit Limits v2: Search limits using card number, masked card and token response format
+
 Retrieves the limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/search
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -3842,8 +4278,11 @@ Retrieves the limits for the selected cardholder record.
   "memberNumber": "0"
 }
 ```
-####  Response
+
+#### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -3901,12 +4340,15 @@ Retrieves the limits for the selected cardholder record.
 ```
 
 ### Debit Limits v2: Update daily limits using card number
+
 Override the daily limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method**: PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/daily
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -3942,8 +4384,11 @@ Override the daily limits for the selected cardholder record.
     "signatureDebitPOSTotalAmount": "0"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -3984,12 +4429,15 @@ Override the daily limits for the selected cardholder record.
 ```
 
 ### Debit Limits v2: Update daily limits using NTT
+
 Override the daily limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/daily
+
 ```
 {
       {
@@ -4026,8 +4474,11 @@ Override the daily limits for the selected cardholder record.
     "signatureDebitPOSTotalAmount": "0"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -4066,14 +4517,18 @@ Override the daily limits for the selected cardholder record.
     "signatureDebitPOSTotalAmount": "0"
   }
 }
-````
+```
+
 ### Debit Limits v2: Update daily limits using card number, full card only response format
+
 Override the daily limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/daily
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4112,8 +4567,11 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4152,13 +4610,17 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update daily limits using card number, full card and token response format
+
 Override the daily limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/daily
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4197,8 +4659,11 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4238,13 +4703,17 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update daily limits using card number, masked card only response format
+
 Override the daily limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/daily
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4283,8 +4752,11 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -4323,13 +4795,17 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update daily limits using card number, masked card and token response format
+
 Override the daily limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/daily
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4368,8 +4844,11 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -4409,13 +4888,17 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update daily limits using card number, token only response format
+
 Override the daily limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/daily
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4454,8 +4937,11 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** **HTTP Code:** 200 OK
+
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000",
@@ -4494,13 +4980,17 @@ Override the daily limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update open to buy limits using card number
+
 Update the open to buy limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/openToBuy
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4512,8 +5002,11 @@ Update the open to buy limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -4529,12 +5022,15 @@ Update the open to buy limits for the selected cardholder record.
 ```
 
 ### Debit Limits v2: Update open to buy limits using NTT
+
 Update the open to buy limits for the selected cardholder record
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/openToBuy
+
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000",
@@ -4546,8 +5042,11 @@ Update the open to buy limits for the selected cardholder record
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```{
   "cardNumber": "400020XXXXXX4000",
   "nonTransToken": "piUVBJKZGfks4000",
@@ -4560,13 +5059,17 @@ Update the open to buy limits for the selected cardholder record
   }
 }
 ```
+
 ### Debit Limits v2: Update open to buy limits using card number, token only response format
+
 Update the open to buy limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/openToBuy
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4580,8 +5083,11 @@ Update the open to buy limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code**: 200 OK
+
 ```{
   "nonTransToken": "piUVBJKZGfks4000",
   "memberNumber": "0",
@@ -4593,13 +5099,17 @@ Update the open to buy limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update open to buy limits using card number, full card only response format
+
 Update the open to buy limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/openToBuy
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4613,8 +5123,11 @@ Update the open to buy limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4627,13 +5140,17 @@ Update the open to buy limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update open to buy limits using card number, full card and token response format
+
 Update the open to buy limits for the selected cardholder record
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/openToBuy
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4647,8 +5164,11 @@ Update the open to buy limits for the selected cardholder record
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```{
   "cardNumber": "4000200030004000",
   "nonTransToken": "piUVBJKZGfks4000",
@@ -4661,13 +5181,17 @@ Update the open to buy limits for the selected cardholder record
   }
 }
 ```
+
 ### Debit Limits v2: Update open to buy limits using card number, masked card only response format
+
 Update the open to buy limits for the selected cardholder record
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/openToBuy
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4675,8 +5199,11 @@ Update the open to buy limits for the selected cardholder record
   "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "cardNumber": "400020XXXXXX4000",
@@ -4729,13 +5256,17 @@ Update the open to buy limits for the selected cardholder record
    }
 }
 ```
+
 ### Debit Limits v2: Update open to buy limits using card number, masked card and token response format
+
 Update the open to buy limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method**: PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/openToBuy
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4743,8 +5274,11 @@ Update the open to buy limits for the selected cardholder record.
   "memberNumber": "0",
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "cardNumber": "400020XXXXXX4000",
@@ -4800,12 +5334,15 @@ Update the open to buy limits for the selected cardholder record.
 ```
 
 ### Debit Limits v2: Update velocity limits using NTT
+
 Updates the velocity limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/velocity
+
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000",
@@ -4821,8 +5358,11 @@ Updates the velocity limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -4840,13 +5380,17 @@ Updates the velocity limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update velocity limits using card number, token only response format
+
 Updates the velocity limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/velocity
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4864,8 +5408,11 @@ Updates the velocity limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000",
@@ -4881,14 +5428,18 @@ Updates the velocity limits for the selected cardholder record.
     "posTimeInterval": "10:10"
   }
 }
-````
+```
+
 ### Debit Limits v2: Update velocity limits using card number, full card only response format
+
 Updates the velocity limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/velocity
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4906,8 +5457,11 @@ Updates the velocity limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4924,13 +5478,17 @@ Updates the velocity limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update velocity limits using card number, full card and token response format
+
 Updates the velocity limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/velocity
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4948,8 +5506,11 @@ Updates the velocity limits for the selected cardholder record.
   }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4967,11 +5528,15 @@ Updates the velocity limits for the selected cardholder record.
   }
 }
 ```
+
 ### Debit Limits v2: Update velocity limits using card number, masked card only response format
+
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/velocity
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -4979,8 +5544,11 @@ Updates the velocity limits for the selected cardholder record.
   "memberNumber": "0",
  }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "cardNumber": "400020XXXXXX4000",
@@ -5035,13 +5603,17 @@ Updates the velocity limits for the selected cardholder record.
    }
 }
 ```
+
 ### Debit Limits v2: Update velocity limits using card number, masked card and token response format
+
 Updates the velocity limits for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/velocity
+
 ```
 {
    "cardNumber": "4000200030004000",
@@ -5049,8 +5621,11 @@ Updates the velocity limits for the selected cardholder record.
    "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -5107,20 +5682,26 @@ Updates the velocity limits for the selected cardholder record.
 }
 ```
 
-### Debit Limits v2: Set to default limits using card number 
+### Debit Limits v2: Set to default limits using card number
+
 Sets the cardholder limits to default values per card class.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/default
+
 ```
 {
   "cardNumber": "4000200030004000"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -5176,19 +5757,25 @@ Sets the cardholder limits to default values per card class.
 ```
 
 ### Debit Limits v2: Set to default limits using NTT
+
 Sets the cardholder limits to default values per card class.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/default
+
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -5242,13 +5829,17 @@ Sets the cardholder limits to default values per card class.
   }
 }
 ```
+
 ### Debit Limits v2: Set to default limits using card number, token only response format
+
 Sets the cardholder limits to default values per card class.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/default
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -5256,8 +5847,11 @@ Sets the cardholder limits to default values per card class.
   "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "nonTransToken": "piUVBJKZGfks4000",
@@ -5310,13 +5904,17 @@ Sets the cardholder limits to default values per card class.
   }
 }
 ```
+
 ### Debit Limits v2: Set to default limits card number, full card only response format
+
 Sets the cardholder limits to default values per card class.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/default
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -5324,8 +5922,11 @@ Sets the cardholder limits to default values per card class.
   "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -5378,13 +5979,17 @@ Sets the cardholder limits to default values per card class.
   }
 }
 ```
+
 ### Debit Limits v2: Set to default limits using card number, full card and token response format
+
 Sets the cardholder limits to default values per card class.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/default
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -5392,8 +5997,11 @@ Sets the cardholder limits to default values per card class.
   "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```{
   "cardNumber": "4000200030004000",
   "nonTransToken": "piUVBJKZGfks4000",
@@ -5446,13 +6054,17 @@ Sets the cardholder limits to default values per card class.
   }
 }
 ```
+
 ### Debit Limits v2: Set to default limits using card number, masked card only response format
+
 Sets the cardholder limits to default values per card class.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/default
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -5460,8 +6072,11 @@ Sets the cardholder limits to default values per card class.
   "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -5514,13 +6129,17 @@ Sets the cardholder limits to default values per card class.
   }
 }
 ```
+
 ### Debit Limits v2: Set to default limits using card number, masked card and token response format
+
 Sets the cardholder limits to default values per card class.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/limits/default
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -5528,8 +6147,11 @@ Sets the cardholder limits to default values per card class.
   "memberNumber": "0"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4000",
@@ -5587,19 +6209,25 @@ Sets the cardholder limits to default values per card class.
 ## Order
 
 ### Credit Order v3: Search using card number
+
 Retrieves the orders for the selected cardholder record.
 
 #### Request
-****HTTP METHOD:** POST
+
+\***\*HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/order/search
+
 ```
 {
     "cardNumber": "4000200030004001"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "orders": [
@@ -5618,22 +6246,27 @@ Retrieves the orders for the selected cardholder record.
 }
 ```
 
-
 ### Credit Order v2: Cancel using card number
+
 Cancel the selected order.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/order
+
 ```
 {
       "cardNumber": "4000100020004001",
       "action": "CANCEL"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200
+
 ```
 {
     "card": {
@@ -5644,22 +6277,27 @@ Cancel the selected order.
 }
 ```
 
-### Debit Order v3: Search using card number 
+### Debit Order v3: Search using card number
+
 Retrieves the orders for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/order/search
+
 ```
 {
     "cardNumber": "4000200030004000",
     "memberNumber": "0"
 }
 ```
+
 #### Response
 
 **HTTP Code:** 200 OK
+
 ```
 {
        "orders": [
@@ -5716,19 +6354,25 @@ Retrieves the orders for the selected cardholder record.
 ```
 
 ### Debit Order v3: Search using NTT
+
 Retrieves the orders for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/order/search
+
 ```
 {
       "nonTransToken": "WUPIL5DQTZGM3000",
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "orders": [
@@ -5785,12 +6429,15 @@ Retrieves the orders for the selected cardholder record.
 ```
 
 ### Debit Order v2: Cancel using card number
+
 Cancel the selected order.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/order
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -5801,8 +6448,11 @@ Cancel the selected order.
       "orderType": "CARD"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "card": {
@@ -5814,12 +6464,15 @@ Cancel the selected order.
 ```
 
 ### Debit Order v2: Cancel using NTT
+
 Cancel the selected order.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/order
+
 ```
 {
       "nonTransToken": "WUPIL5DQTZGM3000",
@@ -5829,8 +6482,11 @@ Cancel the selected order.
       "orderType": "CARD"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "card": {
@@ -5842,12 +6498,15 @@ Cancel the selected order.
 ```
 
 ### Debit Order v2: Update using card number
+
 Update rush type of the selected order.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/order
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -5858,8 +6517,11 @@ Update rush type of the selected order.
       "orderType": "CARD"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "card": {
@@ -5873,136 +6535,174 @@ Update rush type of the selected order.
 ## PIN
 
 ### Debit PIN v1: Obtain JWT token using card number
+
 To select a PIN, you must supply the JWT returned by this operation. The JWT changes each time you make this request.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/token
+
 ```
     {
         "cardNumber": "4000200030004000"
     }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
     {
         "jwt": "eyJ0eXAiOiJKV1QiLCJlbmMiOiJBMTI4R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.WrliT8nLQOTRnXldrYj0brobAyi6M7-U8_iHovmTH1VAZksc4mOGQCfaSx-sbDNjdkpeznR8lU1sHOX26qom94jBO6uePEw1cBbTHLpOSEPDYiWS6SzTgxguF7zT2g5Ui1HHi2GKgPtH5L0XC_QqP5TIs3A15fqpAnvMaSwW9O_GDRzxnsUDCgEZCkwQOuEpWYDbM7r7yKrfAlkWKOHOlZuUtvJvg3k8p-1qwKpuGexhWXQdgKsWphBWbMzbindOIefIo4VTrOVMxWOdP_bLNId0E0CBLxSpRHX1u3EeAjUykUdifT2CP4bb6kbJf4pp0dRc_uPZGJLj7faPyq6UeQ.zTLJMNI8bjGh-KBy.FW0W0ihL2sj7pYin2iY1gavS4W-yPswjKmrb6-ROwHgEOscfeGGLmUihzoV6vy9KvTJ9ytnIPqh-K94UsShUJ0-KgsY4_eWyUwx4IYpYaJkPeUVd4ni_1eZMBy6-hPr3n39DES_kXfnv3MJOiZZj0I-GJXw99WBV7xhl7KZcFKyMXYnszyboV8Xi2iZqHglvEoYRjKLvOlEq2j4pJoMRVfBB8oIOZm6uyCaOnyuWuE_Lg1HeuNMnHddTm8gexDAfwj3WYHkJazsN1PZVhPZVImyKwCNM.TOYk3lw2SKYamQL7XiLXlg"
     }
 ```
 
-
 ### Debit PIN v1: Obtain JWT token using NTT
+
 To select a PIN, you must supply the JWT returned by this operation. The JWT changes each time you make this request.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/token
+
 ```
 {
      "nonTransToken": "piUVBJKZGfks4000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
      "jwt": "eyJ0eXAiOiJKV1QiLCJlbmMiOiJBMTI4R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.XU56gXVBUVLIH83fDZ_uUNj-C4f2UpGnTbP0kHLKPFEfOjn0vYP-TCcV0Cy8Q5t0bRNxE_eI6LIRT-p-dL-lQkv5Sx1GXVvsC9L_vFBzz4QU2DbkpwVjVin088uA23OV6EhylCgiwf8Yswu_1Pu8jFyvaFJUIiEvwZkFbHX73IE6fJanhMjgn_4Eo42CVdGgmzYJtfDQ9wkbAW3w3D2C2dkvzQiYeiTTCkRdzIxEeTDcN9NSM_vwElz_zO5ONExRa_2LTPlQPcen9meot8Dzlcqlz0i4Jo2xtLmkG6bA2uQzbAID4dRujhaOhCoW-GodyOvRCjOqFNYHX8tVLBio7w.oDrfGhbXOLDEWBNA.avKcJYf5i_zP2fov70cqzEW0B2znGvIF2zdEp4bkRtSDJrRBKfcbJeEaEakLZaItLDAlXz6ANJLUntsCpyrQ0Jm4nWfjRgtVmWFSUF3TvgLUH8_Pd5e8yZsI_TuJCPDMHSIt8XEkrpyRwsQT8BgUIU-iAuGe70KoFK5Cr5qvGNLgKJDIwSzlaZma-z9HFxTs6m8hKM3_5YMK5AUGsSpsy8Fb6QNhE6enfjc3GeZei1_dwhJC3Cfd8NkeNpH8AkYWGrY_ZvyZ1YAfFdgXeasCAA.yxrJMUH91uZWejU5N1VDRQ"
   }
-  ```
+```
+
 ### Debit PIN v1: Reset PIN attempts using card number
+
 Reset the number of PIN attempts to zero for the selected cardholder record.
 
 #### Request
+
 **HTTP METHOD**: POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/pinAttempts
+
 ```
 {
       "cardNumber": "4000200030004000",
       "memberNumber":"0"
   }
-```  
+```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
-### Debit PIN v1: Reset PIN attempts using NTT 
+### Debit PIN v1: Reset PIN attempts using NTT
+
 Reset the number of PIN attempts to zero for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/pinAttempts
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000"
   }
-```  
+```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
-
 ### Debit PIN v1: Select a PIN
+
 Provide the selected PIN and include the JWT card token.The JWT token must be used within 15 minutes.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/pin
+
 ```
 {
     "pin": "3578",
     "jwt": "eyJ0eXAiOiJKV1QiLCJlbmMiOiJBMTI4R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.XU56gXVBUVLIH83fDZ_uUNj-C4f2UpGnTbP0kHLKPFEfOjn0vYP-TCcV0Cy8Q5t0bRNxE_eI6LIRT-p-dL-lQkv5Sx1GXVvsC9L_vFBzz4QU2DbkpwVjVin088uA23OV6EhylCgiwf8Yswu_1Pu8jFyvaFJUIiEvwZkFbHX73IE6fJanhMjgn_4Eo42CVdGgmzYJtfDQ9wkbAW3w3D2C2dkvzQiYeiTTCkRdzIxEeTDcN9NSM_vwElz_zO5ONExRa_2LTPlQPcen9meot8Dzlcqlz0i4Jo2xtLmkG6bA2uQzbAID4dRujhaOhCoW-GodyOvRCjOqFNYHX8tVLBio7w.oDrfGhbXOLDEWBNA.avKcJYf5i_zP2fov70cqzEW0B2znGvIF2zdEp4bkRtSDJrRBKfcbJeEaEakLZaItLDAlXz6ANJLUntsCpyrQ0Jm4nWfjRgtVmWFSUF3TvgLUH8_Pd5e8yZsI_TuJCPDMHSIt8XEkrpyRwsQT8BgUIU-iAuGe70KoFK5Cr5qvGNLgKJDIwSzlaZma-z9HFxTs6m8hKM3_5YMK5AUGsSpsy8Fb6QNhE6enfjc3GeZei1_dwhJC3Cfd8NkeNpH8AkYWGrY_ZvyZ1YAfFdgXeasCAA.yxrJMUH91uZWejU5N1VDRQ"
 }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit PIN v1:Set PIN offset using card number
+
 Update the PIN Offset for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/pinOffset
+
 ```
 {
    "cardNumber": "4000200030004000",
    "memberNumber": "0",
    "pinOffset": "1234"
 }
- ``` 
+```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit PIN v1: Set PIN offset using NTT
+
 Update the PIN Offset for the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/pinOffset
+
 ```
->{
+{
    "nonTransToken": "piUVBJKZGfks4000",
    "pinOffset": "1234"
 }
-```  
-#### Response
-**HTTP Code:** 204 No Content
+```
 
+#### Response
+
+**HTTP Code:** 204 No Content
 
 ## Related Accounts
 
 ### Debit Related Account v2: Add account using NTT
+
 Add accounts to the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/accounts/associations
+
 ```
 {
     "nonTransToken": "piUVBJKZGfks4000"
@@ -6028,16 +6728,21 @@ Add accounts to the selected cardholder record.
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 201 Created
 
 ### Debit Related Account v2: Add account using card number
+
 Add accounts to the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/accounts/associations
+
 ```{
   "cardNumber": "4000200030004000",
   "memberNumber": "0",
@@ -6064,13 +6769,20 @@ Add accounts to the selected cardholder record.
 }
 ```
 
+#### Response
+
+**HTTP Code:** 201 Created
+
 ### Debit Related Account v2: Remove account using NTT
+
 Delete accounts associated with the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/accounts/associations/unassociate
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
@@ -6078,16 +6790,21 @@ Delete accounts associated with the selected cardholder record.
       "accountType": "SAVINGS"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit Related Account v2: Remove account using card number
+
 Delete accounts associated with the selected cardholder record,
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/accounts/associations/unassociate
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -6096,24 +6813,31 @@ Delete accounts associated with the selected cardholder record,
       "accountType": "SAVINGS"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
-
 ### Debit Related Account v2: Search account using NTT
+
 Retrieves the details of all accounts associated with the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/accounts/search
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "400020XXXXXX4000",
@@ -6144,20 +6868,26 @@ Retrieves the details of all accounts associated with the selected cardholder re
 ```
 
 ### Debit Related Account v2: Search account using card number
+
 Retrieves the details of all accounts associated with the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/accounts/search
+
 ```
 {
       "cardNumber": "4000200030004000",
       "memberNumber": "0"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "cardNumber": "400020XXXXXX4000",
@@ -6187,12 +6917,15 @@ Retrieves the details of all accounts associated with the selected cardholder re
 ```
 
 ### Debit Related Account v2: Update account using NTT
+
 Update the details of accounts associated with the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/accounts/associations
+
 ```
 
   "nonTransToken": "piUVBJKZGfks4000"
@@ -6218,17 +6951,21 @@ Update the details of accounts associated with the selected cardholder record.
   ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
-
 ### Debit Related Account v2: Update account using card number
+
 Update the details of accounts associated with the selected cardholder record.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/accounts/associations
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -6255,18 +6992,23 @@ Update the details of accounts associated with the selected cardholder record.
   ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ## Replacement
 
 ### Credit Replacement v3: Replace card using card number
+
 Change the expiration date and create a replacement order for an existing cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com /cs/v3/cards/replacement
+
 ```
 {
       "cardNumber": "4000200030004001",
@@ -6282,8 +7024,11 @@ Change the expiration date and create a replacement order for an existing cardho
    }
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "cardNumber": "400020XXXXXX4001",
@@ -6302,12 +7047,15 @@ Change the expiration date and create a replacement order for an existing cardho
 ```
 
 ### Credit Replacement v1: Instant Issuance using card number, full card only format
+
 Change the expiration date on the selected cardholder record for an instant issue plastic.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/instantIssuance
+
 ```
 {
    "cardNumber": "4000200030004001",
@@ -6322,8 +7070,11 @@ Change the expiration date on the selected cardholder record for an instant issu
    }
  }
 ```
+
 #### Response
+
 **HTTP Code**: 200 OK
+
 ```
 {
   "cardNumber": "4000200030004001",
@@ -6338,12 +7089,15 @@ Change the expiration date on the selected cardholder record for an instant issu
 ```
 
 ### Debit Replacement v3: Replace card using NTT
+
 Change the expiration date and create a replacement order for an existing cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com /cs/v3/cards/replacement
+
 ```
 {
    "nonTransToken": "piUVBJKZGfks4000",
@@ -6364,8 +7118,11 @@ Change the expiration date and create a replacement order for an existing cardho
    }
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "cardNumber": "400020XXXXXX4000",
@@ -6388,13 +7145,17 @@ Change the expiration date and create a replacement order for an existing cardho
    }
 }
 ```
+
 ### Debit Replacement v3: Replace card using card number
+
 Change the expiration date and create a replacement order for an existing cardholder record.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/v3/cards/replacement
+
 ```
 {
    "cardNumber": "4000200030004000",
@@ -6416,8 +7177,11 @@ Change the expiration date and create a replacement order for an existing cardho
    }
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "cardNumber": "400020XXXXXX4000",
@@ -6441,12 +7205,15 @@ Change the expiration date and create a replacement order for an existing cardho
 ```
 
 ### Debit Replacement v1: Instant Issuance using NTT, no response format
+
 Change the expiration date on the selected cardholder record for an instant issue plastic.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/instantIssuance
+
 ```{
   "nonTransToken": "piUVBJKZGfks4000",
    "cardholderName": "Doe, John H",
@@ -6459,8 +7226,11 @@ Change the expiration date on the selected cardholder record for an instant issu
    }
  }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "cardNumber": "400020XXXXXX4000",
@@ -6476,13 +7246,17 @@ Change the expiration date on the selected cardholder record for an instant issu
    }
  }
 ```
+
 ### Debit Replacement v1: Instant Issuance using card number, full card only format
+
 Change the expiration date on the selected cardholder record for an instant issue plastic.
 
 #### Request
+
 **HTTP Method:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/instantIssuance
+
 ```
 {
   "cardNumber": "4000200030004000",
@@ -6498,8 +7272,11 @@ Change the expiration date on the selected cardholder record for an instant issu
    }
  }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "cardNumber": "4000200030004000",
@@ -6518,6 +7295,7 @@ Change the expiration date on the selected cardholder record for an instant issu
 ## Transactions
 
 ### Credit Transaction v3: Search using card number, date and detail filter
+
 Retrieve transaction details of a given card based on the filter criteria passed.
 
 #### Request
@@ -6525,6 +7303,7 @@ Retrieve transaction details of a given card based on the filter criteria passed
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=detail
+
 ```
 {
      "cardNumber": "4000200030004001",
@@ -6540,8 +7319,11 @@ Retrieve transaction details of a given card based on the filter criteria passed
       ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
  "count": 1,
@@ -6558,7 +7340,7 @@ Retrieve transaction details of a given card based on the filter criteria passed
         "tranCode": "012000",
         "tranId": "314003065381779",
         "transactionStatus": "APPROVED",
-        "transactionType": "WITHDRAWAL",       
+        "transactionType": "WITHDRAWAL",
         "creditOnly": {
           "effectiveDate": "04-OCT-2021 05:01:05 AM",
           "merchantCode": "6011",
@@ -6587,7 +7369,7 @@ Retrieve transaction details of a given card based on the filter criteria passed
         "stateCode": "NJ",
         "systemAuditNumber": "106308",
         "terminalCountryCode": "USA",
-        "transactionBlockerResult": "2 - Successful",       
+        "transactionBlockerResult": "2 - Successful",
         "creditOnly": {
           "acquiringCountryCode": "USA",
           "additionalData1": "D11101B99001",
@@ -6618,7 +7400,7 @@ Retrieve transaction details of a given card based on the filter criteria passed
           "tagData": "910",
           "tranAmtOriginal": "901.53",
           "tranFeeAmount": "20.00",
-          "transmissionDateTime": "25-AUG-2023 11:41:21 AM",         
+          "transmissionDateTime": "25-AUG-2023 11:41:21 AM",
           "postedTransactionDetails": {
             "authorizationCode": "000000",
             "cardholderAccountNumber": "443011000000018",
@@ -6641,12 +7423,15 @@ Retrieve transaction details of a given card based on the filter criteria passed
 ```
 
 ### Credit Transaction v3: Search using card number, date and summary filter
+
 Retrieve transaction summary of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=summary
+
 ```
 {
      "cardNumber": "4000200030004001",
@@ -6662,8 +7447,11 @@ Retrieve transaction summary of a given card based on the filter criteria passed
       ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "count": 1,
@@ -6694,12 +7482,15 @@ Retrieve transaction summary of a given card based on the filter criteria passed
 ```
 
 ### Credit Transaction v3: Search using card number, transaction code, summary filter
+
 Retrieve transaction summary of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=summary
+
 ```
    "cardNumber": "4000200030004001",
     "filterCriteria": [
@@ -6710,8 +7501,11 @@ Retrieve transaction summary of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "count": 1,
@@ -6741,12 +7535,15 @@ Retrieve transaction summary of a given card based on the filter criteria passed
 ```
 
 ### Debit Transaction v3: Search using card number only, date and detail filter
+
 Retrieve transaction details of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=detail
+
 ```
 {
     "cardNumber": "4000200030004000",
@@ -6762,7 +7559,9 @@ Retrieve transaction details of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
 
 ```
@@ -6894,12 +7693,15 @@ Retrieve transaction details of a given card based on the filter criteria passed
 ```
 
 ### Debit Transaction v3: Search using card number, amount, summary filter
+
 Retrieve transaction summary of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=summary
+
 ```
 {
     "cardNumber": "4000200030004000",
@@ -6916,8 +7718,11 @@ Retrieve transaction summary of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "count": 1,
@@ -6968,14 +7773,16 @@ Retrieve transaction summary of a given card based on the filter criteria passed
 }
 ```
 
-
 ### Debit Transaction v3: Search using card number, date and detail filter
+
 Retrieve transaction details of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=detail
+
 ```
 {
     "cardNumber": "4000200030004000",
@@ -6992,8 +7799,11 @@ Retrieve transaction details of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "count": 1,
@@ -7099,7 +7909,7 @@ Retrieve transaction details of a given card based on the filter criteria passed
           "productType": "ATM",
           "recurringPaymentInd": "R",
           "reversalCode": "10 - HARDWARE MALFUNCTION",
-          "secureEci": "02 - 3-D Secure authentication attempt no resp",          
+          "secureEci": "02 - 3-D Secure authentication attempt no resp",
           "surchargeAmount": "3.95",
           "surchargeReservalAmount": "2.50",
           "terminalLogo": "DSH4",
@@ -7123,12 +7933,15 @@ Retrieve transaction details of a given card based on the filter criteria passed
 ```
 
 ### Debit Transaction v3: Search using NTT, merchant name, summary filter
+
 Retrieve transaction summary of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=summary
+
 ```
 {
      "nonTransToken": "piUVBJKZGfks4000",
@@ -7140,8 +7953,11 @@ Retrieve transaction summary of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "count": 1,
@@ -7192,13 +8008,16 @@ Retrieve transaction summary of a given card based on the filter criteria passed
 }
 ```
 
-### Debit Transaction v3: Search using NTT, message type, summary filter 
+### Debit Transaction v3: Search using NTT, message type, summary filter
+
 Retrieve transaction summary of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=summary
+
 ```
 {
     "nonTransToken": "piUVBJKZGfks4000",
@@ -7210,8 +8029,11 @@ Retrieve transaction summary of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "nonTransToken": "piUVBJKZGfks4000",
@@ -7225,12 +8047,15 @@ Retrieve transaction summary of a given card based on the filter criteria passed
 ```
 
 ### Debit Transaction v3: Search using card number, NTT, date and summary filter
+
 Retrieve transaction summary of a given card based on the filter criteria passed. Note: If both card number and NTT present in the request then priority is given to card number.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=summary
+
 ```
 {
     "cardNumber": "4000200030004000",
@@ -7248,8 +8073,11 @@ Retrieve transaction summary of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
    "count": 1,
@@ -7301,12 +8129,15 @@ Retrieve transaction summary of a given card based on the filter criteria passed
 ```
 
 ### Debit Transaction v3: Search using card number, transaction code, summary filter
+
 Retrieve transaction summary of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=summary
+
 ```
 {
     "cardNumber": "4000200030004000",
@@ -7319,8 +8150,11 @@ Retrieve transaction summary of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "count": 1,
@@ -7372,12 +8206,15 @@ Retrieve transaction summary of a given card based on the filter criteria passed
 ```
 
 ### Debit Transaction v3: Search using NTT, date and detail filter
+
 Retrieve transaction details of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=detail
+
 ```
 {
    "nonTransToken": "piUVBJKZGfks4000",
@@ -7393,8 +8230,11 @@ Retrieve transaction details of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "count": 1,
@@ -7524,12 +8364,15 @@ Retrieve transaction details of a given card based on the filter criteria passed
 ```
 
 ### Debit Transaction v3: Search using NTT, date and summary filter
+
 Retrieve transaction summary of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=summary
+
 ```
 {
    "nonTransToken": "piUVBJKZGfks4000",
@@ -7545,8 +8388,11 @@ Retrieve transaction summary of a given card based on the filter criteria passed
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "count": 1,
@@ -7598,12 +8444,15 @@ Retrieve transaction summary of a given card based on the filter criteria passed
 ```
 
 ### Debit Transaction v3: Search using card number, sequence number, retrieval number and detail filter
+
 Retrieve transaction detail of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=detail
+
 ```
 {
     "cardNumber": "4000200030004000",
@@ -7620,8 +8469,11 @@ Retrieve transaction detail of a given card based on the filter criteria passed.
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "count": 1,
@@ -7751,12 +8603,15 @@ Retrieve transaction detail of a given card based on the filter criteria passed.
 ```
 
 ### Debit Transaction v3: Search using card number, sequence number, retrieval number and summary filter
+
 Retrieve transaction detail of a given card based on the filter criteria passed.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/transactions/search?filter=summary
+
 ```
 {
     "cardNumber": "4000200030004000",
@@ -7773,8 +8628,11 @@ Retrieve transaction detail of a given card based on the filter criteria passed.
     ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
     "count": 1,
@@ -7826,12 +8684,15 @@ Retrieve transaction detail of a given card based on the filter criteria passed.
 ```
 
 ### Debit Terminal Transaction v1: Search using status
+
 Retrieve a list of transactions for the terminal ID based on the filter criteria given.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/terminalTransactions/search
+
 ```
 {
       "terminalId": "CATERMID",
@@ -7843,8 +8704,11 @@ Retrieve a list of transactions for the terminal ID based on the filter criteria
       ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "count": 2,
@@ -7926,12 +8790,15 @@ Retrieve a list of transactions for the terminal ID based on the filter criteria
 ```
 
 ### Debit Terminal Transaction v1: Search using terminal FI logo
+
 Retrieve a list of transactions for the terminal ID based on the filter criteria given.
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/terminalTransactions/search
+
 ```
 {
       "terminalId": "CATERMID",
@@ -7943,8 +8810,11 @@ Retrieve a list of transactions for the terminal ID based on the filter criteria
       ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "count": 1,
@@ -7989,15 +8859,18 @@ Retrieve a list of transactions for the terminal ID based on the filter criteria
 }
 ```
 
-## Update Status 
+## Update Status
 
-### Credit Card Status v2: Update card status 
+### Credit Card Status v2: Update card status
+
 Update the status of a card, including deactivation.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/status
+
 ```
 {
   "cardNumber": "4000200030004001",
@@ -8007,24 +8880,32 @@ Update the status of a card, including deactivation.
   "securityMemo": "memo"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Credit card Status v1: Search card status, full card only format
+
 Retrieve status of Credit Card,
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/status/search
+
 ```
 {
       "cardNumber": "4000200030004001",
       "responseFormat": "FULL_CARD_ONLY"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "400020xxxxxx4001",
@@ -8034,12 +8915,15 @@ Retrieve status of Credit Card,
 ```
 
 ### Debit Card Status v2: Update card status
+
 Update the status of a card, including deactivation.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/status
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -8050,16 +8934,21 @@ Update the status of a card, including deactivation.
       "securityMemo": "memo"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
 ### Debit Card Status v2: Update using card number, full card only format
+
 Update the status of a card, including deactivation.
 
 #### Request
+
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/status
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -8069,17 +8958,21 @@ Update the status of a card, including deactivation.
       "statusReasonCode": "LOST"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 204 No Content
 
-
 ### Debit Card Status v1: Search using card number, token only format
+
 Retrieve the status of debit card.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/status/search
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -8087,8 +8980,11 @@ Retrieve the status of debit card.
       "memberNumber": "0"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -8096,13 +8992,17 @@ Retrieve the status of debit card.
       "statusReasonCode": "LOST"
   }
 ```
+
 ### Debit Card Status v1: Search using card number, full card only format
+
 Retrieve the status of debit card.
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/status/search
+
 ```
 {
       "cardNumber": "4000200030004000",
@@ -8110,21 +9010,27 @@ Retrieve the status of debit card.
       "memberNumber": "0"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
       "cardStatus": "CAPTURE",
       "statusReasonCode": "LOST"
   }
-  ```
+```
+
 ### Debit Card Status v1: Search using NTT, masked card only format
 
 #### Request
+
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/status/search
+
 ```
 {
       "nonTransToken": "piUVBJKZGfks4000",
@@ -8132,13 +9038,15 @@ Retrieve the status of debit card.
       "memberNumber": "0"
   }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
       "cardNumber": "400020xxxxxx4000",
       "cardStatus": "CAPTURE",
       "statusReasonCode": "LOST"
   }
-  ```
-
+```
