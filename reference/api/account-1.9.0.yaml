@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.0
 info:
-  title: Accounts
+  title: Accounts-Updated
   description: Accounts Domain. All times will be in UTC standards.
   version: 1.9.0-Jun-24
 servers:
