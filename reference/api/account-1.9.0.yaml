@@ -18,8 +18,6 @@ tags:
     description: Search for Account statements.
   - name: Account Transaction
     description: Search for Account transactions.
-  - name: Account Transaction2
-    description: Search for Account transactions2.
 paths:
   /v1/accounts/statements/search:
     post:
@@ -760,60 +758,6 @@ paths:
                       moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
                       messageid: 25557-84290371-1
       deprecated: false
-  /v1/accounts/transactions/search2:
-    post:
-      tags:
-        - Account Transaction2
-      x-child-product-name: Account v1.9.02
-      x-proxy-name: Get Account Transactions2
-      x-group-name: Account Transaction2
-
-      summary: Retrieves the list of Transactions for the account based on the filter criteria passed in the request. Only applicable for credit.
-      operationId: getAccountTransactions
-      parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
-        - name: filter
-          in: query
-          description: |-
-            Provides the summary or details record for account transaction search. Defaults to summary.
-
-            SUMMARY includes the following fields -
-
-            transactionDateTime, merchantName, authorizationCode, transactioncode, transactionType, merchantCategoryCode, transactionStatus, transactionAmount, transactedCardOrAccountNumber, merchantCity, merchantState,
-
-            DETAIL includes all the transaction search fields.
-          required: true
-          style: form
-          explode: true
-          schema:
-            type: string
-          example: summary,detail
   /v1/accounts/transactions/search:
     post:
       tags:
