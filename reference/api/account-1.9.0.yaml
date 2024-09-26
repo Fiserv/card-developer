@@ -32,7 +32,7 @@ paths:
       x-proxy-name: Get Statements
 
       summary: Use this method to update a fixed payment, update a recurring payment or delete an automatic payment.Only one operation can be performed at a time.
-      operationId: paymentActions
+      operationId: getStatements
       parameters:
         - name: Authorization
           in: header
@@ -322,7 +322,7 @@ paths:
       x-proxy-name: Download PDF Binary
 
       summary: This method returns all the Payment Scheduled associated to one specif Account Number. Search can be done by accountNumber.
-      operationId: getScheduledPayments
+      operationId: downloadPDFBinary
       parameters:
         - name: Authorization
           in: header
@@ -524,7 +524,7 @@ paths:
       x-proxy-name: Get Account
 
       summary: This method add or delete a Registered Account depending of the operation include in request payload.
-      operationId: manageRegisteredAccount
+      operationId: getAccount
       parameters:
         - name: Authorization
           in: header
@@ -683,7 +683,7 @@ paths:
       x-proxy-name: Accounts Limit Search Request
 
       summary: This method returns the Registered Accounts associated to one specific account number.
-      operationId: getRegisteredAccounts
+      operationId: AccountsLimitSearchRequest
       parameters:
         - name: Authorization
           in: header
@@ -844,7 +844,7 @@ paths:
       x-proxy-name: Update Limits
 
       summary: Use this method to add the right time payment.
-      operationId: addRightTimePayment
+      operationId: updateLimits
       parameters:
         - name: Authorization
           in: header
@@ -974,7 +974,7 @@ paths:
       x-proxy-name: Get Account Transactions
 
       summary: Use this method to reverse the right time payment.
-      operationId: reverseRightTimePayment
+      operationId: getAccountTransactions
       parameters:
         - name: Authorization
           in: header
