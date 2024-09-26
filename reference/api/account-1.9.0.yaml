@@ -20,8 +20,6 @@ tags:
     description: Search for Account statements.
   - name: Account Transaction
     description: Search for Account transactions.
-
-#paths
 paths:
   /v1/accounts/statements/search:
     post:
@@ -61,99 +59,111 @@ paths:
           schema:
             type: string
           example: 12345678
-      # requestBody:
-      #   description: paymentActionRequest
-      #   content:
-      #     application/json:
-      #       schema:
-      #         #$ref: "#/components/schemas/PaymentActionRequest"
-      #   required: true
-      # responses:
-      #   "200":
-      #     description: OK
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #   "400":
-      #     description: Invalid Request
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "401":
-      #     description: Unauthorized access
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "403":
-      #     description: Forbidden
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "404":
-      #     description: Not Found
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "406":
-      #     description: Unacceptable
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "415":
-      #     description: Unsupported Media Type
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "422":
-      #     description: Unprocessable Entity
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "500":
-      #     description: Internal Server Error
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           type: object
-      #           example:
-      #             errorResponse:
-      #               code: 500-01
-      #               message: internal server error
-      #               developerInfo:
-      #                 developerMessage: internal server error
-      #                 moreInfo: Please try again as there was a problem handling your request.  If problems persists please contact Support.
-      #                 messageid: 25557-84290371-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatementSearchRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+	  content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementSearchResponse'
+              examples:
+                Statement Search - Summary:
+                  $ref: '#/components/examples/StatementSearchResponseSummary'
+                Statement Search - Detail:
+                  $ref: '#/components/examples/StatementSearchResponseDetail'
+        "206":
+          description: Partial Content
+          content:
+            application/json:
+              schema:
+	      
+                $ref: '#/components/schemas/StatementSearchResponse'
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: Please try again as there was a problem handling your request.  If problems persists please contact Support.
+                      messageid: 25557-84290371-1
       deprecated: false
   /v1/accounts/statements/pdf/search:
     post:
@@ -220,98 +230,97 @@ paths:
           schema:
             type: string
           example: "0000"
-      # requestBody:
-      #   description: scheduledPaymentRequest
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: "#/components/schemas/ScheduledPaymentRequest"
-      # responses:
-      #   "200":
-      #     description: OK
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #   "400":
-      #     description: Invalid Request
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "401":
-      #     description: Unauthorized access
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "403":
-      #     description: Forbidden
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "404":
-      #     description: Not Found
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "406":
-      #     description: Unacceptable
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "415":
-      #     description: Unsupported Media Type
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "422":
-      #     description: Unprocessable Entity
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "500":
-      #     description: Internal Server Error
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           type: object
-      #           example:
-      #             errorResponse:
-      #               code: 500-01
-      #               message: internal server error
-      #               developerInfo:
-      #                 developerMessage: internal server error
-      #                 moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
-      #                 messageid: 25557-84290371-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatementSearchRequest'
+      responses:
+        "200":
+          description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/schemas/pdfIdsResponse'
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/schemas/pdfIdsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/schemas/pdfIdsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pdfIdsResponse'
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/schemas/pdfIdsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pdfIdsResponse'
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/schemas/pdfIdsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pdfIdsResponse'
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/schemas/pdfIdsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/schemas/pdfIdsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/schemas/pdfIdsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
       deprecated: false
   /v1/accounts/statements/pdf/{docId}:
     post:
@@ -322,7 +331,7 @@ paths:
       x-proxy-name: Download PDF Binary
 
       summary: This method returns all the Payment Scheduled associated to one specif Account Number. Search can be done by accountNumber.
-      operationId: downloadPDFBinary
+      operationId: getScheduledPayments
       parameters:
         - name: Authorization
           in: header
@@ -421,99 +430,99 @@ paths:
             enum:
               - DESC
               - ASC
-      # requestBody:
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: "#/components/schemas/SchedulePaymentsSearchRequest"
-      #   required: true
-      # responses:
-      #   "200":
-      #     description: OK
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/SearchScheduledPaymentResponse"
-      #   "400":
-      #     description: Invalid Request
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "401":
-      #     description: Unauthorized access
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "403":
-      #     description: Forbidden
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "404":
-      #     description: Not Found
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "406":
-      #     description: Unacceptable
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "415":
-      #     description: Unsupported Media Type
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "422":
-      #     description: Unprocessable Entity
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "500":
-      #     description: Internal Server Error
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           type: object
-      #           example:
-      #             errorResponse:
-      #               code: 500-01
-      #               message: internal server error
-      #               developerInfo:
-      #                 developerMessage: internal server error
-      #                 moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
-      #                 messageid: 25557-84290371-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pdfIdsResponse'
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pdfIdsResponse'
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
       deprecated: false
   /v1/accounts/search:
     post:
@@ -524,7 +533,7 @@ paths:
       x-proxy-name: Get Account
 
       summary: This method add or delete a Registered Account depending of the operation include in request payload.
-      operationId: getAccount
+      operationId: manageRegisteredAccount
       parameters:
         - name: Authorization
           in: header
@@ -580,99 +589,99 @@ paths:
           schema:
             type: string
           example: "0000"
-      # requestBody:
-      #   description: registeredAccountRequest
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: "#/components/schemas/RegisteredAccountRequest"
-      #   required: true
-      # responses:
-      #   "201":
-      #     description: Created
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #   "400":
-      #     description: Invalid Request
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "401":
-      #     description: Unauthorized access
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "403":
-      #     description: Forbidden
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "404":
-      #     description: Not Found
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "406":
-      #     description: Unacceptable
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "415":
-      #     description: Unsupported Media Type
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "422":
-      #     description: Unprocessable Entity
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "500":
-      #     description: Internal Server Error
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           type: object
-      #           example:
-      #             errorResponse:
-      #               code: 500-01
-      #               message: internal server error
-      #               developerInfo:
-      #                 developerMessage: internal server error
-      #                 moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
-      #                 messageid: 25557-84290371-1
+      requestBody:
+        description: accountSearchRequest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountSearchRequest'
+        required: true
+      responses:
+        "201":
+          description: Created
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
       deprecated: false
   /v1/accounts/limits/search:
     post:
@@ -739,101 +748,101 @@ paths:
           schema:
             type: string
           example: "0000"
-      # requestBody:
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: "#/components/schemas/RegisteredAccountSearchRequest"
-      # responses:
-      #   "200":
-      #     description: OK
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/RegisteredAccountSearchResponse"
-      #   "400":
-      #     description: Invalid Request
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "401":
-      #     description: Unauthorized access
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "403":
-      #     description: Forbidden
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "404":
-      #     description: Not Found
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "406":
-      #     description: Unacceptable
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "415":
-      #     description: Unsupported Media Type
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "422":
-      #     description: Unprocessable Entity
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "500":
-      #     description: Internal Server Error
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           type: object
-      #           example:
-      #             errorResponse:
-      #               code: 500-01
-      #               message: internal server error
-      #               developerInfo:
-      #                 developerMessage: internal server error
-      #                 moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
-      #                 messageid: 25557-84290371-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisteredAccountSearchRequest"
+      responses:
+        "200":
+          description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegisteredAccountSearchResponse"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
       deprecated: false
   /v1/limits:
     post:
@@ -844,7 +853,7 @@ paths:
       x-proxy-name: Update Limits
 
       summary: Use this method to add the right time payment.
-      operationId: updateLimits
+      operationId: addRightTimePayment
       parameters:
         - name: Authorization
           in: header
@@ -873,97 +882,97 @@ paths:
           schema:
             type: string
           example: 12345678
-      # requestBody:
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: "#/components/schemas/RightTimePaymentRequest"
-      # responses:
-      #   "200":
-      #     description: OK
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #   "400":
-      #     description: Invalid Request
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "401":
-      #     description: Unauthorized access
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "403":
-      #     description: Forbidden
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "404":
-      #     description: Not Found
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "406":
-      #     description: Unacceptable
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "415":
-      #     description: Unsupported Media Type
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "422":
-      #     description: Unprocessable Entity
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "500":
-      #     description: Internal Server Error
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           type: object
-      #           example:
-      #             errorResponse:
-      #               code: 500-01
-      #               message: internal server error
-      #               developerInfo:
-      #                 developerMessage: internal server error
-      #                 moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
-      #                 messageid: 25557-84290371-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountLimitSearchRequest'
+      responses:
+        "200":
+          description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
       deprecated: false
   /v1/accounts/transactions/search:
     patch:
@@ -1003,98 +1012,98 @@ paths:
           schema:
             type: string
           example: 12345678
-      # requestBody:
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: "#/components/schemas/ReverseRightTimePayment"
-      #   required: true
-      # responses:
-      #   "204":
-      #     description: No Content
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #   "400":
-      #     description: Invalid Request
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "401":
-      #     description: Unauthorized access
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "403":
-      #     description: Forbidden
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "404":
-      #     description: Not Found
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "406":
-      #     description: Unacceptable
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "415":
-      #     description: Unsupported Media Type
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "422":
-      #     description: Unprocessable Entity
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: "#/components/schemas/4xxError"
-      #   "500":
-      #     description: Internal Server Error
-      #     headers:
-      #       x-fapi-interaction-id:
-      #         $ref: "#/components/headers/interactionId"
-      #     content:
-      #       application/json:
-      #         schema:
-      #           type: object
-      #           example:
-      #             errorResponse:
-      #               code: 500-01
-      #               message: internal server error
-      #               developerInfo:
-      #                 developerMessage: internal server error
-      #                 moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
-      #                 messageid: 25557-84290371-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReverseRightTimePayment"
+        required: true
+      responses:
+        "204":
+          description: No Content
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/interactionId'
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
       deprecated: false
 components:
   schemas:
@@ -1261,7 +1270,7 @@ components:
           example: 400
     AccountTransactionSearchRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -1271,7 +1280,7 @@ components:
         filterCriteria:
           type: array
           items:
-            $ref: "#/components/schemas/FilterCriteria"
+            $ref: '#/components/schemas/FilterCriteria'
     AccountTransactionSearchResponse:
       type: object
       properties:
@@ -1281,9 +1290,9 @@ components:
         transactions:
           type: array
           items:
-            $ref: "#/components/schemas/AccountTransaction"
+            $ref: '#/components/schemas/AccountTransaction'
         warningInfo:
-          $ref: "#/components/schemas/Warning"
+          $ref: '#/components/schemas/Warning'
     FilterCriteria:
       type: object
       properties:
@@ -1291,16 +1300,16 @@ components:
           type: string
           description: "### Filter applied to account transaction search. One or many filter combinations are allowed.\n\nMERCHANT_NAME - Merchant Name\n\nAMOUNT_FROM - The amount from which the transactions are to be filtered. Valid format is upto two decimal digits. \n\nAMOUNT_TO - The amount till which the transactions are to be filtered. Valid format is upto two decimal digits.\n\nFROM_DATE - The date from which the transactions are to be filtered.Valid format is YYYY-MM-DD.\n\nTO_DATE - The date till which the transactions are to be filtered.Valid format is YYYY-MM-DD.\n\nSTATUS - The status of the transactions. Valid statuses are  POSTED/DECLINED/PENDING/APPROVED/REVERSED.\n\nTRANSACTION_CODE - Describes the type of transaction done on the account.\n"
           enum:
-            - MERCHANT_NAME
-            - AMOUNT_FROM
-            - AMOUNT_TO
-            - FROM_DATE
-            - TO_DATE
-            - STATUS
-            - TRANSACTION_CODE
+          - MERCHANT_NAME
+          - AMOUNT_FROM
+          - AMOUNT_TO
+          - FROM_DATE
+          - TO_DATE
+          - STATUS
+          - TRANSACTION_CODE
         filterValue:
           type: string
-          description: " The filter value for which transactions need to be filtered."
+          description: ' The filter value for which transactions need to be filtered.'
     AccountTransaction:
       type: object
       properties:
@@ -1368,11 +1377,11 @@ components:
           type: string
           description: "Code assigned to particular transaction.This field is not populated in response instead description with respect to this field is populated in transaction type field. Below are the valid values of transaction code and it's description when transaction status is Posted. \n   - 253- Sale\n   - 254- Cash Advance\n   - 255- Return\n   - 256- Merchandise Sale Reversal\n   - 257- Cash Advance Reversal\n   - 258- Return Reversal\n   - 259- Merchandise Sale Amount Adjustment\n   - 260- Cash Advance Amount Adjustment\n   - 261- Return Amount Adjustment\n   - 271- Payment\n   - 272- Payment Reversal\n   - 273- Payment Amount Adjustment\n   - 280- Specific Credit Amount Adjustment\n   - 281- Cash Advance Item Charge Refund\n   - 282  Late Charge Refund\n   - 283  Merchandise Finance Charge Refund\n   - 284  Cash Advance Finance Charge Refund\n   - 285  Backdated Payment Adjustment\n   - 286  Merchandise Item Charge Refund\n   - 287  Overlimit Charge Refund\n   - 288  Credit Life Insurance Fee Refund\n   - 290  Backdate Cash Advance and Sales Adjustment\n   - 370  Small Balance Charge-off\n   - 371  Charge Off Total Account\n   - 372  Charge Off Cash Advance Interest\n   - 373  Charge Off Billed Late Charges\n   - 374  Charge Off Merchandise Interest and Service Charges\n   - 375  Charge Off Credit Life Insurance\n   - 376  Charge Off All Finance Charges\n   - 377  Charge Off All Current Cash Advance Interest\n   - 378  Charge Off All Current Merchandise Interest\n   - 379  Charge Off Cycle-to-Date Late Charges\n   - 380  Charge Off Billed Cash Advance Item Charges\n   - 381  Charge Off Billed Merchandise Item Charges\n   - 382  Charge Off Billed Overlimit Fees\n   - 383  Charge Off Cycle-to-Date Cash Advance Item Charges\n   - 384  Charge Off Cycle-to-Date Merchandise Item Charges\n   - 385  Charge Off Cycle-to-Date Overlimit Fees\n   - 400  Account Transfer\n   - 900  Finance Charge (item charge)\n   - 959  Reserved for restricted use\n   - 960  Reserved for restricted use\n   - 961  Late Charge\n   - 962  Credit Life Insurance Charge\n   - 963  Cash Advance Finance Charge\n   - 964  Merchandise Finance Charge\n   - 965  Overlimit Account Message\n   - 966  Reserved for restricted use\n   - 967  Account Level Processing Strategy Change Message\n   - 976  Reserved for restricted use\n   - 978  Reserved for restricted use\n   - 979  Reserved for restricted use\n   - 981  Account Balance Details for MULTRAN Accounts\n   - 984  Backdated Cash Advance Finance Charge\n   - 985  Backdated Payment Interest Adjustment\n   - 986  Cash Advance Item Charge\n   - 987  Merchandise Item Charge\n   - 988  Overlimit Charge\n   - 989  Interest Earned or Credit Interest\n   - 990  Service Charge or Statement Charge\n   - 991  Cash Advance Item Charge\n   - 992  Fee or Finance Charge Rebate\n   - 993  Backdated Payment or Cash Advance Adjustment\n   - 994  Skip Payment Certificate Message\n   - 997  Retail Special Details\n   - 998  Airline Itinerary Special Details\n   - 999  First Data use only. \n\n\n   Below transaction codes and description are for the transaction status Pending or Declined.\n\n   - AA  Authorization adjustment\n   - AC  Activation code notification message for token provisioning via step-up authentication processing\n   - AK  Check authorization approved.\n   - AP  Preauthorization request approved\n   - AS  Account status inquiry service or payment account status inquiry\n   - CA  Cash advance authorization approved\n   - CD  Cash advance authorization declined\n   - CE  Cash advance authorization approved by expansion\n   - CO  Override declined cash advance\n   - CP  Cash advance authorization approved by positive identification\n   - CS  Cash referral\n   - CT  Cash advance authorization approved by name\n   - CX  Cash advance authorization manually declined\n   - DA  Duplicate authorization\n   - DC  Cash authorization approved without issuer contact\n   - DK  Check authorization declined\n   - DM  Merchandise authorization approved without issuer contact\n   - DP  Preauthorization request denied\n   - EC  Balance inquiry approved\n   - IA  Issuer’s adjustment\n   - IV  Reserved for restricted use\n   - KE  Check system error - declined\n   - KR  Return posted check\n   - MA  Merchandise authorization approved\n   - MC  In-store return\n   - MD  Merchandise authorization declined\n   - ME  Merchandise authorization approved by expansion\n   - MI  Right-time payment\n   - MO  Override declined merchandise authorization\n   - MP  Merchandise authorization approved by positive identification\n   - MR  Right-time pay/reversal\n   - MS  Merchandise referral\n   - MT  Merchandise authorization approved by name\n   - MX  Merchandise authorization manually declined\n   - PA  Permanent authorization request\n   - PK  Pay unposted check\n   - PR  Visa and Mastercard person-to-person payment transaction reversal\n   - PX  Visa and Mastercard person-to-person payment transaction decline\n   - PZ  Permanent authorization adjustment\n   - QA  Merchandise return adjustment\n   - QD  Merchandise return declined\n   - QQ  Reserved for restricted use\n   - QR  Merchandise return approved\n   - QZ  Merchandise return adjustment declined\n   - RK  Return unposted check\n   - TA  Account status check via a token provisioning request resulted in an approved response\n   - TD  Token provision decision\n   - TM  Token maintenance, such as activation, deactivation, suspension, exception, or replacement\n   - TN  Token has been granted, linked to the cardholder account, and provisioned\n   - VA  Private label ETC return posted at the time of return\n   - XC  Manual override cash advance authorization\n   - XM  Manual override merchandise authorization.\"\n"
         declinedTransactionDetails:
-          $ref: "#/components/schemas/DeclinedAcctTransactionDetails"
+          $ref: '#/components/schemas/DeclinedAcctTransactionDetails'
         pendingTransactionDetails:
-          $ref: "#/components/schemas/PendingAcctTransactionDetails"
+          $ref: '#/components/schemas/PendingAcctTransactionDetails'
         postedTransactionDetails:
-          $ref: "#/components/schemas/PostedAcctTransactionDetails"
+          $ref: '#/components/schemas/PostedAcctTransactionDetails'
     DeclinedAcctTransactionDetails:
       type: object
       properties:
@@ -1450,7 +1459,7 @@ components:
       description: The tag is appicable for posted Credit transactions.
     AccountSearchRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -1478,23 +1487,23 @@ components:
           description: The type of user linked with the account.
           example: PRIMARY
           enum:
-            - PRIMARY
-            - SECONDARY
-            - AUTHORIZED_USER
-            - GUARANTOR_OR_CO-SIGNER
+          - PRIMARY
+          - SECONDARY
+          - AUTHORIZED_USER
+          - GUARANTOR_OR_CO-SIGNER
         accountStatus:
           type: string
           description: Status of the account.
           example: NORMAL
           enum:
-            - NORMAL
-            - AUTHORIZATION_PROHIBITED
-            - BANKRUPT
-            - CLOSED
-            - FROZEN
-            - INTEREST_PROHIBITED
-            - REVOKED
-            - CHARGED_OFF
+          - NORMAL
+          - AUTHORIZATION_PROHIBITED
+          - BANKRUPT
+          - CLOSED
+          - FROZEN
+          - INTEREST_PROHIBITED
+          - REVOKED
+          - CHARGED_OFF
         accountStatusReason:
           type: string
           description: "Reason for the account status.\n\n- 00 - Normal  \n- 10 - Natural disaster  \n- 35 - Account in Collections  \n- 68 - Legally paid in full for less than the full balance  \n- 80 - Charged off account paid in full  \n- 85 - Closed due to Adaptive Control overlimit strategy  \n- 86 - Closed due to Adaptive Control delinquent strategy  \n- 87 - Closed due to Adaptive Control reissue strategy  \n- 88 - Fraud  \n- 89 - Bankrupt  \n- 91 - Closed due to account transfer  \n- 90 - Closed due to delinquency action code  \n- 92 - Closed in the reissue process due to delinquent and overlimit  \n- 93 - Closed in the reissue process due to REISSUE TERMS  \n- 94 - Closed in the reissue process due to INCLUDE/EXCLUDE STATES  \n- 95 - Closed in the reissue process due to an external status other than 'A' or space  \n- 96 - Closed in the reissue process due to inactive option  \n- 97 - Closed by customer  \n- 98 - Closed by FI  \n- 99 - Abandoned  \n- nn - Undefined  \n"
@@ -1510,11 +1519,11 @@ components:
             - NEW_COMBINED_ACCOUNT - new combined account (aka to combined account)
           example: NO_TRANSFER_INVOLVEMENT
           enum:
-            - NO_TRANSFER_INVOLVEMENT
-            - ORIGINAL_TRANSFER_ACCOUNT
-            - NEW_TRANSFER_ACCOUNT
-            - ORIGINAL_ACCOUNT
-            - NEW_COMBINED_ACCOUNT
+          - NO_TRANSFER_INVOLVEMENT
+          - ORIGINAL_TRANSFER_ACCOUNT
+          - NEW_TRANSFER_ACCOUNT
+          - ORIGINAL_ACCOUNT
+          - NEW_COMBINED_ACCOUNT
         accountUsageStatus:
           type: string
           description: |
@@ -1525,10 +1534,10 @@ components:
             - DELINQUENT_ACCOUNT - Currently delinquent account or an account delinquent in its last three cycles
           example: NEVER_ACTIVE
           enum:
-            - NEVER_ACTIVE
-            - PREVIOUSLY_ACTIVE
-            - ACTIVE
-            - DELINQUENT_ACCOUNT
+          - NEVER_ACTIVE
+          - PREVIOUSLY_ACTIVE
+          - ACTIVE
+          - DELINQUENT_ACCOUNT
         authorizationCode:
           type: string
           description: Authorization approval code for the transaction.
@@ -1624,9 +1633,9 @@ components:
             Indicates whether the account is secured.
           example: NOT_SECURED
           enum:
-            - NOT_SECURED
-            - SECURED
-            - SECURED_BY_AGENT_FI
+          - NOT_SECURED
+          - SECURED
+          - SECURED_BY_AGENT_FI
         serviceMember:
           type: boolean
           description: Indicates if the account type is service member/military.
@@ -1647,7 +1656,7 @@ components:
           example: true
     LimitsRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -1660,13 +1669,13 @@ components:
           description: Credit limit for the account, provide in whole monetary units. User cannot update if a temporary credit limit is in effect.
           example: "3000"
         cashLimit:
-          $ref: "#/components/schemas/UpdateCashLimit"
+          $ref: '#/components/schemas/UpdateCashLimit'
         temporaryCreditLimit:
-          $ref: "#/components/schemas/UpdateTemporaryCreditLimit"
+          $ref: '#/components/schemas/UpdateTemporaryCreditLimit'
     StatementSearchRequest:
       title: StatementSearchRequest
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -1692,16 +1701,16 @@ components:
           type: array
           description: Between 16 and 19 digits for card number identifier. Applies to both summary and detail responses. Displays all the card numbers associated with the account passed in the request.
           example:
-            - "4257691000200020"
-            - "4257691000200021"
+          - "4257691000200020"
+          - "4257691000200021"
           items:
             type: string
         statementDetails:
           type: array
           items:
-            $ref: "#/components/schemas/StatementDetails"
+            $ref: '#/components/schemas/StatementDetails'
         warningInfo:
-          $ref: "#/components/schemas/Warning"
+          $ref: '#/components/schemas/Warning'
     StatementDetails:
       title: StatementDetails
       type: object
@@ -1757,14 +1766,14 @@ components:
           description: Status code and description assigned to the account that indicates an account has a special condition that drives authorization declines, card reissue, letter suppression, statement generation, waiving finance charges/fees, and reporting.
           example: NORMAL
           enum:
-            - NORMAL
-            - AUTHORIZATION_PROHIBITED
-            - BANKRUPT
-            - CLOSED
-            - FROZEN
-            - INTEREST_PROHIBITED
-            - REVOKED
-            - CHARGED_OFF
+          - NORMAL
+          - AUTHORIZATION_PROHIBITED
+          - BANKRUPT
+          - CLOSED
+          - FROZEN
+          - INTEREST_PROHIBITED
+          - REVOKED
+          - CHARGED_OFF
         yearToDateInterestAmount:
           type: string
           description: Finance charges amount assessed from the beginning of the calendar year through the end of year statement.
@@ -1810,9 +1819,9 @@ components:
           description: Total credit limit amount available on the account.
           example: "4000.00"
         statementTotals:
-          $ref: "#/components/schemas/StatementTotals"
+          $ref: '#/components/schemas/StatementTotals'
         statementTransactionDetails:
-          $ref: "#/components/schemas/StatementTransactionsResponse"
+          $ref: '#/components/schemas/StatementTransactionsResponse'
     StatementTotals:
       title: StatementTotals
       type: object
@@ -1845,7 +1854,7 @@ components:
           type: array
           description: The list of PDFs with their statement date, link to download, and the unique identifer of the statement found and used answer the specific request.
           items:
-            $ref: "#/components/schemas/pdfDetails"
+            $ref: '#/components/schemas/pdfDetails'
     pdfDetails:
       title: PdfDetails
       type: object
@@ -1874,7 +1883,7 @@ components:
         statementTransactions:
           type: array
           items:
-            $ref: "#/components/schemas/StatementTransaction"
+            $ref: '#/components/schemas/StatementTransaction'
     StatementTransaction:
       title: StatementTransaction
       type: object
@@ -1886,7 +1895,7 @@ components:
         cardOrAccountTransactions:
           type: array
           items:
-            $ref: "#/components/schemas/TransactionsForCardOrAccountResponse"
+            $ref: '#/components/schemas/TransactionsForCardOrAccountResponse'
     TransactionsForCardOrAccountResponse:
       title: TransactionsForCardOrAccount
       type: object
@@ -1952,15 +1961,15 @@ components:
     UpdateCashLimit:
       title: CashLimit
       required:
-        - limitType
+      - limitType
       type: object
       properties:
         limitType:
           type: string
           description: Indicates type of cash limit.
           enum:
-            - AMOUNT
-            - PERCENT
+          - AMOUNT
+          - PERCENT
         amount:
           maximum: 9999999999
           type: string
@@ -1974,7 +1983,7 @@ components:
     UpdateTemporaryCreditLimit:
       title: TemporaryLimit
       required:
-        - setLimit
+      - setLimit
       type: object
       properties:
         setLimit:
@@ -1994,7 +2003,7 @@ components:
           example: 2022-06-30
     AccountLimitSearchRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -2082,7 +2091,7 @@ components:
           type: array
           description: List of multiple errors that may cause/trigger the general error.
           items:
-            $ref: "#/components/schemas/WarningDetail"
+            $ref: '#/components/schemas/WarningDetail'
     WarningDetail:
       type: object
       properties:
@@ -2108,7 +2117,7 @@ components:
     authorizationParam:
       name: Authorization
       in: header
-      description: "Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>"
+      description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
       required: true
       style: simple
       explode: false
@@ -2358,69 +2367,69 @@ components:
     StatementSearchResponseSummary:
       value:
         cardNumber:
-          - "4257691000200020"
-          - "4257691000200021"
+        - "4257691000200020"
+        - "4257691000200021"
         statementDetails:
-          - statementDate: 2021-12-30
-            statementEndingBalance: "1500.00"
-            delinquentAmount: "100.00"
-            statementFinanceChargeAmount: "10.00"
-            minimumPaymentDueAmount: "200.00"
-            paymentDueDate: 12-25
+        - statementDate: 2021-12-30
+          statementEndingBalance: "1500.00"
+          delinquentAmount: "100.00"
+          statementFinanceChargeAmount: "10.00"
+          minimumPaymentDueAmount: "200.00"
+          paymentDueDate: 12-25
     StatementSearchResponseDetail:
       value:
         cardNumber:
-          - "4257691000200020"
-          - "4257691000200021"
+        - "4257691000200020"
+        - "4257691000200021"
         statementDetails:
-          - statementDate: 2021-12-30
-            statementEndingBalance: "1500.00"
-            delinquentAmount: "100.00"
-            statementFinanceChargeAmount: "10.00"
-            minimumPaymentDueAmount: "200.00"
-            paymentDueDate: 12-25
-            statementOpeningBalanceAmount: "3000.00"
-            statementDebitAmount: "1500.00"
-            statementSalesAmount: "12.09"
-            statementOtherCreditsAmount: "15.15"
-            statementPaymentAmount: "400.00"
-            accountStatusCode: NORMAL
-            yearToDateInterestAmount: "30.00"
-            purchaseCount: 15
-            creditCount: 5
-            paymentsCount: 10
-            daysInBillingCycle: 31
-            billingCycleCode: 28
-            sinceLastStatementInterestAmount: "1.09"
-            overlimitFees: "5.00"
-            skipPaymentFlag: "No"
-            statementCreditLineAmount: "5000.00"
-            availableCreditRemaining: "4000.00"
-            statementTotals:
-              adjustments: "99485.00"
-              cashAdvance: "1692.00"
-              credit: "10100.00"
-              payment: "665572.00"
-              purchase: "39181.00"
-            statementTransactionDetails:
-              totalTransactionsCount: 1
-              statementTransactions:
-                - cardOrAccountNumber: "4000200030004000"
-                  cardOrAccountTransactions:
-                    - authorizationCode: "606"
-                      currencyCode: "840"
-                      issuerAmount: "10.00"
-                      merchandiseDescription: shoes
-                      merchantAccount: "1234567890124067"
-                      merchantCategoryCode: "6010"
-                      merchantDescription: Store1
-                      merchantCity: Newark
-                      merchantState: NJ
-                      postDate: 2022-01-11
-                      transactedCardOrAccountNumber: 400020XXXXXX4000
-                      transactionAccountNumber: "1234567890124067"
-                      transactionCode: "251"
-                      transactionDate: 2021-04-24
+        - statementDate: 2021-12-30
+          statementEndingBalance: "1500.00"
+          delinquentAmount: "100.00"
+          statementFinanceChargeAmount: "10.00"
+          minimumPaymentDueAmount: "200.00"
+          paymentDueDate: 12-25
+          statementOpeningBalanceAmount: "3000.00"
+          statementDebitAmount: "1500.00"
+          statementSalesAmount: "12.09"
+          statementOtherCreditsAmount: "15.15"
+          statementPaymentAmount: "400.00"
+          accountStatusCode: NORMAL
+          yearToDateInterestAmount: "30.00"
+          purchaseCount: 15
+          creditCount: 5
+          paymentsCount: 10
+          daysInBillingCycle: 31
+          billingCycleCode: 28
+          sinceLastStatementInterestAmount: "1.09"
+          overlimitFees: "5.00"
+          skipPaymentFlag: "No"
+          statementCreditLineAmount: "5000.00"
+          availableCreditRemaining: "4000.00"
+          statementTotals:
+            adjustments: "99485.00"
+            cashAdvance: "1692.00"
+            credit: "10100.00"
+            payment: "665572.00"
+            purchase: "39181.00"
+          statementTransactionDetails:
+            totalTransactionsCount: 1
+            statementTransactions:
+            - cardOrAccountNumber: "4000200030004000"
+              cardOrAccountTransactions:
+              - authorizationCode: "606"
+                currencyCode: "840"
+                issuerAmount: "10.00"
+                merchandiseDescription: shoes
+                merchantAccount: "1234567890124067"
+                merchantCategoryCode: "6010"
+                merchantDescription: Store1
+                merchantCity: Newark
+                merchantState: NJ
+                postDate: 2022-01-11
+                transactedCardOrAccountNumber: 400020XXXXXX4000
+                transactionAccountNumber: "1234567890124067"
+                transactionCode: "251"
+                transactionDate: 2021-04-24
   headers:
     interactionId:
       description: unique transaction ID created for each request for tracking purposes
