@@ -1,26 +1,26 @@
 ---
 openapi: 3.0.0
 info:
-  title: Accounts
+  title: Company
   description: Account Company Service API Documentation
   version: 1.0.1-Mar-24
 servers:
-  - url: https://card.api.fiservapps.com/cs/companies
-    description: Production url
-  - url: https://card-sandbox.api.fiservapps.com/cs/companies
-    description: Sandbox url
+- url: https://card.api.fiservapps.com/cs/companies
+  description: Production url
+- url: https://card-sandbox.api.fiservapps.com/cs/companies
+  description: Sandbox url
 security:
-  - bearerAuth: []
+- bearerAuth: []
 tags:
-  - name: Accounts
-    description: List of Utility Resources
+- name: Company
+  description: List of Utility Resources
 paths:
   /companies/v1/id/search:
     post:
       tags:
-        - Account Details
+      - Account Details
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Details
+      x-group-name: Company
       x-proxy-name: Get Company Info
       summary: This method is used to get a company's details by using a combination of company, system, principal & agent identifier.
       operationId: getCompanyInfo
@@ -29,7 +29,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyIdSearchRequest"
+              $ref: '#/components/schemas/CompanyIdSearchRequest'
         required: true
       responses:
         "200":
@@ -37,59 +37,59 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyIdSearchResponse"
+                $ref: '#/components/schemas/CompanyIdSearchResponse'
         "206":
           description: Partial success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyIdSearchResponse"
+                $ref: '#/components/schemas/CompanyIdSearchResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/400Error"
+                $ref: '#/components/schemas/400Error'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/401Error"
+                $ref: '#/components/schemas/401Error'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/403Error"
+                $ref: '#/components/schemas/403Error'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/404Error"
+                $ref: '#/components/schemas/404Error'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -106,9 +106,9 @@ paths:
   /companies/v1/name/search:
     post:
       tags:
-        - Account Statements
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Statements
+      x-group-name: Company
       x-proxy-name: Get Company Name Info
       summary: This method is used to get the list of company by using companyName. This will act as wild card search.
       operationId: getCompanyNameInfo
@@ -117,7 +117,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanySearchRequest"
+              $ref: '#/components/schemas/CompanySearchRequest'
         required: true
       responses:
         "200":
@@ -125,53 +125,53 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyNameResponse"
+                $ref: '#/components/schemas/CompanyNameResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/400Error"
+                $ref: '#/components/schemas/400Error'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/401Error"
+                $ref: '#/components/schemas/401Error'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/403Error"
+                $ref: '#/components/schemas/403Error'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/404Error"
+                $ref: '#/components/schemas/404Error'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -188,9 +188,9 @@ paths:
   /companies/v1/notes:
     post:
       tags:
-        - Account Transaction
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Transaction
+      x-group-name: Company
       x-proxy-name: Company Add Note
       summary: This API is for adding company notes.
       operationId: CompanyAddNote
@@ -199,7 +199,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyNotesAddRequest"
+              $ref: '#/components/schemas/CompanyNotesAddRequest'
         required: true
       responses:
         "201":
@@ -207,53 +207,53 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyNoteAddResponse"
+                $ref: '#/components/schemas/CompanyNoteAddResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/400Error"
+                $ref: '#/components/schemas/400Error'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/401Error"
+                $ref: '#/components/schemas/401Error'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/403Error"
+                $ref: '#/components/schemas/403Error'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/404Error"
+                $ref: '#/components/schemas/404Error'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -269,7 +269,7 @@ paths:
       deprecated: false
     patch:
       tags:
-        - Company
+      - Company
       x-child-product-name: Company v1.0.1
       x-group-name: Company
       x-proxy-name: Update Company Memo Note
@@ -280,7 +280,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyMemoNoteUpdateRequest"
+              $ref: '#/components/schemas/CompanyMemoNoteUpdateRequest'
         required: true
       responses:
         "204":
@@ -290,44 +290,44 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "422":
           description: Unprocessable Entity
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "500":
           description: Internal Service Error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
       deprecated: false
   /companies/v1/notes/search:
     post:
       tags:
-        - Account Transaction
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Transaction
+      x-group-name: Company
       x-proxy-name: Company Note Search
       summary: This API returns a list with one or multiple company notes with summary information.
       operationId: CompanyNoteSearch
@@ -336,7 +336,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyNotesSearchRequest"
+              $ref: '#/components/schemas/CompanyNotesSearchRequest'
         required: true
       responses:
         "200":
@@ -344,53 +344,53 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyNotesResponse"
+                $ref: '#/components/schemas/CompanyNotesResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/400Error"
+                $ref: '#/components/schemas/400Error'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/401Error"
+                $ref: '#/components/schemas/401Error'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/403Error"
+                $ref: '#/components/schemas/403Error'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/404Error"
+                $ref: '#/components/schemas/404Error'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -407,9 +407,9 @@ paths:
   /companies/v1/memos:
     post:
       tags:
-        - Account Details
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Details
+      x-group-name: Company
       x-proxy-name: Add Company Memo
       summary: This API is for adding company memos.
       operationId: AddCompanyMemo
@@ -418,7 +418,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyMemosAddRequest"
+              $ref: '#/components/schemas/CompanyMemosAddRequest'
         required: true
       responses:
         "201":
@@ -426,53 +426,53 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyMemoAddResponse"
+                $ref: '#/components/schemas/CompanyMemoAddResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/400Error"
+                $ref: '#/components/schemas/400Error'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/401Error"
+                $ref: '#/components/schemas/401Error'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/403Error"
+                $ref: '#/components/schemas/403Error'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/404Error"
+                $ref: '#/components/schemas/404Error'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -489,9 +489,9 @@ paths:
   /companies/v1/memos/search:
     post:
       tags:
-        - Account Limits
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Limits
+      x-group-name: Company
       x-proxy-name: Company Memo Search
       summary: This API returns a list with one or multiple company memos with Summary Information.
       operationId: CompanyMemoSearch
@@ -500,7 +500,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyMemosSearchRequest"
+              $ref: '#/components/schemas/CompanyMemosSearchRequest'
         required: true
       responses:
         "200":
@@ -508,53 +508,53 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyMemosResponse"
+                $ref: '#/components/schemas/CompanyMemosResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/400Error"
+                $ref: '#/components/schemas/400Error'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/401Error"
+                $ref: '#/components/schemas/401Error'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/403Error"
+                $ref: '#/components/schemas/403Error'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/404Error"
+                $ref: '#/components/schemas/404Error'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -571,9 +571,9 @@ paths:
   /companies/v1/demographics:
     put:
       tags:
-        - Account Limits
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Limits
+      x-group-name: Company
       x-proxy-name: Delete Company Demographic
       summary: This API is used to delete demographic details associated to the company.
       operationId: DeleteCompanyDemographic
@@ -582,7 +582,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyDemographicDeleteRequest"
+              $ref: '#/components/schemas/CompanyDemographicDeleteRequest'
         required: true
       responses:
         "204":
@@ -592,41 +592,41 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "422":
           description: Unprocessable Entity
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "500":
           description: Internal Service Error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
       deprecated: false
     post:
       tags:
-        - Company
+      - Company
       x-child-product-name: Company v1.0.1
       x-group-name: Company
       x-proxy-name: Add Company Associations Demographic
@@ -637,7 +637,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyDemographicsAssociationsAdd"
+              $ref: '#/components/schemas/CompanyDemographicsAssociationsAdd'
         required: true
       responses:
         "201":
@@ -645,59 +645,59 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyDemographicAddResponse"
+                $ref: '#/components/schemas/CompanyDemographicAddResponse'
         "206":
           description: Partial success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyDemographicAddResponse"
+                $ref: '#/components/schemas/CompanyDemographicAddResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/400Error"
+                $ref: '#/components/schemas/400Error'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/401Error"
+                $ref: '#/components/schemas/401Error'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/403Error"
+                $ref: '#/components/schemas/403Error'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/404Error"
+                $ref: '#/components/schemas/404Error'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -713,10 +713,10 @@ paths:
       deprecated: false
     patch:
       tags:
-        - Company
+      - Company
       x-child-product-name: Company v1.0.1
       x-group-name: Company
-      x-proxy-name: Update Company Associations Demographic
+      x-proxy-name: Update Company Associations Demographic 
       summary: This API will update demographic details of the associated parties of the company.
       operationId: updateCompanyAssociationsDemographic
       requestBody:
@@ -724,7 +724,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyDemographicsAssociationsUpdate"
+              $ref: '#/components/schemas/CompanyDemographicsAssociationsUpdate'
         required: true
       responses:
         "204":
@@ -734,13 +734,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyDemographicsAssociationsUpdateResponse"
+                $ref: '#/components/schemas/CompanyDemographicsAssociationsUpdateResponse'
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
         "403":
@@ -754,14 +754,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
       deprecated: false
   /companies/v1/demographics/search:
     post:
       tags:
-        - Account Limits
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Limits
+      x-group-name: Company
       x-proxy-name: Get Company Demographics
       summary: This API will return demographic details of the associated parties of the company.
       operationId: getCompanyDemographics
@@ -770,7 +770,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyDemographicAssociationSearchRequest"
+              $ref: '#/components/schemas/CompanyDemographicAssociationSearchRequest'
         required: true
       responses:
         "200":
@@ -778,53 +778,53 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CompanyDemographicsSummary"
+                $ref: '#/components/schemas/CompanyDemographicsSummary'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/400Error"
+                $ref: '#/components/schemas/400Error'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/401Error"
+                $ref: '#/components/schemas/401Error'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/403Error"
+                $ref: '#/components/schemas/403Error'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/404Error"
+                $ref: '#/components/schemas/404Error'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -841,9 +841,9 @@ paths:
   /companies/v1/company:
     patch:
       tags:
-        - Account Limits
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Limits
+      x-group-name: Company
       x-proxy-name: Company Credit Limit Update
       summary: This API is used to update the company summary fields such as companyCreditLimit,billingCycleCode, fiscalYearEndCode and paperStatementSuppressCode.
       operationId: CompanyCreditLimitUpdate
@@ -852,7 +852,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyUpdateRequest"
+              $ref: '#/components/schemas/CompanyUpdateRequest'
         required: true
       responses:
         "204":
@@ -862,44 +862,44 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "422":
           description: Unprocessable Entity
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "500":
           description: Internal Service Error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
       deprecated: false
   /companies/v1/accounts/search:
     post:
       tags:
-        - Account Limits
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Limits
+      x-group-name: Company
       x-proxy-name: Get Company Account Info
       summary: This API will return all accounts associated with a company.
       operationId: getCompanyAccountInfo
@@ -908,7 +908,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CompanyAccountSearchRequest"
+              $ref: '#/components/schemas/CompanyAccountSearchRequest'
         required: true
       responses:
         "200":
@@ -916,7 +916,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AccountSearchResponse"
+                $ref: '#/components/schemas/AccountSearchResponse'
         "201":
           description: Created
         "400":
@@ -924,7 +924,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
         "403":
@@ -938,14 +938,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
       deprecated: false
   /companies/v1/accounts/controls:
     post:
       tags:
-        - Account Limits
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Limits
+      x-group-name: Company
       x-proxy-name: Add Company Account
       summary: This API is used to add company control account.
       operationId: AddControlAccount
@@ -954,7 +954,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AddCompanyAccounts"
+              $ref: '#/components/schemas/AddCompanyAccounts'
         required: true
       responses:
         "201":
@@ -962,50 +962,50 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AddAccountResponse"
+                $ref: '#/components/schemas/AddAccountResponse'
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "422":
           description: Unprocessable Entity
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "500":
           description: Internal Service Error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
       deprecated: false
   /companies/v1/accounts/individuals:
     post:
       tags:
-        - Account Limits
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Limits
+      x-group-name: Company
       x-proxy-name: Add Individual Account
       summary: This API is used to add individual account.
       operationId: AddIndividualAccount
@@ -1014,7 +1014,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AddIndividualAccounts"
+              $ref: '#/components/schemas/AddIndividualAccounts'
         required: true
       responses:
         "201":
@@ -1022,50 +1022,50 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AddAccountResponse"
+                $ref: '#/components/schemas/AddAccountResponse'
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "422":
           description: Unprocessable Entity
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "500":
           description: Internal Service Error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
       deprecated: false
   /companies/v1/accounts/subs:
     post:
       tags:
-        - Account Limits
+      - Company
       x-child-product-name: Company v1.0.1
-      x-group-name: Account Limits
+      x-group-name: Company
       x-proxy-name: Add Sub Account
       summary: This API is used to add sub account.
       operationId: AddSubAccount
@@ -1074,7 +1074,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AddSubAccounts"
+              $ref: '#/components/schemas/AddSubAccounts'
         required: true
       responses:
         "201":
@@ -1082,52 +1082,52 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AddAccountResponse"
+                $ref: '#/components/schemas/AddAccountResponse'
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "422":
           description: Unprocessable Entity
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
         "500":
           description: Internal Service Error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
       deprecated: false
 components:
   schemas:
     CompanyIdSearchRequest:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -1148,8 +1148,8 @@ components:
           example: "0000"
     CompanySearchRequest:
       required:
-        - companyName
-        - systemIdentifier
+      - companyName
+      - systemIdentifier
       type: object
       properties:
         companyName:
@@ -1162,11 +1162,11 @@ components:
           example: "3771"
     CompanyNotesAddRequest:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
-        - text
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
+      - text
       type: object
       properties:
         companyIdentifier:
@@ -1193,11 +1193,11 @@ components:
           example: CREDIT LIMIT INCREASED
     CompanyMemosAddRequest:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
-        - text
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
+      - text
       type: object
       properties:
         companyIdentifier:
@@ -1270,19 +1270,19 @@ components:
           description: Client-defined identifier within a principal identifier that is used to group accounts together for processing and reporting.
           example: "0000"
         primaryAddress:
-          $ref: "#/components/schemas/CompanyDemographicAddResponseDetails"
+          $ref: '#/components/schemas/CompanyDemographicAddResponseDetails'
         previousAddress:
-          $ref: "#/components/schemas/CompanyDemographicAddResponseDetails"
+          $ref: '#/components/schemas/CompanyDemographicAddResponseDetails'
         secondaryAddress:
-          $ref: "#/components/schemas/CompanyDemographicAddResponseDetails"
+          $ref: '#/components/schemas/CompanyDemographicAddResponseDetails'
         individualGuaranter:
-          $ref: "#/components/schemas/CompanyDemographicAddResponseDetails"
+          $ref: '#/components/schemas/CompanyDemographicAddResponseDetails'
         companyGuaranter:
-          $ref: "#/components/schemas/CompanyDemographicAddResponseDetails"
+          $ref: '#/components/schemas/CompanyDemographicAddResponseDetails'
         individualOwner:
-          $ref: "#/components/schemas/CompanyDemographicAddResponseDetails"
+          $ref: '#/components/schemas/CompanyDemographicAddResponseDetails'
         companyOwner:
-          $ref: "#/components/schemas/CompanyDemographicAddResponseDetails"
+          $ref: '#/components/schemas/CompanyDemographicAddResponseDetails'
     AddAccountResponse:
       title: CompanyIdSearchResponse
       type: object
@@ -1351,13 +1351,13 @@ components:
           example: CREDIT LIMIT DECREASED
     CompanyMemoNoteUpdateRequest:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - identifier
-        - noteType
-        - principalIdentifier
-        - systemIdentifier
-        - text
+      - agentIdentifier
+      - companyIdentifier
+      - identifier
+      - noteType
+      - principalIdentifier
+      - systemIdentifier
+      - text
       type: object
       properties:
         identifier:
@@ -1382,21 +1382,21 @@ components:
           example: "0000"
         noteType:
           type: string
-          description: "Type of of note to be aadded. Valid values of noteType are MEMO and NOTE. "
+          description: 'Type of of note to be aadded. Valid values of noteType are MEMO and NOTE. '
           example: MEMO
           enum:
-            - MEMO
-            - NOTE
+          - MEMO
+          - NOTE
         text:
           type: string
           description: Text of memo line. when noteType is memos then Max value is 44
           example: Update Company Memo1
     CompanyAccountSearchRequest:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -1425,10 +1425,10 @@ components:
           example: "1"
     CompanyUpdateRequest:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -1457,28 +1457,28 @@ components:
           description: Code representing the month when the fiscal year end occurs.
           example: JAN
           enum:
-            - JAN
-            - FEB
-            - MAR
-            - APR
-            - MAY
-            - JUN
-            - JUL
-            - AUG
-            - SEP
-            - OCT
-            - NOV
-            - DEC
+          - JAN
+          - FEB
+          - MAR
+          - APR
+          - MAY
+          - JUN
+          - JUL
+          - AUG
+          - SEP
+          - OCT
+          - NOV
+          - DEC
         paperStatementSuppressCode:
           type: string
           description: Code representing the type(s) of company-related commercial card accounts for which the production of paper billing statements is suppressed. The paper billing statement suppression option is available only for commercial card clients who use the Strategic Communications Solution (SCS) platform to create billing statements, including those who use flexible billing.
           example: DO_NOT_SUPPRESS
           enum:
-            - DO_NOT_SUPPRESS
-            - SUPPRESS_FOR_ALL_ACCOUNTS
-            - SUPPRESS_FOR_CONTROL_ACCOUNTS
-            - SUPPRESS_FOR_SUBORDINATE_ACCOUNTS
-            - SUPPRESS_FOR_INDIVIDUAL_ACCOUNTS
+          - DO_NOT_SUPPRESS
+          - SUPPRESS_FOR_ALL_ACCOUNTS
+          - SUPPRESS_FOR_CONTROL_ACCOUNTS
+          - SUPPRESS_FOR_SUBORDINATE_ACCOUNTS
+          - SUPPRESS_FOR_INDIVIDUAL_ACCOUNTS
         billingCycleCode:
           type: string
           description: Code determining which subaccounts for this company are verified in order to ensure that all subaccounts have the correct billing cycle code. Valid Values are 01-28 and 31.
@@ -1489,25 +1489,25 @@ components:
           description: Indicator designating whether a client is an InfoSpan user receiving transaction and account information.
           example: VCF_REPORTING_NOT_ACTIVE
           enum:
-            - VCF_REPORTING_NOT_ACTIVE
-            - PENDING
+          - VCF_REPORTING_NOT_ACTIVE
+          - PENDING
         cdfIndicator:
           type: string
           description: Code indicating whether to include information about this company on the Mastercard® Smart Data file.
           example: CDF_REPORTING_NOT_ACTIVE
           enum:
-            - CDF_REPORTING_NOT_ACTIVE
-            - CDF_REPORTING_ACTIVE
+          - CDF_REPORTING_NOT_ACTIVE
+          - CDF_REPORTING_ACTIVE
       description: "Along with the required fields, at least one of the following fields are required to make the update- companyCreditLimit, billingCycleCode, fiscalYearEndCode, paperStatementSuppressCode, vcfIndicator and cdfIndicator.       \n"
     CompanyDemographicDeleteRequest:
       required:
-        - addressType
-        - agentIdentifier
-        - companyIdentifier
-        - op
-        - principalIdentifier
-        - sequenceNumber
-        - systemIdentifier
+      - addressType
+      - agentIdentifier
+      - companyIdentifier
+      - op
+      - principalIdentifier
+      - sequenceNumber
+      - systemIdentifier
       type: object
       properties:
         op:
@@ -1515,7 +1515,7 @@ components:
           description: Operation that customer wants to perform in order to remove the association.
           example: DELETE_ASSOCIATION
           enum:
-            - DELETE_ASSOCIATION
+          - DELETE_ASSOCIATION
         sequenceNumber:
           type: string
           description: Code representing the sequence number of the record that customer wants to delete.
@@ -1541,25 +1541,25 @@ components:
           description: Code representing the type of address associated with the company record, that customer wants to delete.
           example: PRIMARY_ADDRESS
           enum:
-            - PRIMARY_ADDRESS
-            - PREVIOUS_ADDRESS
-            - SECONDARY_ADDRESS
-            - INDIVIDUAL_GUARANTOR
-            - COMPANY_GUARANTOR
-            - INDIVIDUAL_OWNER
-            - COMPANY_OWNER
+          - PRIMARY_ADDRESS
+          - PREVIOUS_ADDRESS
+          - SECONDARY_ADDRESS
+          - INDIVIDUAL_GUARANTOR
+          - COMPANY_GUARANTOR
+          - INDIVIDUAL_OWNER
+          - COMPANY_OWNER
     AddCompanyAccounts:
       required:
-        - address
-        - agentIdentifier
-        - cardStock
-        - companyIdentifier
-        - customerName
-        - federalTaxFormTaxTypeCode
-        - federalTaxIdentifier
-        - pricingStrategy
-        - principalIdentifier
-        - systemIdentifier
+      - address
+      - agentIdentifier
+      - cardStock
+      - companyIdentifier
+      - customerName
+      - federalTaxFormTaxTypeCode
+      - federalTaxIdentifier
+      - pricingStrategy
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -1595,9 +1595,9 @@ components:
           description: Code representing the type of tax identifier.
           example: SOCIAL_SECURITY
           enum:
-            - SOCIAL_SECURITY
-            - EIN
-            - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
+          - TAX_ID
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -1628,19 +1628,19 @@ components:
           description: Cardholder's work email address to receive messages/announcements.
           example: testemail@company.com
         address:
-          $ref: "#/components/schemas/AddControlAccountsAddress"
+          $ref: '#/components/schemas/AddControlAccountsAddress'
     AddIndividualAccounts:
       required:
-        - address
-        - agentIdentifier
-        - cardStock
-        - companyIdentifier
-        - customerName
-        - federalTaxFormTaxTypeCode
-        - federalTaxIdentifier
-        - pricingStrategy
-        - principalIdentifier
-        - systemIdentifier
+      - address
+      - agentIdentifier
+      - cardStock
+      - companyIdentifier
+      - customerName
+      - federalTaxFormTaxTypeCode
+      - federalTaxIdentifier
+      - pricingStrategy
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -1671,7 +1671,7 @@ components:
           example: Nancy
         dateOfBirth:
           type: string
-          description: "Birth date of the customer. "
+          description: 'Birth date of the customer. '
           example: 1990-08-24
         creditLimitAmount:
           maxLength: 13
@@ -1683,17 +1683,17 @@ components:
           description: This indicate what value needs to be passed for rush type and plastic count while adding a new card.
           example: NONE
           enum:
-            - NONE
-            - INSTANT_ISSUANCE
-            - RUSH_PLASTIC
+          - NONE
+          - INSTANT_ISSUANCE
+          - RUSH_PLASTIC
         federalTaxFormTaxTypeCode:
           type: string
           description: Code representing the type of tax identifier.
           example: SOCIAL_SECURITY
           enum:
-            - SOCIAL_SECURITY
-            - EIN
-            - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
+          - TAX_ID
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -1737,20 +1737,20 @@ components:
           description: Cardholder's work email address to receive messages/announcements.
           example: testemail@company.com
         address:
-          $ref: "#/components/schemas/AddIndividualAccountsAddress"
+          $ref: '#/components/schemas/AddIndividualAccountsAddress'
     AddSubAccounts:
       required:
-        - address
-        - agentIdentifier
-        - cardStock
-        - companyIdentifier
-        - controlAccount
-        - customerName
-        - federalTaxFormTaxTypeCode
-        - federalTaxIdentifier
-        - pricingStrategy
-        - principalIdentifier
-        - systemIdentifier
+      - address
+      - agentIdentifier
+      - cardStock
+      - companyIdentifier
+      - controlAccount
+      - customerName
+      - federalTaxFormTaxTypeCode
+      - federalTaxIdentifier
+      - pricingStrategy
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -1790,7 +1790,7 @@ components:
           maxLength: 10
           minLength: 10
           type: string
-          description: "Birth date of the customer. "
+          description: 'Birth date of the customer. '
           example: 1990-08-24
         creditLimitAmount:
           maxLength: 13
@@ -1803,17 +1803,17 @@ components:
           description: This indicate what value needs to be passed for rush type and plastic count while adding a new card.
           example: NONE
           enum:
-            - NONE
-            - INSTANT_ISSUANCE
-            - RUSH_PLASTIC
+          - NONE
+          - INSTANT_ISSUANCE
+          - RUSH_PLASTIC
         federalTaxFormTaxTypeCode:
           type: string
           description: Code representing the type of tax identifier.
           example: SOCIAL_SECURITY
           enum:
-            - SOCIAL_SECURITY
-            - EIN
-            - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
+          - TAX_ID
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -1859,13 +1859,13 @@ components:
           description: Cardholder's work email address to receive messages/announcements.
           example: testemail@company.com
         address:
-          $ref: "#/components/schemas/AddSubAccountsAddress"
+          $ref: '#/components/schemas/AddSubAccountsAddress'
     CompanyNotesSearchRequest:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -1894,10 +1894,10 @@ components:
           example: 2024-02-07
     CompanyMemosSearchRequest:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -1926,10 +1926,10 @@ components:
           example: 2024-02-07
     CompanyDemographicAssociationSearchRequest:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -1951,22 +1951,22 @@ components:
     CompanyDemographicUpdateRequest:
       title: CompanyIdSearchResponse
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         details:
-          $ref: "#/components/schemas/CompanyDemographicUpdate"
+          $ref: '#/components/schemas/CompanyDemographicUpdate'
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddressUpdate"
+          $ref: '#/components/schemas/CompanyDemographicAddressUpdate'
     CompanyDemographicUpdate:
       required:
-        - address
-        - companyName
-        - federalTaxFormTaxTypeCode
-        - federalTaxIdentifier
+      - address
+      - companyName
+      - federalTaxFormTaxTypeCode
+      - federalTaxIdentifier
       type: object
       properties:
         companyName:
@@ -1998,17 +1998,17 @@ components:
           description: Type of the business that company is dealing in.
           example: PARTNERSHIP
           enum:
-            - LIMITED_PARTNERSHIP
-            - ASSOCIATIONS
-            - CORPORATION
-            - GOVERNMENT
-            - LIMITED_LIABILITY_COMPANY
-            - NOT_FOR_PROFIT
-            - PARTNERSHIP
-            - REGISTERED_CHARITIES
-            - SOLE_PROPRIETOR
-            - TRUSTS
-            - UNLIMITED_LIABILITY_CORPORATIONS
+          - LIMITED_PARTNERSHIP
+          - ASSOCIATIONS
+          - CORPORATION
+          - GOVERNMENT
+          - LIMITED_LIABILITY_COMPANY
+          - NOT_FOR_PROFIT
+          - PARTNERSHIP
+          - REGISTERED_CHARITIES
+          - SOLE_PROPRIETOR
+          - TRUSTS
+          - UNLIMITED_LIABILITY_CORPORATIONS
         companyContactTelephoneNumber:
           maxLength: 10
           minLength: 1
@@ -2020,9 +2020,9 @@ components:
           description: Code representing the type of tax identifier.
           example: SOCIAL_SECURITY
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -2032,8 +2032,8 @@ components:
           description: Code representing the report language.
           example: ENGLISH
           enum:
-            - ENGLISH
-            - FRENCH
+          - ENGLISH
+          - FRENCH
         miscellaneousField1Text:
           minLength: 1
           type: string
@@ -2055,7 +2055,7 @@ components:
           description: Code based on issuer-assigned values.
           example: D
         address:
-          $ref: "#/components/schemas/UpdateCompanyDemographicAddress"
+          $ref: '#/components/schemas/UpdateCompanyDemographicAddress'
     CompanyDemographicAddressUpdate:
       type: object
       properties:
@@ -2085,10 +2085,10 @@ components:
           example: New Jersey
     CompanyAssociationDemographicUpdate:
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -2105,7 +2105,7 @@ components:
           example: "0050"
         agentIdentifier:
           type: string
-          description: "Client-defined identifier within a principal identifier that is used to group accounts together for processing and reporting. Valid length is 4 digits. "
+          description: 'Client-defined identifier within a principal identifier that is used to group accounts together for processing and reporting. Valid length is 4 digits. '
           example: "0000"
         companyName:
           type: string
@@ -2128,9 +2128,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -2140,8 +2140,8 @@ components:
           description: Report Language Code.
           example: ENGLISH
           enum:
-            - ENGLISH
-            - FRENCH
+          - ENGLISH
+          - FRENCH
         miscellaneousField1Text:
           type: string
           description: Code based on issuer-assigned values.
@@ -2168,11 +2168,11 @@ components:
           example: "10"
     Error:
       required:
-        - code
-        - message
-        - spanId
-        - timestamp
-        - traceId
+      - code
+      - message
+      - spanId
+      - timestamp
+      - traceId
       type: object
       properties:
         type:
@@ -2183,7 +2183,7 @@ components:
           description: A human-readable explanation specific to this occurrence of the problem
         instance:
           type: string
-          description: " A URI reference that identifies the specific occurrence of the problem."
+          description: ' A URI reference that identifies the specific occurrence of the problem.'
         title:
           type: string
           description: A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization.
@@ -2192,7 +2192,7 @@ components:
           description: Date time of the error from a services.
         code:
           type: string
-          description: "Code generated code to identify better and quick the error type and services who trigger it [HTTP Method] - [artifact Id] - [code of the error(logic, action, etc)]. Example: 400-666-301 - where: 400=Http Status Code - 666=Id of the services that throw the error - 301=Not enough credit."
+          description: 'Code generated code to identify better and quick the error type and services who trigger it [HTTP Method] - [artifact Id] - [code of the error(logic, action, etc)]. Example: 400-666-301 - where: 400=Http Status Code - 666=Id of the services that throw the error - 301=Not enough credit.'
         spanId:
           type: string
           description: Id generated given request on each service
@@ -2203,7 +2203,7 @@ components:
           type: array
           description: List of multiple errors that may cause/triggerthe general error.
           items:
-            $ref: "#/components/schemas/ErrorDetails"
+            $ref: '#/components/schemas/ErrorDetails'
     ErrorDetails:
       type: object
       properties:
@@ -2381,7 +2381,7 @@ components:
         summary:
           type: array
           items:
-            $ref: "#/components/schemas/NameSearchSummary"
+            $ref: '#/components/schemas/NameSearchSummary'
     CompanyIdSearchResponse:
       title: CompanyIdSearchResponse
       type: object
@@ -2389,24 +2389,24 @@ components:
         address:
           type: array
           items:
-            $ref: "#/components/schemas/CompanyAddress"
+            $ref: '#/components/schemas/CompanyAddress'
         summary:
           type: array
           items:
-            $ref: "#/components/schemas/Summary"
+            $ref: '#/components/schemas/Summary'
     CompanyDemographicsAssociationsUpdateResponse:
       title: CompanyDemographicsAssociationsUpdateResponse
       type: object
       properties:
         warningInfo:
-          $ref: "#/components/schemas/Warning"
+          $ref: '#/components/schemas/Warning'
     Warning:
       type: object
       properties:
         message:
           type: string
           description: A human-readable explanation specific to this occurrence of the problem.
-          example: "Input validation error-cardNumber : size must be between 16 and 19."
+          example: 'Input validation error-cardNumber : size must be between 16 and 19.'
         spanId:
           type: string
           description: Id generated given request on each service
@@ -2417,7 +2417,7 @@ components:
           type: array
           description: List of multiple errors that may cause/triggerthe general error.
           items:
-            $ref: "#/components/schemas/WarningDetail"
+            $ref: '#/components/schemas/WarningDetail'
     WarningDetail:
       type: object
       properties:
@@ -2439,7 +2439,7 @@ components:
         companyList:
           type: array
           items:
-            $ref: "#/components/schemas/CompanyNameResponse"
+            $ref: '#/components/schemas/CompanyNameResponse'
     CompanyAddress:
       type: object
       properties:
@@ -2478,11 +2478,11 @@ components:
           example: PARSIPPANY
     CompanyDemographicAddress:
       required:
-        - addressLine1
-        - city
-        - country
-        - state
-        - zipCode
+      - addressLine1
+      - city
+      - country
+      - state
+      - zipCode
       type: object
       properties:
         addressLine1:
@@ -2518,7 +2518,7 @@ components:
           example: PARSIPPANY
     AddSubAccountsAddress:
       required:
-        - addressLine1
+      - addressLine1
       type: object
       properties:
         addressLine1:
@@ -2567,7 +2567,7 @@ components:
           description: Indicates if address is an US address or international address. If set to true- Address Line 3 & 4 should be blank.
     AddIndividualAccountsAddress:
       required:
-        - addressLine1
+      - addressLine1
       type: object
       properties:
         addressLine1:
@@ -2616,7 +2616,7 @@ components:
           description: Indicates if address is an US address or international address. If set to true- Address Line 3 & 4 should be blank.
     AddControlAccountsAddress:
       required:
-        - addressLine1
+      - addressLine1
       type: object
       properties:
         addressLine1:
@@ -2674,11 +2674,11 @@ components:
           example: testmail@company.com
     UpdateCompanyDemographicAddress:
       required:
-        - addressLine1
-        - city
-        - country
-        - state
-        - zipCode
+      - addressLine1
+      - city
+      - country
+      - state
+      - zipCode
       type: object
       properties:
         addressLine1:
@@ -2777,18 +2777,18 @@ components:
           description: Code determining whether company account statements are sent directly to the issuer or to the customers.
           example: SEND_STATEMENTS_TO_ISSUER
           enum:
-            - SEND_STATEMENTS_TO_ISSUER
-            - SEND_STATEMENTS_TO_CUSTOMER
+          - SEND_STATEMENTS_TO_ISSUER
+          - SEND_STATEMENTS_TO_CUSTOMER
         paperStatementSuppressCode:
           type: string
           description: Code representing the type(s) of company-related commercial card accounts for which the production of paper billing statements is suppressed. The paper billing statement suppression option is available only for commercial card clients who use the Strategic Communications Solution (SCS) platform to create billing statements, including those who use flexible billing.
           example: DO_NOT_SUPPRESS
           enum:
-            - DO_NOT_SUPPRESS
-            - SUPPRESS_FOR_ALL_ACCOUNTS
-            - SUPPRESS_FOR_CONTROL_ACCOUNTS
-            - SUPPRESS_FOR_SUBORDINATE_ACCOUNTS
-            - SUPPRESS_FOR_INDIVIDUAL_ACCOUNTS
+          - DO_NOT_SUPPRESS
+          - SUPPRESS_FOR_ALL_ACCOUNTS
+          - SUPPRESS_FOR_CONTROL_ACCOUNTS
+          - SUPPRESS_FOR_SUBORDINATE_ACCOUNTS
+          - SUPPRESS_FOR_INDIVIDUAL_ACCOUNTS
         companyLastBillingDate:
           type: string
           description: Date when the company completed its most recent billing period. It displays zeros if the company does not participate in VCF/InfoSpan reporting.
@@ -2810,17 +2810,17 @@ components:
           description: Type of the business that company is dealing in.
           example: ASSOCIATIONS
           enum:
-            - LIMITED_PARTNERSHIP
-            - ASSOCIATIONS
-            - CORPORATION
-            - GOVERNMENT
-            - LIMITED_LIABILITY_COMPANY
-            - NOT_FOR_PROFIT
-            - PARTNERSHIP
-            - REGISTERED_CHARITIES
-            - SOLE_PROPRIETOR
-            - TRUSTS
-            - UNLIMITED_LIABILITY_CORPORATIONS
+          - LIMITED_PARTNERSHIP
+          - ASSOCIATIONS
+          - CORPORATION
+          - GOVERNMENT
+          - LIMITED_LIABILITY_COMPANY
+          - NOT_FOR_PROFIT
+          - PARTNERSHIP
+          - REGISTERED_CHARITIES
+          - SOLE_PROPRIETOR
+          - TRUSTS
+          - UNLIMITED_LIABILITY_CORPORATIONS
         goodAccountOutstandingBalanceAmount:
           type: string
           description: Good account outstanding balance amount is the whole-dollar amount of the company account’s unpaid balance for cardholder accounts in good standing.
@@ -2842,9 +2842,9 @@ components:
           description: Code representing the type of tax identifier.
           example: SOCIAL_SECURITY
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -2878,18 +2878,18 @@ components:
           description: Code representing the month in which the fiscal year ends.
           example: JAN
           enum:
-            - JAN
-            - FEB
-            - MAR
-            - APR
-            - MAY
-            - JUN
-            - JUL
-            - AUG
-            - SEP
-            - OCT
-            - NOV
-            - DEC
+          - JAN
+          - FEB
+          - MAR
+          - APR
+          - MAY
+          - JUN
+          - JUL
+          - AUG
+          - SEP
+          - OCT
+          - NOV
+          - DEC
         generalLedgerCostCenterIdentifier:
           type: string
           description: Identifier of the cost center used for the respective Transaction Account Number (TAN)transaction.
@@ -2899,23 +2899,23 @@ components:
           description: Code indicating whether to include information about this company on the Mastercard® Smart Data file.
           example: CDF_REPORORTING_NOT_ACTIVE
           enum:
-            - CDF_REPORORTING_NOT_ACTIVE
-            - CDF_REPORORTING_ACTIVE
+          - CDF_REPORORTING_NOT_ACTIVE
+          - CDF_REPORORTING_ACTIVE
         vcfIndicator:
           type: string
           description: Indicator designating whether a client is an InfoSpan user receiving transaction and account information.
           example: VCF_REPORORTING_ACTIVE
           enum:
-            - VCF_REPORORTING_NOT_ACTIVE
-            - VCF_REPORORTING_ACTIVE
-            - PENDING
+          - VCF_REPORORTING_NOT_ACTIVE
+          - VCF_REPORORTING_ACTIVE
+          - PENDING
         reportLanguageCode:
           type: string
           description: Report language code.
           example: ENGLISH
           enum:
-            - ENGLISH
-            - FRENCH
+          - ENGLISH
+          - FRENCH
         miscellaneousField1Text:
           type: string
           description: Code based on issuer-assigned values.
@@ -3002,24 +3002,24 @@ components:
         address:
           type: array
           items:
-            $ref: "#/components/schemas/CompanyAddress"
+            $ref: '#/components/schemas/CompanyAddress'
     AccountSearchResponse:
       type: object
       properties:
         count:
           type: string
-          description: "Represents the number of record returned by this API. "
+          description: 'Represents the number of record returned by this API. '
           example: "1"
         summary:
           type: array
           items:
-            $ref: "#/components/schemas/AccountSearchSummary"
+            $ref: '#/components/schemas/AccountSearchSummary'
     AccountSearchSummary:
       type: object
       properties:
         accountNumber:
           type: string
-          description: "Represents the account number identifier. "
+          description: 'Represents the account number identifier. '
           example: "4907570050500063"
         cardholderName:
           type: string
@@ -3030,9 +3030,9 @@ components:
           description: Code representing the type of company card account.
           example: SUB
           enum:
-            - CONTROL
-            - INDIVIDUAL
-            - SUB
+          - CONTROL
+          - INDIVIDUAL
+          - SUB
         creditLimitAmount:
           type: string
           description: Amount of the credit limit on the customer's account.
@@ -3066,16 +3066,16 @@ components:
           description: Identifies specific account conditions such as closed, bankrupt, frozen or lost, etc.
           example: NORMAL
           enum:
-            - NORMAL
-            - AUTHORIZATION_PROHIBITED
-            - BANKRUPT
-            - CLOSED
-            - FROZEN
-            - INTEREST_PROHIBITED
-            - REVOKED
-            - CHARGED_OFF
-            - LOST
-            - STOLEN
+          - NORMAL
+          - AUTHORIZATION_PROHIBITED
+          - BANKRUPT
+          - CLOSED
+          - FROZEN
+          - INTEREST_PROHIBITED
+          - REVOKED
+          - CHARGED_OFF
+          - LOST
+          - STOLEN
     CompanyMemosResponse:
       title: CompanyMemosResponse
       type: object
@@ -3083,7 +3083,7 @@ components:
         memos:
           type: array
           items:
-            $ref: "#/components/schemas/MemosSearchSummary"
+            $ref: '#/components/schemas/MemosSearchSummary'
     CompanyNotesResponse:
       title: CompanyNotesResponse
       type: object
@@ -3091,7 +3091,7 @@ components:
         notes:
           type: array
           items:
-            $ref: "#/components/schemas/NotesSearchSummary"
+            $ref: '#/components/schemas/NotesSearchSummary'
     NotesSearchSummary:
       type: object
       properties:
@@ -3137,38 +3137,38 @@ components:
         primaryAddresses:
           type: array
           items:
-            $ref: "#/components/schemas/PrimaryAddresses"
+            $ref: '#/components/schemas/PrimaryAddresses'
         previousAddresses:
           type: array
           items:
-            $ref: "#/components/schemas/PreviousAddresses"
+            $ref: '#/components/schemas/PreviousAddresses'
         secondaryAddresses:
           type: array
           items:
-            $ref: "#/components/schemas/SecondaryAddresses"
+            $ref: '#/components/schemas/SecondaryAddresses'
         individualGuarantors:
           type: array
           items:
-            $ref: "#/components/schemas/IndividualGuarantors"
+            $ref: '#/components/schemas/IndividualGuarantors'
         companyGuarantors:
           type: array
           items:
-            $ref: "#/components/schemas/CompanyGuarantors"
+            $ref: '#/components/schemas/CompanyGuarantors'
         individualOwners:
           type: array
           items:
-            $ref: "#/components/schemas/IndividualOwners"
+            $ref: '#/components/schemas/IndividualOwners'
         companyOwners:
           type: array
           items:
-            $ref: "#/components/schemas/CompanyOwners"
+            $ref: '#/components/schemas/CompanyOwners'
     CompanyDemographicsAssociationsUpdate:
       title: UpdateCompanyDemographics
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -3188,28 +3188,28 @@ components:
           description: Client-defined identifier within a principal identifier that is used to group accounts together for processing and reporting. Valid length is 4 digits.
           example: "0000"
         demographics:
-          $ref: "#/components/schemas/CompanyDemographicUpdate"
+          $ref: '#/components/schemas/CompanyDemographicUpdate'
         primaryAddress:
-          $ref: "#/components/schemas/UpdatePrimaryAddresses"
+          $ref: '#/components/schemas/UpdatePrimaryAddresses'
         previousAddress:
-          $ref: "#/components/schemas/UpdatePreviousAddresses"
+          $ref: '#/components/schemas/UpdatePreviousAddresses'
         secondaryAddress:
-          $ref: "#/components/schemas/UpdateSecondaryAddresses"
+          $ref: '#/components/schemas/UpdateSecondaryAddresses'
         individualGuarantor:
-          $ref: "#/components/schemas/UpdateIndividualGuarantors"
+          $ref: '#/components/schemas/UpdateIndividualGuarantors'
         companyGuarantor:
-          $ref: "#/components/schemas/UpdateCompanyGuarantors"
+          $ref: '#/components/schemas/UpdateCompanyGuarantors'
         individualOwner:
-          $ref: "#/components/schemas/UpdateIndividualOwners"
+          $ref: '#/components/schemas/UpdateIndividualOwners'
         companyOwner:
-          $ref: "#/components/schemas/UpdateCompanyOwners"
+          $ref: '#/components/schemas/UpdateCompanyOwners'
     CompanyDemographicsAssociationsAdd:
       title: AddCompanyDemographics
       required:
-        - agentIdentifier
-        - companyIdentifier
-        - principalIdentifier
-        - systemIdentifier
+      - agentIdentifier
+      - companyIdentifier
+      - principalIdentifier
+      - systemIdentifier
       type: object
       properties:
         companyIdentifier:
@@ -3229,19 +3229,19 @@ components:
           description: Client-defined identifier within a principal identifier that is used to group accounts together for processing and reporting. Valid length is 4 digits.
           example: "0000"
         primaryAddress:
-          $ref: "#/components/schemas/AddPrimaryAddresses"
+          $ref: '#/components/schemas/AddPrimaryAddresses'
         previousAddress:
-          $ref: "#/components/schemas/AddPreviousAddresses"
+          $ref: '#/components/schemas/AddPreviousAddresses'
         secondaryAddress:
-          $ref: "#/components/schemas/AddSecondaryAddresses"
+          $ref: '#/components/schemas/AddSecondaryAddresses'
         individualGuarantor:
-          $ref: "#/components/schemas/AddIndividualGuarantors"
+          $ref: '#/components/schemas/AddIndividualGuarantors'
         companyGuarantor:
-          $ref: "#/components/schemas/AddCompanyGuarantors"
+          $ref: '#/components/schemas/AddCompanyGuarantors'
         individualOwner:
-          $ref: "#/components/schemas/AddIndividualOwners"
+          $ref: '#/components/schemas/AddIndividualOwners'
         companyOwner:
-          $ref: "#/components/schemas/AddCompanyOwners"
+          $ref: '#/components/schemas/AddCompanyOwners'
       description: "Along with the required fields, at least one of the address field is required to add the demographics details.        \n"
     PrimaryAddresses:
       type: object
@@ -3252,7 +3252,7 @@ components:
           example: "00001"
         name:
           type: string
-          description: "Name of the primary user. "
+          description: 'Name of the primary user. '
           example: JESSE DOE
         workPhone:
           maxLength: 10
@@ -3260,12 +3260,12 @@ components:
           description: Work phone number of the primary customer.
           example: "9871625141"
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     UpdatePrimaryAddresses:
       required:
-        - address
-        - name
-        - sequenceNumber
+      - address
+      - name
+      - sequenceNumber
       type: object
       properties:
         sequenceNumber:
@@ -3276,7 +3276,7 @@ components:
           maxLength: 50
           minLength: 1
           type: string
-          description: "Name of Primary user. "
+          description: 'Name of Primary user. '
           example: Jesse Doe
         workPhone:
           maxLength: 10
@@ -3284,18 +3284,18 @@ components:
           description: Work phone number of user.
           example: "7406520178"
         address:
-          $ref: "#/components/schemas/UpdateCompanyDemographicAddress"
+          $ref: '#/components/schemas/UpdateCompanyDemographicAddress'
     AddPrimaryAddresses:
       required:
-        - address
-        - name
+      - address
+      - name
       type: object
       properties:
         name:
           maxLength: 26
           minLength: 1
           type: string
-          description: "Name of the primary customer. "
+          description: 'Name of the primary customer. '
           example: Jesse Doe
         workPhone:
           maxLength: 10
@@ -3303,7 +3303,7 @@ components:
           description: Work telephone number of the primary card/account holder.
           example: "7406520178"
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     PreviousAddresses:
       type: object
       properties:
@@ -3312,11 +3312,11 @@ components:
           description: Code representing the sequence number of record, 00002 represents 2nd demographic record of the company.
           example: "00002"
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     UpdatePreviousAddresses:
       required:
-        - address
-        - sequenceNumber
+      - address
+      - sequenceNumber
       type: object
       properties:
         sequenceNumber:
@@ -3324,14 +3324,14 @@ components:
           description: Code representing the sequence number of record, 00002 represents 2nd demographic record of the company.
           example: "00002"
         address:
-          $ref: "#/components/schemas/UpdateCompanyDemographicAddress"
+          $ref: '#/components/schemas/UpdateCompanyDemographicAddress'
     AddPreviousAddresses:
       required:
-        - address
+      - address
       type: object
       properties:
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     SecondaryAddresses:
       type: object
       properties:
@@ -3345,11 +3345,11 @@ components:
           description: Work phone number of the customer.
           example: "9877665542"
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     UpdateSecondaryAddresses:
       required:
-        - address
-        - sequenceNumber
+      - address
+      - sequenceNumber
       type: object
       properties:
         sequenceNumber:
@@ -3362,10 +3362,10 @@ components:
           description: Work phone number of user.
           example: "7406520178"
         address:
-          $ref: "#/components/schemas/UpdateCompanyDemographicAddress"
+          $ref: '#/components/schemas/UpdateCompanyDemographicAddress'
     AddSecondaryAddresses:
       required:
-        - address
+      - address
       type: object
       properties:
         workPhone:
@@ -3374,7 +3374,7 @@ components:
           description: Work phone number of user.
           example: "6789120123"
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     IndividualGuarantors:
       type: object
       properties:
@@ -3399,9 +3399,9 @@ components:
           description: Code representing the type of tax identifier.
           example: SOCIAL_SECURITY
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3420,13 +3420,13 @@ components:
           description: Email address of the customer.
           example: JESSEDOE@EXAMPLE.COM
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     UpdateIndividualGuarantors:
       required:
-        - address
-        - firstName
-        - lastName
-        - sequenceNumber
+      - address
+      - firstName
+      - lastName
+      - sequenceNumber
       type: object
       properties:
         sequenceNumber:
@@ -3450,9 +3450,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3473,12 +3473,12 @@ components:
           description: Email Id of user.
           example: jessedoe@example.com
         address:
-          $ref: "#/components/schemas/UpdateCompanyDemographicAddress"
+          $ref: '#/components/schemas/UpdateCompanyDemographicAddress'
     AddIndividualGuarantors:
       required:
-        - address
-        - firstName
-        - lastName
+      - address
+      - firstName
+      - lastName
       type: object
       properties:
         firstName:
@@ -3503,9 +3503,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3528,7 +3528,7 @@ components:
           description: Email Id of user.
           example: jessedoe@example.com
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     CompanyGuarantors:
       type: object
       properties:
@@ -3545,9 +3545,9 @@ components:
           description: Code representing the type of tax identifier.
           example: SOCIAL_SECURITY
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3562,12 +3562,12 @@ components:
           description: Alternate phone number of the user.
           example: "9789120123"
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     UpdateCompanyGuarantors:
       required:
-        - address
-        - name
-        - sequenceNumber
+      - address
+      - name
+      - sequenceNumber
       type: object
       properties:
         sequenceNumber:
@@ -3585,9 +3585,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3603,11 +3603,11 @@ components:
           description: Other phone number of user.
           example: "9789120123"
         address:
-          $ref: "#/components/schemas/UpdateCompanyDemographicAddress"
+          $ref: '#/components/schemas/UpdateCompanyDemographicAddress'
     AddCompanyGuarantors:
       required:
-        - address
-        - name
+      - address
+      - name
       type: object
       properties:
         name:
@@ -3621,9 +3621,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3639,7 +3639,7 @@ components:
           description: Other phone number of user.
           example: "9789120123"
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     IndividualOwners:
       type: object
       properties:
@@ -3664,9 +3664,9 @@ components:
           description: Code representing the type of tax identifier.
           example: SOCIAL_SECURITY
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3681,13 +3681,13 @@ components:
           description: Email address of the customer.
           example: JESSEDOE@EXAMPLE.COM
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     UpdateIndividualOwners:
       required:
-        - address
-        - firstName
-        - lastName
-        - sequenceNumber
+      - address
+      - firstName
+      - lastName
+      - sequenceNumber
       type: object
       properties:
         sequenceNumber:
@@ -3711,9 +3711,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3730,12 +3730,12 @@ components:
           description: Email Id of user.
           example: jessedoe@example.com
         address:
-          $ref: "#/components/schemas/UpdateCompanyDemographicAddress"
+          $ref: '#/components/schemas/UpdateCompanyDemographicAddress'
     AddIndividualOwners:
       required:
-        - address
-        - firstName
-        - lastName
+      - address
+      - firstName
+      - lastName
       type: object
       properties:
         firstName:
@@ -3755,9 +3755,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3774,7 +3774,7 @@ components:
           description: Email Id of user.
           example: jessedoe@example.com
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     CompanyOwners:
       type: object
       properties:
@@ -3791,9 +3791,9 @@ components:
           description: Code representing the type of tax identifier.
           example: SOCIAL_SECURITY
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3804,12 +3804,12 @@ components:
           description: Work phone number of the customer.
           example: "7406520178"
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     UpdateCompanyOwners:
       required:
-        - address
-        - name
-        - sequenceNumber
+      - address
+      - name
+      - sequenceNumber
       type: object
       properties:
         sequenceNumber:
@@ -3827,9 +3827,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3840,11 +3840,11 @@ components:
           description: Work phone number of user.
           example: "7406520178"
         address:
-          $ref: "#/components/schemas/UpdateCompanyDemographicAddress"
+          $ref: '#/components/schemas/UpdateCompanyDemographicAddress'
     AddCompanyOwners:
       required:
-        - address
-        - name
+      - address
+      - name
       type: object
       properties:
         name:
@@ -3858,9 +3858,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURITY
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURITY
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -3871,13 +3871,13 @@ components:
           description: Work phone number of user.
           example: "7789120123"
         address:
-          $ref: "#/components/schemas/CompanyDemographicAddress"
+          $ref: '#/components/schemas/CompanyDemographicAddress'
     CompanyDemographicsSearchResponse:
       type: object
       properties:
         firstName:
           type: string
-          description: "First name of the association party. "
+          description: 'First name of the association party. '
           example: John
         lastName:
           type: string
@@ -3892,13 +3892,13 @@ components:
           description: Code representing the segment Association type
           example: PRIMARY_ADDRESS
           enum:
-            - PRIMARY_ADDRESS
-            - PREVIOUS_ADDRESS
-            - SECONDARY_ADDRESS
-            - INDIVIDUAL_GUARANTOR
-            - COMPANY_GUARANTOR
-            - INDIVIDUAL_OWNER
-            - COMPANY_OWNER
+          - PRIMARY_ADDRESS
+          - PREVIOUS_ADDRESS
+          - SECONDARY_ADDRESS
+          - INDIVIDUAL_GUARANTOR
+          - COMPANY_GUARANTOR
+          - INDIVIDUAL_OWNER
+          - COMPANY_OWNER
         companyName:
           type: string
           description: Name of the company owner.
@@ -3908,9 +3908,9 @@ components:
           description: Code representing the type of tax identifier.
           example: TAX_ID
           enum:
-            - TAX_ID
-            - SOCIAL_SECURIT
-            - EIN
+          - TAX_ID
+          - SOCIAL_SECURIT
+          - EIN
         federalTaxIdentifier:
           type: string
           description: Represents the value of federal tax form tax type code. Max length for EIN & TAX_ID can be 24 & for SOCIAL_SECURITY, max length can be 9 digit.
@@ -4071,7 +4071,7 @@ components:
       explode: false
       schema:
         type: string
-      example: "Basic Base64(webServiceUserId): Base64(webServicePassword)"
+      example: 'Basic Base64(webServiceUserId): Base64(webServicePassword)'
       x-mandatory: CREDIT, DEBIT,CREDIT_GATEWAY
       x-validations: Not Blank,No CRLF, in specific format, Basic Base64(<webServiceUserId>:<webServicePassword>)checked in LDAP for existence (Gateway only)
   headers:
