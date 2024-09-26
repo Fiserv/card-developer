@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.0
 info:
-  title: Accounts-UpdatedTwice
+  title: Accounts
   description: Accounts Domain. All times will be in UTC standards.
   version: 1.9.0-Jun-24
 servers:
@@ -10,85 +10,70 @@ servers:
   - url: https://card-sandbox.api.fiservapps.com/cs/accounts
     description: Sandbox url
 security:
-  - BearerAuth: []
+  - bearerAuth: []
 tags:
+  - name: Account Details
+    description: Search for Account Details.
   - name: AcctLimits
     description: Update the credit limit, cash limit, or the temporary credit limit based on account number.
   - name: Account Statements
     description: Search for Account statements.
   - name: Account Transaction
     description: Search for Account transactions.
+
+#paths
 paths:
   /v1/accounts/statements/search:
     post:
       tags:
         - Account Statements
       x-child-product-name: Account v1.9.0
-      x-proxy-name: Get Statements
       x-group-name: Account Statements
-      summary: Search for statement information given the account. Applies to credit only.
-      operationId: getStatements
+      x-proxy-name: Get Statements
+
+      summary: Use this method to update a fixed payment, update a recurring payment or delete an automatic payment.Only one operation can be performed at a time.
+      operationId: paymentActions
       parameters:
         - name: Authorization
           in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>"
+          description: "Retrieve an access token through the Access Token API. An access token is required for every request. Tokens expire after 15 minutes. Provide the value in the header, as follows: Authorization:: Bearer <Access Token Value>.  For more information on access tokens, see (https://card.developer.fiserv.com/apis/token)."
           required: true
           style: simple
           explode: false
           schema:
             type: string
           example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: x-fapi-userId
+        - name: userId
           in: header
-          description: User on behalf of whom the request is being made. userId must be alphanumeric.
+          description: Optional. User, for whom the request is made. userId must be alphanumeric.
           required: false
           style: simple
           explode: false
           schema:
             type: string
-          example: JOHNDOE
+          example: johndoe
         - name: x-fapi-financial-id
           in: header
-          description: The 8-digit unique financial institute id assigned to each FI by Fiserv.
+          description: Required. Provide 8-digit client id.
           required: true
           style: simple
           explode: false
           schema:
             type: string
-          example: "0012345678"
-        - name: filter
-          in: query
-          description: "Retrieve summary or detail information of statement. Default will be 'summary'.  \n\nfilter value 'summary' only includes the following fields  \n- cardNumber  \n- statementDate  \n- statementEndingBalance  \n- delinquentAmount \n- statementFinanceChargeAmount  \n- minimumPaymentDueAmount  \n- paymentDueDate  \n\nfilter value of 'detail' includes all the fields in the response.\n"
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: string
-          example: summary
+          example: 12345678
       requestBody:
+        description: paymentActionRequest
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/StatementSearchRequest"
+              $ref: "#/components/schemas/PaymentActionRequest"
         required: true
       responses:
         "200":
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/StatementSearchResponse"
-              examples:
-                Statement Search - Summary:
-                  $ref: "#/components/examples/StatementSearchResponseSummary"
-                Statement Search - Detail:
-                  $ref: "#/components/examples/StatementSearchResponseDetail"
-        "206":
-          description: Partial Content
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/StatementSearchResponse"
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
         "400":
           description: Invalid Request
           headers:
@@ -98,9 +83,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                StatementSearch400:
-                  $ref: "#/components/examples/StatementSearch400"
         "401":
           description: Unauthorized access
           headers:
@@ -110,9 +92,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                StatementSearch401:
-                  $ref: "#/components/examples/StatementSearch401"
         "403":
           description: Forbidden
           headers:
@@ -122,9 +101,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                StatementSearch403:
-                  $ref: "#/components/examples/StatementSearch403"
         "404":
           description: Not Found
           headers:
@@ -134,21 +110,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                StatementSearch404:
-                  $ref: "#/components/examples/StatementSearch404"
-        "405":
-          description: Method Not Allowed
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/4xxError"
-              examples:
-                StatementSearch405:
-                  $ref: "#/components/examples/StatementSearch405"
         "406":
           description: Unacceptable
           headers:
@@ -158,9 +119,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                StatementSearch406:
-                  $ref: "#/components/examples/StatementSearch406"
         "415":
           description: Unsupported Media Type
           headers:
@@ -170,9 +128,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                StatementSearch415:
-                  $ref: "#/components/examples/StatementSearch415"
         "422":
           description: Unprocessable Entity
           headers:
@@ -182,9 +137,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                StatementSearch422:
-                  $ref: "#/components/examples/StatementSearch422"
         "500":
           description: Internal Server Error
           headers:
@@ -200,7 +152,7 @@ paths:
                     message: internal server error
                     developerInfo:
                       developerMessage: internal server error
-                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      moreInfo: Please try again as there was a problem handling your request.  If problems persists please contact Support.
                       messageid: 25557-84290371-1
       deprecated: false
   /v1/accounts/statements/pdf/search:
@@ -211,51 +163,138 @@ paths:
       x-proxy-name: Search Statement By Year and Month
       x-group-name: Account Statements
 
-      summary: Retrieves the PDF Statement based on the account number.
+      summary: This method creates, updates or cancels a Onetime ACH or Recurring ACH Payment.
       operationId: SearchStatementByYearMonth
       parameters:
         - name: Authorization
           in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>"
+          description: "Retrieve an access token through the Access Token API. Each request reqires an access token. For more information on access tokens, see (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
           required: true
           style: simple
           explode: false
           schema:
             type: string
           example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+        - name: userId
+          in: header
+          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: johndoe
         - name: x-fapi-financial-id
           in: header
-          description: The 8-digit unique financial institute id assigned to each FI by Fiserv.
+          description: Required. Provide 8 digit client id
           required: true
           style: simple
           explode: false
           schema:
             type: string
-          example: "0012345678"
+          example: 12345678
+        - name: system
+          in: header
+          description: Required. Provide 4 digit system value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "4359"
+        - name: prin
+          in: header
+          description: Required. Provide 4 digit prin value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "0000"
+        - name: agent
+          in: header
+          description: Required. Provide 4 digit agent value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "0000"
       requestBody:
-        description: Sending a request without any dates will return the last three monthly statements references as a list. Giving only the month in the request body, will default to the current year.
+        description: scheduledPaymentRequest
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/StatementSearchRequest"
-        required: true
+              $ref: "#/components/schemas/ScheduledPaymentRequest"
       responses:
         "200":
           description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/pdfIdsResponse"
-        "400":
-          description: Bad Request
+                $ref: "#/components/schemas/4xxError"
         "401":
-          description: Unauthorized
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
         "403":
           description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
         "404":
           description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
         "422":
           description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
         "500":
           description: Internal Server Error
           headers:
@@ -275,61 +314,189 @@ paths:
                       messageid: 25557-84290371-1
       deprecated: false
   /v1/accounts/statements/pdf/{docId}:
-    get:
+    post:
       tags:
         - Account Statements
       x-child-product-name: Account v1.9.0
-      x-proxy-name: Download PDF Binary
       x-group-name: Account Statements
-      summary: Returns the binary in the PDF format based on the documentId provided in the request.
-      operationId: downloadPDFBinary
+      x-proxy-name: Download PDF Binary
+
+      summary: This method returns all the Payment Scheduled associated to one specif Account Number. Search can be done by accountNumber.
+      operationId: getScheduledPayments
       parameters:
         - name: Authorization
           in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>"
+          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
           required: true
           style: simple
           explode: false
           schema:
             type: string
           example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+        - name: userId
+          in: header
+          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: johndoe
         - name: x-fapi-financial-id
           in: header
-          description: The 8-digit unique financial institute id assigned to each FI by Fiserv.
+          description: Required. Provide 8 digit client id
           required: true
           style: simple
           explode: false
           schema:
             type: string
-          example: "0012345678"
-        - name: docId
-          in: path
-          description: The documentId for any given statement.
+          example: 12345678
+        - name: system
+          in: header
+          description: Required. Provide 4 digit system value.
           required: true
           style: simple
           explode: false
           schema:
-            maxLength: 85
-            minLength: 1
-            pattern: ^[A-F0-9]+$
             type: string
-            example: E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB
+          example: "4359"
+        - name: prin
+          in: header
+          description: Required. Provide 4 digit prin value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "0000"
+        - name: agent
+          in: header
+          description: Required. Provide 4 digit agent value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "0000"
+        - name: pageOffset
+          in: query
+          description: Page Number to fetch
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pageLimit
+          in: query
+          description: The number of records to be returned
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            default: 99
+        - name: sortBy
+          in: query
+          description: Sort By Criteria
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            default: PAYMENT_DATE
+            enum:
+              - PAYMENT_DATE
+        - name: sortOrder
+          in: query
+          description: Sort Order
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            default: DESC
+            enum:
+              - DESC
+              - ASC
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SchedulePaymentsSearchRequest"
+        required: true
       responses:
         "200":
-          description: A binary PDF file from the documentId reference.
+          description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
           content:
-            application/pdf:
+            application/json:
               schema:
-                type: string
-                format: binary
+                $ref: "#/components/schemas/SearchScheduledPaymentResponse"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
         "401":
-          description: Unauthorized
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
         "403":
           description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
         "404":
           description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
         "422":
           description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
         "500":
           description: Internal Server Error
           headers:
@@ -351,69 +518,81 @@ paths:
   /v1/accounts/search:
     post:
       tags:
-        - Account Statements
+        - Account Details
       x-child-product-name: Account v1.9.0
+      x-group-name: Account Details
       x-proxy-name: Get Account
-      x-group-name: Account Statements
 
-      summary: Returns account information for the given account number based on the filter criteria passed which could be either 'summary' or 'detail'. Applies for credit only.
-      operationId: getAccount
+      summary: This method add or delete a Registered Account depending of the operation include in request payload.
+      operationId: manageRegisteredAccount
       parameters:
         - name: Authorization
           in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>"
+          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
           required: true
           style: simple
           explode: false
           schema:
             type: string
           example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: x-fapi-userId
+        - name: userId
           in: header
-          description: User on behalf of whom the request is being made. userId must be alphanumeric.
+          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
           required: false
           style: simple
           explode: false
           schema:
             type: string
-          example: JOHNDOE
+          example: johndoe
         - name: x-fapi-financial-id
           in: header
-          description: The 8-digit unique financial institute id assigned to each FI by Fiserv.
+          description: Required. Provide 8 digit client id
           required: true
           style: simple
           explode: false
           schema:
             type: string
-          example: "0012345678"
-        - name: filter
-          in: query
-          description: "Retrieve summary or detail response for account search results. Defaults to 'summary'. \n\nfilter value of 'summary' only includes these fields  \n- accountType  \n- description \n- customerName  \n- association  \n- accountStatus  \n\nfilter value of 'detail' includes all the fields in the response.\n"
-          required: false
-          style: form
-          explode: true
+          example: 12345678
+        - name: system
+          in: header
+          description: Required. Provide 4 digit system value.
+          required: true
+          style: simple
+          explode: false
           schema:
             type: string
-          example: summary
+          example: "4359"
+        - name: prin
+          in: header
+          description: Required. Provide 4 digit prin value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "0000"
+        - name: agent
+          in: header
+          description: Required. Provide 4 digit agent value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "0000"
       requestBody:
-        description: accountSearchRequest
+        description: registeredAccountRequest
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AccountSearchRequest"
+              $ref: "#/components/schemas/RegisteredAccountRequest"
         required: true
       responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AccountSearchResponse"
-              examples:
-                Account Search - Summary:
-                  $ref: "#/components/examples/AccountSearchResponseSummary"
-                Account Search - Detail:
-                  $ref: "#/components/examples/AccountSearchResponseDetail"
+        "201":
+          description: Created
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
         "400":
           description: Invalid Request
           headers:
@@ -423,9 +602,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                AccountSearch400:
-                  $ref: "#/components/examples/AccountSearch400"
         "401":
           description: Unauthorized access
           headers:
@@ -435,9 +611,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                AccountSearch401:
-                  $ref: "#/components/examples/AccountSearch401"
         "403":
           description: Forbidden
           headers:
@@ -447,9 +620,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                AccountSearch403:
-                  $ref: "#/components/examples/AccountSearch403"
         "404":
           description: Not Found
           headers:
@@ -459,9 +629,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                AccountSearch404:
-                  $ref: "#/components/examples/AccountSearch404"
         "406":
           description: Unacceptable
           headers:
@@ -471,9 +638,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                AccountSearch406:
-                  $ref: "#/components/examples/AccountSearch406"
         "415":
           description: Unsupported Media Type
           headers:
@@ -483,9 +647,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                AccountSearch415:
-                  $ref: "#/components/examples/AccountSearch415"
         "422":
           description: Unprocessable Entity
           headers:
@@ -495,9 +656,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-              examples:
-                AccountSearch422:
-                  $ref: "#/components/examples/AccountSearch422"
         "500":
           description: Internal Server Error
           headers:
@@ -521,15 +679,15 @@ paths:
       tags:
         - Account Limits
       x-child-product-name: Account v1.9.0
+      x-group-name: Account Limits
       x-proxy-name: Accounts Limit Search Request
-      x-group-name: Account Limits
 
-      summary: Returns the limit values for a given account.
-      operationId: AccountsLimitSearchRequest
+      summary: This method returns the Registered Accounts associated to one specific account number.
+      operationId: getRegisteredAccounts
       parameters:
         - name: Authorization
           in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
+          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
           required: true
           style: simple
           explode: false
@@ -554,302 +712,48 @@ paths:
           schema:
             type: string
           example: 12345678
+        - name: system
+          in: header
+          description: Required. Provide 4 digit system value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "4359"
+        - name: prin
+          in: header
+          description: Required. Provide 4 digit prin value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "0000"
+        - name: agent
+          in: header
+          description: Required. Provide 4 digit agent value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: "0000"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AccountLimitSearchRequest"
-        required: true
+              $ref: "#/components/schemas/RegisteredAccountSearchRequest"
       responses:
         "200":
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AccountLimitSearchResponse"
-        "400":
-          description: Invalid Request
           headers:
             x-fapi-interaction-id:
               $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/400Error"
-        "401":
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/401Error"
-        "403":
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/403Error"
-        "404":
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/404Error"
-        "409":
-          description: Resource conflict
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/409Error"
-        "415":
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/415Error"
-        "500":
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
-                      messageid: 25557-84290371-1
-      deprecated: false
-  /v1/limits:
-    patch:
-      tags:
-        - Account Limits
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Update Limits
-      x-group-name: Account Limits
-
-      summary: Used to update the credit limit, cash limit, or the temporary credit limit based on account number. The user must provide an update to one of the limit fields. Applies to credit cards only.
-      operationId: updateLimits
-      parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: x-fapi-userId
-          in: header
-          description: User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: JOHNDOE
-        - name: x-fapi-financial-id
-          in: header
-          description: The 8-digit unique financial institute id assigned to each FI by Fiserv.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "0012345678"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/LimitsRequest"
-        required: true
-      responses:
-        "204":
-          description: Updated
-        "400":
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/400Error"
-        "401":
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/401Error"
-        "403":
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/403Error"
-        "404":
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/404Error"
-        "409":
-          description: Resource conflict
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/409Error"
-        "415":
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/415Error"
-        "500":
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
-                      messageid: 25557-84290371-1
-      deprecated: false
-  /v1/accounts/transactions/search:
-    post:
-      tags:
-        - Account Transaction
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Get Account Transactions
-      x-group-name: Account Transaction
-
-      summary: Retrieves the list of Transactions for the account based on the filter criteria passed in the request. Only applicable for credit.
-      operationId: getAccountTransactions
-      parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
-        - name: filter
-          in: query
-          description: |-
-            Provides the summary or details record for account transaction search. Defaults to summary.
-
-            SUMMARY includes the following fields -
-
-            transactionDateTime, merchantName, authorizationCode, transactioncode, transactionType, merchantCategoryCode, transactionStatus, transactionAmount, transactedCardOrAccountNumber, merchantCity, merchantState,
-
-            DETAIL includes all the transaction search fields.
-          required: true
-          style: form
-          explode: true
-          schema:
-            type: string
-          example: summary,detail
-        - name: pageOffset
-          in: query
-          description: The starting point in the result set
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: string
-          example: "2"
-        - name: pageLimit
-          in: query
-          description: The number of records to be returned
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: string
-          example: "50"
-      requestBody:
-        description: AccountTransactionSearchRequest
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AccountTransactionSearchRequest"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AccountTransactionSearchResponse"
-        "206":
-          description: Partial success response
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AccountTransactionSearchResponse"
+                $ref: "#/components/schemas/RegisteredAccountSearchResponse"
         "400":
           description: Invalid Request
           headers:
@@ -879,15 +783,6 @@ paths:
                 $ref: "#/components/schemas/4xxError"
         "404":
           description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/4xxError"
-        "405":
-          description: Method Not Allowed
           headers:
             x-fapi-interaction-id:
               $ref: "#/components/headers/interactionId"
@@ -922,8 +817,129 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/4xxError"
-        "429":
-          description: Too Many Requests
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
+      deprecated: false
+  /v1/limits:
+    post:
+      tags:
+        - Account Limits
+      x-child-product-name: Account v1.9.0
+      x-group-name: Account Limits
+      x-proxy-name: Update Limits
+
+      summary: Use this method to add the right time payment.
+      operationId: addRightTimePayment
+      parameters:
+        - name: Authorization
+          in: header
+          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+        - name: userId
+          in: header
+          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: johndoe
+        - name: x-fapi-financial-id
+          in: header
+          description: Required. Provide 8 digit client id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 12345678
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RightTimePaymentRequest"
+      responses:
+        "200":
+          description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
               $ref: "#/components/headers/interactionId"
@@ -946,7 +962,138 @@ paths:
                     message: internal server error
                     developerInfo:
                       developerMessage: internal server error
-                      moreInfo: There was a problem handling your request.  Please try again.  If the problem persists please contact Fiserv ETSD at 888-243-2543 (you unique messageID included below)
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
+      deprecated: false
+  /v1/accounts/transactions/search:
+    patch:
+      tags:
+        - Account Transaction
+      x-child-product-name: Account v1.9.0
+      x-group-name: Account Transaction
+      x-proxy-name: Get Account Transactions
+
+      summary: Use this method to reverse the right time payment.
+      operationId: reverseRightTimePayment
+      parameters:
+        - name: Authorization
+          in: header
+          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+        - name: userId
+          in: header
+          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: johndoe
+        - name: x-fapi-financial-id
+          in: header
+          description: Required. Provide 8 digit client id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 12345678
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReverseRightTimePayment"
+        required: true
+      responses:
+        "204":
+          description: No Content
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
 components:
