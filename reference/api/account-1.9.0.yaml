@@ -3,34 +3,33 @@ openapi: 3.0.0
 info:
   title: Accounts
   description: Accounts Domain. All times will be in UTC standards.
-  version: 1.9.0-Jun-24
+  version: 1.0.0-March-2024
 servers:
-  - url: https://card.api.fiservapps.com/cs/accounts
+  - url: https://card.api.fiservapps.com/cs/payments
     description: Production url
-  - url: https://card-sandbox.api.fiservapps.com/cs/accounts
+  - url: https://card-sandbox.api.fiservapps.com/cs/payments
     description: Sandbox url
 security:
   - bearerAuth: []
 tags:
   - name: Account Details
-    description: Search for Account Details.
+    description: Payment Action Resources that apply only for Credit
   - name: AcctLimits
-    description: Update the credit limit, cash limit, or the temporary credit limit based on account number.
+    description: Payment Hold Resources that apply only for Credit
   - name: Account Statements
-    description: Search for Account statements.
+    description: Payment Detail Resources that apply only for Credit
   - name: Account Transaction
-    description: Search for Account transactions.
+    description: Payment Detail Resources that apply only for Credit
 paths:
-  /v1/accounts/statements/search:
+  /v1/payments/actions:
     post:
       tags:
-        - Account Statements
-      x-child-product-name: Account v1.9.0
-      x-group-name: Account Statements
-      x-proxy-name: Get Statements
-
+        - Account Details
+      x-child-product-name: Payment v1.0.0
+      x-group-name: Account Details
+      x-proxy-name: Account Details
       summary: Use this method to update a fixed payment, update a recurring payment or delete an automatic payment.Only one operation can be performed at a time.
-      operationId: getStatements
+      operationId: paymentActions
       parameters:
         - name: Authorization
           in: header
@@ -60,35 +59,23 @@ paths:
             type: string
           example: 12345678
       requestBody:
+        description: paymentActionRequest
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StatementSearchRequest'
+              $ref: "#/components/schemas/PaymentActionRequest"
         required: true
       responses:
         "200":
           description: OK
-	  content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatementSearchResponse'
-              examples:
-                Statement Search - Summary:
-                  $ref: '#/components/examples/StatementSearchResponseSummary'
-                Statement Search - Detail:
-                  $ref: '#/components/examples/StatementSearchResponseDetail'
-        "206":
-          description: Partial Content
-          content:
-            application/json:
-              schema:
-	      
-                $ref: '#/components/schemas/StatementSearchResponse'
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
+              $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
@@ -165,16 +152,15 @@ paths:
                       moreInfo: Please try again as there was a problem handling your request.  If problems persists please contact Support.
                       messageid: 25557-84290371-1
       deprecated: false
-  /v1/accounts/statements/pdf/search:
+  /v1/payments/scheduledPayment:
     post:
       tags:
-        - Account Statements
-      x-child-product-name: Account v1.9.0
-      x-proxy-name: Search Statement By Year and Month
-      x-group-name: Account Statements
-
+        - Account Details
+      x-child-product-name: Payment v1.0.0
+      x-group-name: Account Details
+      x-proxy-name: Manage Scheduled Payment
       summary: This method creates, updates or cancels a Onetime ACH or Recurring ACH Payment.
-      operationId: SearchStatementByYearMonth
+      operationId: manageScheduledPayment
       parameters:
         - name: Authorization
           in: header
@@ -231,21 +217,22 @@ paths:
             type: string
           example: "0000"
       requestBody:
+        description: scheduledPaymentRequest
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StatementSearchRequest'
+              $ref: "#/components/schemas/ScheduledPaymentRequest"
       responses:
         "200":
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/schemas/pdfIdsResponse'
+              $ref: "#/components/headers/interactionId"
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/schemas/pdfIdsResponse'
+              $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
@@ -254,34 +241,34 @@ paths:
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/schemas/pdfIdsResponse'
+              $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/pdfIdsResponse'
+                $ref: "#/components/schemas/4xxError"
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/schemas/pdfIdsResponse'
+              $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/pdfIdsResponse'
+                $ref: "#/components/schemas/4xxError"
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/schemas/pdfIdsResponse'
+              $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/pdfIdsResponse'
+                $ref: "#/components/schemas/4xxError"
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/schemas/pdfIdsResponse'
+              $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
@@ -290,7 +277,7 @@ paths:
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/schemas/pdfIdsResponse'
+              $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
@@ -299,7 +286,7 @@ paths:
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/schemas/pdfIdsResponse'
+              $ref: "#/components/headers/interactionId"
           content:
             application/json:
               schema:
@@ -322,14 +309,13 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-  /v1/accounts/statements/pdf/{docId}:
+  /v1/payments/scheduledPayments/search:
     post:
       tags:
         - Account Statements
-      x-child-product-name: Account v1.9.0
+      x-child-product-name: Payment v1.0.0
       x-group-name: Account Statements
-      x-proxy-name: Download PDF Binary
-
+      x-proxy-name: Get Scheduled Payments
       summary: This method returns all the Payment Scheduled associated to one specif Account Number. Search can be done by accountNumber.
       operationId: getScheduledPayments
       parameters:
@@ -434,7 +420,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/pdfIdsResponse'
+              $ref: "#/components/schemas/SchedulePaymentsSearchRequest"
         required: true
       responses:
         "200":
@@ -445,7 +431,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/pdfIdsResponse'
+                $ref: "#/components/schemas/SearchScheduledPaymentResponse"
         "400":
           description: Invalid Request
           headers:
@@ -524,14 +510,13 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-  /v1/accounts/search:
+  /v1/payments/registeredAccount:
     post:
       tags:
-        - Account Details
-      x-child-product-name: Account v1.9.0
-      x-group-name: Account Details
-      x-proxy-name: Get Account
-
+        - Account Transaction
+      x-child-product-name: Payment v1.0.0
+      x-group-name: Account Transaction
+      x-proxy-name: Manage Registered Account
       summary: This method add or delete a Registered Account depending of the operation include in request payload.
       operationId: manageRegisteredAccount
       parameters:
@@ -590,11 +575,11 @@ paths:
             type: string
           example: "0000"
       requestBody:
-        description: accountSearchRequest
+        description: registeredAccountRequest
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountSearchRequest'
+              $ref: "#/components/schemas/RegisteredAccountRequest"
         required: true
       responses:
         "201":
@@ -683,16 +668,15 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-  /v1/accounts/limits/search:
+  /v1/payments/registeredAccount/search:
     post:
       tags:
-        - Account Limits
-      x-child-product-name: Account v1.9.0
-      x-group-name: Account Limits
-      x-proxy-name: Accounts Limit Search Request
-
+        - Account Transaction
+      x-child-product-name: Payment v1.0.0
+      x-group-name: Account Transaction
+      x-proxy-name: Get Registered Accounts
       summary: This method returns the Registered Accounts associated to one specific account number.
-      operationId: AccountsLimitSearchRequest
+      operationId: getRegisteredAccounts
       parameters:
         - name: Authorization
           in: header
@@ -844,14 +828,13 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-  /v1/limits:
+  /v1/payments/rightTimePayment:
     post:
       tags:
-        - Account Limits
-      x-child-product-name: Account v1.9.0
-      x-group-name: Account Limits
-      x-proxy-name: Update Limits
-
+        - Account Transaction
+      x-child-product-name: Payment v1.0.0
+      x-group-name: Account Transaction
+      x-proxy-name: Add Right Time Payment
       summary: Use this method to add the right time payment.
       operationId: addRightTimePayment
       parameters:
@@ -886,7 +869,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountLimitSearchRequest'
+              $ref: "#/components/schemas/RightTimePaymentRequest"
       responses:
         "200":
           description: OK
@@ -974,16 +957,15 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-  /v1/accounts/transactions/search:
+  /v1/payments/reverseRightTimePayment:
     patch:
       tags:
         - Account Transaction
-      x-child-product-name: Account v1.9.0
+      x-child-product-name: Payment v1.0.0
       x-group-name: Account Transaction
-      x-proxy-name: Get Account Transactions
-
+      x-proxy-name: Reverse Right Time Payment
       summary: Use this method to reverse the right time payment.
-      operationId: getAccountTransactions
+      operationId: reverseRightTimePayment
       parameters:
         - name: Authorization
           in: header
@@ -1023,7 +1005,7 @@ paths:
           description: No Content
           headers:
             x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
+              $ref: "#/components/headers/interactionId"
         "400":
           description: Invalid Request
           headers:
@@ -1105,146 +1087,489 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
+  /v1/payments/search:
+    post:
+      tags:
+        - Account Details
+      x-child-product-name: Payment v1.0.0
+      x-group-name: Account Details
+      x-proxy-name: Get Account Payments
+      summary: This method returns all the Payments associated to one specific Account Number.
+      operationId: getAccountPayments
+      parameters:
+        - name: Authorization
+          in: header
+          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+        - name: userId
+          in: header
+          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: johndoe
+        - name: x-fapi-financial-id
+          in: header
+          description: Required. Provide 8 digit client id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 12345678
+        - name: pageOffset
+          in: query
+          description: Page Number to fetch
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pageLimit
+          in: query
+          description: The number of records to be returned
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            default: 99
+        - name: sortBy
+          in: query
+          description: Sort By Criteria
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            default: PAYMENT_DATE
+            enum:
+              - PAYMENT_DATE
+        - name: sortOrder
+          in: query
+          description: Sort Order
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            default: DESC
+            enum:
+              - DESC
+              - ASC
+      requestBody:
+        description: common
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentSearchRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchPaymentResponse"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
+      deprecated: false
+  /v1/payments/holds/search:
+    post:
+      tags:
+        - Account Details
+      x-child-product-name: Payment v1.0.0
+      x-group-name: Account Details
+      x-proxy-name: Payment Hold Search
+      summary: This API retrives payment hold information.
+      operationId: paymentHoldSearch
+      parameters:
+        - name: Authorization
+          in: header
+          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+        - name: userId
+          in: header
+          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: johndoe
+        - name: x-fapi-financial-id
+          in: header
+          description: Required. Provide 8 digit client id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 12345678
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentHoldSearchRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentHoldSearchResponse"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch400:
+                  $ref: "#/components/examples/PaymentHoldSearch400"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch401:
+                  $ref: "#/components/examples/PaymentHoldSearch401"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch403:
+                  $ref: "#/components/examples/PaymentHoldSearch403"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch404:
+                  $ref: "#/components/examples/PaymentHoldSearch404"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch406:
+                  $ref: "#/components/examples/PaymentHoldSearch406"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch415:
+                  $ref: "#/components/examples/PaymentHoldSearch415"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch422:
+                  $ref: "#/components/examples/PaymentHoldSearch422"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
+      deprecated: false
+  /v1/payments/hold:
+    patch:
+      tags:
+        - Account Details
+      x-child-product-name: Payment v1.0.0
+      x-group-name: Account Details
+      x-proxy-name: Payment Hold Release Update
+      summary: This API releases the hold on the payment and makes updates to the existing payment hold.
+      operationId: paymentHoldReleaseUpdate
+      parameters:
+        - name: Authorization
+          in: header
+          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+        - name: userId
+          in: header
+          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: johndoe
+        - name: x-fapi-financial-id
+          in: header
+          description: Required. Provide 8 digit client id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: 12345678
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentHoldRequest"
+        required: true
+      responses:
+        "204":
+          description: Payment Hold released successfully OR Payment Hold updated successfully
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+        "400":
+          description: Invalid Request
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch400:
+                  $ref: "#/components/examples/PaymentHold400"
+        "401":
+          description: Unauthorized access
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch401:
+                  $ref: "#/components/examples/PaymentHold401"
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch403:
+                  $ref: "#/components/examples/PaymentHold403"
+        "404":
+          description: Not Found
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch404:
+                  $ref: "#/components/examples/PaymentHold404"
+        "406":
+          description: Unacceptable
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch406:
+                  $ref: "#/components/examples/PaymentHold406"
+        "415":
+          description: Unsupported Media Type
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch415:
+                  $ref: "#/components/examples/PaymentHold415"
+        "422":
+          description: Unprocessable Entity
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/4xxError"
+              examples:
+                PaymentHoldSearch422:
+                  $ref: "#/components/examples/PaymentHold422"
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              $ref: "#/components/headers/interactionId"
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errorResponse:
+                    code: 500-01
+                    message: internal server error
+                    developerInfo:
+                      developerMessage: internal server error
+                      moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
+                      messageid: 25557-84290371-1
+      deprecated: false
 components:
   schemas:
-    "400Error":
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: Input Validation Exception
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Bad Request
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: CONTENT-TYPE header required. Supported content-type is application/json
-        instance:
-          type: string
-          description: A URI reference that identifies the specific occurence of the problem.
-          example: /api/basepath
-        status:
-          type: number
-          description: The HTTP status code generated by the origin server for this occurance of the problem.
-          example: 400
-    "401Error":
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://card.developer.fiserv.com/cards/error#unauthorized
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Unauthorized
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: Invalid Access Token
-        instance:
-          type: string
-          description: A URI reference that identifies the specific occurence of the problem.
-          example: /api/basepath
-        status:
-          type: number
-          description: The HTTP status code generated by the origin server for this occurance of the problem.
-          example: 401
-    "403Error":
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://card.developer.fiserv.com/cards/error#forbidden
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Forbidden
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: Authorization failure
-        instance:
-          type: string
-          description: A URI reference that identifies the specific occurence of the problem.
-          example: /api/basepath
-        status:
-          type: number
-          description: The HTTP status code generated by the origin server for this occurance of the problem.
-          example: 403
-    "404Error":
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: Resource does not exists
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Resource Not found
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: No matching search results found or you do not have sufficient access rights to get search results matching your criteria.
-        instance:
-          type: string
-          description: A URI reference that identifies the specific occurence of the problem.
-          example: /api/basepath
-        status:
-          type: number
-          description: The HTTP status code generated by the origin server for this occurance of the problem.
-          example: 404
-    "409Error":
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: Http Resource conflict error
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Resource conflict
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: Card is already present with the same status
-        instance:
-          type: string
-          description: A URI reference that identifies the specific occurence of the problem.
-          example: /api/basepath
-        status:
-          type: number
-          description: The HTTP status code generated by the origin server for this occurance of the problem.
-          example: 409
-    "415Error":
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://card.developer.fiserv.com/cards/error#unsupported-mediatype
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Unsupported Media Type
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: unsupported Media Type
-        instance:
-          type: string
-          description: A URI reference that identifies the specific occurence of the problem.
-          example: /api/basepath
-        status:
-          type: number
-          description: The HTTP status code generated by the origin server for this occurance of the problem.
-          example: 415
     "4xxError":
       type: object
       properties:
@@ -1259,7 +1584,7 @@ components:
         detail:
           type: string
           description: Specific explanation to the occurence of the problem.
-          example: We had a problem getting your credit and debit card information.
+          example: We had a problem getting/creating your payment information
         instance:
           type: string
           description: A URI reference that identifies the specific occurence of the problem.
@@ -1268,1178 +1593,1316 @@ components:
           type: number
           description: The HTTP status code generated by the origin server for this occurance of the problem.
           example: 400
-    AccountTransactionSearchRequest:
+    ScheduledPaymentRequest:
       required:
-      - accountNumber
+        - accountNumber
       type: object
       properties:
         accountNumber:
           type: string
-          description: Account identifier
-          example: "123456789"
-        filterCriteria:
+          description: Account Number
+          example: "12345678"
+        registrationId:
+          type: string
+          description: Payment registration identification associated with the account.
+          example: "2697068"
+        makePayment:
+          $ref: "#/components/schemas/MakePayment"
+        updatePayment:
+          $ref: "#/components/schemas/UpdatePayment"
+        cancelPayment:
+          $ref: "#/components/schemas/CancelPayment"
+    MakePayment:
+      required:
+        - paymentType
+      type: object
+      properties:
+        paymentAmount:
+          type: string
+          description: Amount of payment.
+          example: "12.00"
+        paymentDate:
+          type: string
+          description: Date when payment was made.
+          format: date
+          example: 2023-09-08
+        paymentType:
+          type: string
+          description: Type of payment
+          enum:
+            - ONETIME_ACH
+            - RECURRING_ACH
+        recurringStartDate:
+          type: string
+          description: Date when the recurring ACH payment starts.
+          format: date
+          example: 2023-09-09
+        registrationId:
+          type: string
+          description: Payment registration identification associated with the account.
+          example: "2697068"
+        recurringEndDate:
+          type: string
+          description: Date when the recurring ACH payment ends.
+          format: date
+          example: 2023-09-09
+        recurringCalendarDay:
+          type: string
+          description: "Recurring ACH payment day of the month. Contains a 7-character string that defines which days of the week for payments to occur. The first character in the string represents the first day of the week, Sunday. For example, the string “0100000” indicates that payments occurs on Mondays. The string “0111110” indicates payments occur on Monday, Tuesday, Wednesday, Thursday, and Friday."
+          example: "0101000"
+        taxAmount:
+          type: string
+          description: Date the recurring ACH payment is scheduled.
+          example: "0.00"
+        recurrenceDate:
+          type: string
+          description: Date the recurring ACH payment is scheduled.
+          example: ON_TIME_PAYMENT_DUE
+          enum:
+            - ON_TIME_PAYMENT_DUE
+            - SPECIFIC_DAY_MONTH
+        recurringPaymentType:
+          type: string
+          description: "Type of ACH recurring payment for this account. Possible values: 1 - Pay Minimum Due, 2-  Fixed Payment Amount, 4 - Full Statement Balance and 8 - Current Balance."
+          example: "1"
+        autoPaymentChargeDdaFlag:
+          type: string
+          description: auto Payment Charge Dda Flag. Valid value are G,I,1,5,J,K,4,7,E and F.
+          example: G
+        autoPaymentEnrollmentTypeCode:
+          type: string
+          example: T
+        failedCount:
+          type: string
+        autoPaymentStartDate:
+          type: string
+          format: date
+          example: 2023-09-09
+        autoPaymentEndDate:
+          type: string
+          format: date
+          example: 2023-09-08
+        routingNumberBankId:
+          type: string
+          description: Routing Number/Bank Identification number attached with the account number to identify the financial institution.
+          example: "0000"
+        bankAccountNumber:
+          type: string
+          description: Account number used for one time ACH payment.
+          example: "12345678"
+        paymentAccountType:
+          type: string
+          description: Type of account.
+          enum:
+            - CHECKING
+            - SAVINGS
+        authorizationMedium:
+          type: string
+          description: If the consumer is providing registration information through a self-service interface, such as a web bowser, and they are enter registration data, then they must set the AuthorizationMedium to the same values as your PaymentChannel; valid values are, Unknown, Web, IVR, Walkin, Voice, Fax, Mail.
+          example: Mail
+        paymentMedium:
+          type: string
+          description: The Payment Medium for this transaction, valid values are Unknown, e-Check, CreditCard, CommercialCreditCard, CheckCard, BusinessCheck, PinlessDebit, PINDebit, POS, Cash, ACHCredit, LockBox, RemoteCapture, EFT Credit, Fed Wire, IAT ACH Debit, Other EFT.
+          example: POS
+    UpdatePayment:
+      required:
+        - paymentType
+      type: object
+      properties:
+        paymentAmount:
+          type: string
+          description: Amount of payment.
+          example: "12.00"
+        paymentType:
+          type: string
+          description: Type of payment.
+          example: RECURRING_ACH
+          enum:
+            - RECURRING_ACH
+        routingNumberBankId:
+          type: string
+          description: Routing Number/Bank Identification number attached with the account number to identify the financial institution.
+          example: "0000"
+        bankAccountNumber:
+          type: string
+          description: Account number used for one time ACH payment.
+          example: "4578"
+        recurringPaymentId:
+          type: string
+          description: Id for Recurring Payment
+          example: "174414"
+        recurringIntervalType:
+          type: string
+          description: Defines the interval parameters of the recurring payment schedule object. Valid recurring interval types are, Daily, Monthly and Yearly.
+          example: Daily
+        recurringPaymentType:
+          type: string
+          description: "Type of ACH recurring payment for this account. Possible values: Possible values: 1 - Pay Minimum Due, 2-  Fixed Payment Amount, 4 - Full Statement Balance and 8 - Current Balance."
+          example: "1"
+        recurringEndDate:
+          type: string
+          description: Date when the recurring ACH payment ends.
+          format: date
+          example: 2023-09-09
+        recurringCalendarDay:
+          type: string
+          description: "Recurring ACH payment day of the month. Contains a 7-character string that defines which days of the week for payments to occur. The first character in the string represents the first day of the week, Sunday. For example, the string “0100000” indicates that payments occurs on Mondays. The string “0111110” indicates payments occur on Monday, Tuesday, Wednesday, Thursday, and Friday."
+          example: "0101000"
+        recurrenceDate:
+          type: string
+          description: Date the recurring ACH payment is scheduled.
+          example: ON_TIME_PAYMENT_DUE
+          enum:
+            - ON_TIME_PAYMENT_DUE
+            - SPECIFIC_DAY_MONTH
+        autoPaymentChargeDdaFlag:
+          type: string
+          description: auto Payment Charge Dda Flag.valid value are G,I,1,5,J,K,4,7,E and F.
+          example: G
+        autoPaymentEnrollmentTypeCode:
+          type: string
+          example: T
+        autoPaymentStartDate:
+          type: string
+          format: date
+          example: 2023-09-09
+        autoPaymentEndDate:
+          type: string
+          format: date
+          example: 2023-09-08
+        isDisabled:
+          type: boolean
+          description: Indicates if the payment is or is not disabled.
+    CancelPayment:
+      required:
+        - paymentType
+      type: object
+      properties:
+        paymentAmount:
+          type: string
+          description: Amount of payment.
+          example: "12.00"
+        paymentType:
+          type: string
+          description: Type of payment.
+          example: ONETIME_ACH
+          enum:
+            - ONETIME_ACH
+            - RECURRING_ACH
+        routingNumberBankId:
+          type: string
+          description: Routing Number/Bank Identification number attached with the account number to identify the financial institution.
+          example: "0000"
+        registrationId:
+          type: string
+          description: Payment registration identification associated with the account.
+          example: "2697068"
+        bankAccountNumber:
+          type: string
+          description: Account number used for one time ACH payment.
+          example: "5678"
+        confirmationNumber:
+          type: string
+          description: Confirmation number for Scheduled Payment.
+        convenienceFeeRefundAmount:
+          type: string
+        autoPaymentChargeDdaFlag:
+          type: string
+          description: auto Payment Charge Dda Flag.valid value are G,I,1,5,J,K,4,7,E and F.
+          example: G
+        autoPaymentStartDate:
+          type: string
+          format: date
+          example: 2023-09-09
+        autoPaymentEndDate:
+          type: string
+          format: date
+          example: 2023-09-08
+        recurringPaymentType:
+          type: string
+          description: "Type of ACH recurring payment for this account. Possible values: 1 - Pay Minimum Due, 2-  Fixed Payment Amount, 4 - Full Statement Balance and 8 - Current Balance."
+          example: "1"
+        recurringStartDate:
+          type: string
+          description: Date when the recurring ACH payment starts.
+          format: date
+          example: 2023-09-09
+        recurringEndDate:
+          type: string
+          description: Date when the recurring ACH payment ends.
+          format: date
+          example: 2023-09-09
+        recurringCalendarDay:
+          type: string
+          description: "Recurring ACH payment day of the month. Contains a 7-character string that defines which days of the week for payments to occur. The first character in the string represents the first day of the week, Sunday. For example, the string “0100000” indicates that payments occurs on Mondays. The string “0111110” indicates payments occur on Monday, Tuesday, Wednesday, Thursday, and Friday."
+          example: "0101000"
+        recurrenceDate:
+          type: string
+          description: Date the recurring ACH payment is scheduled.
+          example: ON_TIME_PAYMENT_DUE
+          enum:
+            - ON_TIME_PAYMENT_DUE
+            - SPECIFIC_DAY_MONTH
+        isDisabled:
+          type: boolean
+          description: Indicates if the payment is or is not disabled.
+        disabledReason:
+          type: string
+          description: Reason for disabled Payment.
+    SearchScheduledPaymentResponse:
+      type: object
+      properties:
+        scheduleCount:
+          type: integer
+          description: Number of payments for the account.
+        scheduledPayments:
           type: array
           items:
-            $ref: '#/components/schemas/FilterCriteria'
-    AccountTransactionSearchResponse:
+            $ref: "#/components/schemas/ScheduledPaymentSearchResponse"
+    ScheduledPaymentSearchResponse:
+      type: object
+      properties:
+        paymentDate:
+          type: string
+          description: Date when payment was made.
+          format: date
+          example: 2024-09-09
+        paymentAmount:
+          type: string
+          description: Amount of payment.
+          example: "10.00"
+        paymentType:
+          type: string
+          description: Type of payment.
+          enum:
+            - ONETIME_ACH
+            - RECURRING_ACH
+        routingNumberBankId:
+          type: string
+          description: Routing Number/Bank Identification number attached with the account number to identify the financial institution.
+          example: "12345678"
+        bankAccountNumber:
+          type: string
+          description: Account number used for one time ACH payment.
+          example: XXXXX6789
+        paymentAccountType:
+          type: string
+          description: Type of account.
+          example: SAVINGS
+          enum:
+            - CHECKING
+            - SAVINGS
+        recurringPaymentType:
+          type: string
+          description: "Type of ACH recurring payment for this account. Possible values: Pay Minimum Due, Current Balance, Full Statement Balance and Fixed Payment Amount."
+          example: PAY MINIMUM DUE
+        recurringStartDate:
+          type: string
+          description: Date when the recurring ACH payment starts.
+          format: date
+          example: 2024-09-09
+        recurringEndDate:
+          type: string
+          description: Date when the recurring ACH payment ends.
+          format: date
+          example: 2024-09-09
+        recurringCalendarDay:
+          type: string
+          description: Day of the month for the recurring ACH payment.
+          example: "25"
+        recurrenceDate:
+          type: string
+          description: Date the recurring ACH payment is scheduled.
+          example: ON_TIME_PAYMENT_DUE
+          enum:
+            - ON_TIME_PAYMENT_DUE
+            - SPECIFIC_DAY_MONTH
+        registrationId:
+          type: string
+          description: One-time payment registration identification associated with the account.
+          example: "1234567"
+        autoPaymentChargeDdaFlag:
+          type: string
+          description: Valid values can be, 1- PAY_MINIMUM_DUE, 5 - FULL_STATEMENT_BALANCE, 4 - CURRENT_BALANCE, 7 - FIXED_PAYMENT_AMOUNT.
+          example: "1"
+        paymentPostDate:
+          type: string
+          format: date
+          example: 2024-09-09
+        confirmationNumber:
+          type: string
+          description: Confirmation number for Scheduled Payment.
+        convenienceFeeRefundAmount:
+          type: string
+          description: The refund amount.
+          example: "0.00"
+        recurringPaymentId:
+          type: string
+          description: ID for recurring payment.
+          example: "12345"
+        isDisabled:
+          type: boolean
+          description: Indicates if the payment is or is not disabled.
+          example: false
+        disabledDate:
+          type: string
+          description: Date that payment was disabled.
+          format: date
+          example: 2024-09-09
+        demandDepositAccount:
+          type: string
+          description: The deposit account.
+          example: "12345678"
+        recurringIntervalType:
+          type: string
+          description: Interval type of the recurring payment.
+          example: Monthly
+        intervalParam1:
+          type: string
+          description: Interval parameter.
+          example: Days
+        intervalParam2:
+          type: string
+          description: Interval parameter.
+          example: "25"
+        convFeeAmount:
+          type: string
+          description: Convenience fee amount.
+          example: "0.00"
+        transactionResultCode:
+          type: string
+          description: The result code of the transaction.
+          example: "273"
+        savingsAccount:
+          type: string
+          description: Savings account number.
+          example: "12345678"
+        transitRoutingAccount:
+          type: string
+          description: The transit rounting account number.
+          example: "12345678"
+        autoPaymentStartDate:
+          type: string
+          description: The start date of the payment.
+          format: date
+          example: 2023-09-09
+        autoPaymentEndDate:
+          type: string
+          description: The end date of the payment.
+          format: date
+          example: 2023-09-08
+        nextPayDate:
+          type: string
+          description: The next pay date.
+          example: 2025-09-09
+        createddate:
+          type: string
+          description: Date created.
+          example: 2025-09-09
+        automaticPaymentCode:
+          type: string
+          description: The automatic payment code.
+          example: "1"
+        authorizationMedium:
+          type: string
+          description: If the consumer is providing registration information through a self-service interface, such as a web bowser, and they are enter registration data, then they must set the AuthorizationMedium to the same values as your PaymentChannel; valid values are Unknown, Web, IVR, Walkin, Voice, Fax, Mail.
+        paymentMedium:
+          type: string
+          description: The Payment Medium used in this transaction. Valid values are, Unknown, e-Check, CreditCard, CommercialCreditCard, CheckCard, BusinessCheck, PinlessDebit, PINDebit, POS, Cash, ACHCredit, LockBox, RemoteCapture, EFT Credit, Fed Wire, IAT ACH Debit and Other EFT.
+        savingsAccountIdentifier:
+          type: string
+          description: Savings account ID. The first 4 digits are masked.
+          example: XXXXX6789
+    SchedulePaymentsSearchRequest:
+      required:
+        - accountNumber
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          description: Account identifier on the system of record.
+          example: "12345678"
+        registrationId:
+          type: string
+          description: Registration ID for registered account.
+          example: "4684772"
+        registrationLookup:
+          type: string
+          description: A unique identifier that can be tied to multiple registrations.
+          example: "12345678"
+    UpdateRecurringPayment:
+      required:
+        - autoPaymentChargeDdaFlag
+        - autoPaymentStartDate
+        - transitRoutingAccount
+      type: object
+      properties:
+        transitRoutingAccount:
+          type: string
+          description: Transit routing number on the cardholder's account record.
+          example: "123456789"
+        autoPaymentChargeDdaFlag:
+          type: string
+          description: "Auto payment charge Dda flag. Valid values are G, I, 1, 5 - Pay Minimum Due, J,K - Fixed Payment Amount, 4,7 - Full Statement Balance, E, F - Current Balance. If value are J and K, then autoPaymentDesignatedAmount is to passed. "
+          example: G
+        autoPaymentDesignatedAmount:
+          type: string
+          description: Amount the cardholder agreed to pay through the automatic payment option. Mandatory only when autoPaymentChargeDdaFlag is J or K.
+          example: "10.00"
+        autoPaymentStartDate:
+          type: string
+          description: Recurring payment processing start date.
+          format: date
+          example: 2023-09-09
+        autoPaymentEndDate:
+          type: string
+          description: Recurring payment processing end date.
+          format: date
+          example: 2024-09-08
+        demandDepositAccount:
+          type: string
+          description: The checkings account number to withdraw from for the recurring payment.
+          example: "12345678"
+        savingsAccount:
+          type: string
+          description: The savings account number to withdraw from for the recurring payment.
+          example: "12345678"
+    UpdateFixedPayment:
+      required:
+        - paymentAmount
+      type: object
+      properties:
+        paymentAmount:
+          type: string
+          description: Payment amount for updating the fixed payment.
+          example: "1.00"
+    DeleteAutoPayment:
+      required:
+        - autoPaymentChargeDdaFlag
+        - autoPaymentDesignatedAmount
+        - autoPaymentEndDate
+        - autoPaymentStartDate
+      type: object
+      properties:
+        autoPaymentStartDate:
+          type: string
+          description: The start auto payment date values are numeric values in the following format, YYYY-MM-DD.
+          format: date
+          example: 2022-11-30
+        autoPaymentEndDate:
+          type: string
+          description: The end auto payment date values are numeric values in the following format, YYYY-MM-DD.
+          format: date
+          example: 2027-06-07
+        autoPaymentDesignatedAmount:
+          type: string
+          description: To delete automatic payment, set this field to 0.
+          example: "0"
+        autoPaymentChargeDdaFlag:
+          type: string
+          description: To clear the automatic payment, set this field to 0.
+          example: "0"
+    PaymentActionRequest:
+      required:
+        - accountNumber
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          description: Account identifier on the system of record.
+          example: "12345678"
+        updateFixedPayment:
+          $ref: "#/components/schemas/UpdateFixedPayment"
+        updateRecurringPayment:
+          $ref: "#/components/schemas/UpdateRecurringPayment"
+        deleteAutoPayment:
+          $ref: "#/components/schemas/DeleteAutoPayment"
+    RegisteredAccountRequest:
+      required:
+        - accountNumber
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          description: Account identifier on the system of record.
+          example: "12345678"
+        addRegisteredAccount:
+          $ref: "#/components/schemas/AddRegisteredAccount"
+        deleteRegisteredAccount:
+          $ref: "#/components/schemas/DeleteRegisteredAccount"
+    DeleteRegisteredAccount:
+      required:
+        - registrationId
+      type: object
+      properties:
+        registrationId:
+          type: string
+          description: The registered account ID. This ID entry is mandatory because you are attempting to delete a registered account.
+          example: "4684772"
+        accountType:
+          type: string
+          description: Registered Account Type.
+          enum:
+            - CHECKING
+            - SAVINGS
+        nameFirst:
+          type: string
+          description: First name of the customer.
+          example: JOHN
+        nameLast:
+          type: string
+          description: Last name of the customer.
+          example: DOE
+        nameFull:
+          type: string
+          description: Full name of the customer.
+          example: JOHN DOE
+        authorizationMedium:
+          type: string
+          description: If the consumer is providing registration information through a self-service interface, such as a web bowser, and they are enter registration data, then they must set the AuthorizationMedium to the same values as your PaymentChannel; valid values are Unknown, Web, IVR, Walkin, Voice, Fax, Mail.
+          example: Web
+        paymentMedium:
+          type: string
+          description: Indicates the payment medium used for this transaction. Valid values are, Unknown, e-Check, CreditCard, CommercialCreditCard, CheckCard, BusinessCheck, PinlessDebit, PINDebit, POS, Cash, ACHCredit, LockBox, RemoteCapture, EFT Credit, Fed Wire, IAT ACH Debit and Other EFT.
+          example: e-Check
+        lookupReference:
+          type: string
+          description: Applicable to Create or Update only. Used to reference one or more registrations to a single unique identifier.
+          example: "4039120010106089"
+        agreedToTerms:
+          type: boolean
+          description: The application asks the user for approval before sending registration data to PayPoint. If they agree, then this flag is set to true. If no, then the flag is set to false, and the registration data is not stored. This PayPoint verification does not supported for third party payments.
+          example: true
+    AddRegisteredAccount:
+      required:
+        - bankAccountNumber
+        - bankRoutingNumber
+      type: object
+      properties:
+        bankRoutingNumber:
+          type: string
+          description: "The bank routing number associated with the account number to identify the financial institution. "
+          example: "34567"
+        bankAccountNumber:
+          type: string
+          description: Bank account number from which the payment is to be settled.
+          example: "12345678"
+        registrationId:
+          type: string
+          description: Registration ID for a registered account. This can be an existing registration ID to which the funding account is linked. Optional field while creating a registered account.
+          example: "4684772"
+        accountType:
+          type: string
+          description: Registered Account Type.
+          enum:
+            - CHECKING
+            - SAVINGS
+        nameFirst:
+          type: string
+          description: First name of the customer.
+          example: JOHN
+        nameLast:
+          type: string
+          description: Last name of the customer.
+          example: DOE
+        nameFull:
+          type: string
+          description: Full name of the customer.
+          example: JOHN DOE
+        authorizationMedium:
+          type: string
+          description: If the consumer is providing registration information through a self-service interface, such as a web bowser, and they are enter registration data, then they must set the AuthorizationMedium to the same values as your PaymentChannel; valid values are Unknown, Web, IVR, Walkin, Voice, Fax, Mail.
+          example: Web
+        paymentMedium:
+          type: string
+          description: Indicates the payment medium used for this transaction. Valid values are, Unknown, e-Check, CreditCard, CommercialCreditCard, CheckCard, BusinessCheck, PinlessDebit, PINDebit, POS, Cash, ACHCredit, LockBox, RemoteCapture, EFT Credit, Fed Wire, IAT ACH Debit and Other EFT.
+          example: e-Check
+        lookupReference:
+          type: string
+          description: Applicable for Create or Update only. Used to reference one or more registrations to a single unique identifier.
+          example: "4039120010106089"
+        agreedToTerms:
+          type: boolean
+          description: Before sending registration data to PayPoint, your application must ask the user for approval. If they agree, then this flag should be set to true. If this flag is not set to true, the registration cannot be stored with our system. Not supported for third party payments.
+          example: true
+    RegisteredAccountSearchResponse:
+      type: object
+      properties:
+        registeredAccounts:
+          type: array
+          items:
+            $ref: "#/components/schemas/RegisteredAccountSearch"
+    RegisteredAccountSearch:
+      type: object
+      properties:
+        registrationId:
+          type: string
+          description: Registration ID for the registered account.
+        bankRoutingNumber:
+          type: string
+          description: This field stores the routing and transit number for the financial institution where the direct debit ACH is presented for payment.
+          example: "211391825"
+        accountType:
+          type: string
+          description: The type of the bank account. Values, Checking, Savings.
+          enum:
+            - CHECKING
+            - SAVINGS
+        bankAccountNumber:
+          type: string
+          description: The last four digits of the receiver bank account number.
+          example: "7890"
+        nameFirst:
+          type: string
+          description: First name of the customer.
+          example: JOHN
+        namelast:
+          type: string
+          description: Last name of the customer.
+          example: DOE
+        nameFull:
+          type: string
+          description: Full name of the client.
+          example: JOHN DOE
+        paymentMedium:
+          type: string
+          description: Indicates the payment medium used for the transaction.
+          example: Voice
+    RegisteredAccountSearchRequest:
+      required:
+        - accountNumber
+        - registrationLookup
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          description: Account identifier on the system of record.
+          example: "12345678"
+        registrationId:
+          type: string
+          description: Registration ID or IDs associated with the registered account. Required only when registration lookup was not used.
+          example: "3882600"
+        registrationLookup:
+          type: string
+          description: Unique identifier that can be tied to multiple registrations.Required only if registrationId is not used.
+          example: "4039120010106089"
+    RightTimePaymentRequest:
+      title: RightTimePaymentRequest
+      required:
+        - cardNumber
+        - paymentAmount
+      type: object
+      properties:
+        paymentAmount:
+          type: string
+          description: Defines the payment amount.
+          example: "10.00"
+        transactionDate:
+          type: string
+          description: Original transaction date.
+          format: date
+          example: 2023-09-09
+        cardNumber:
+          type: string
+          description: Card number for the right time payment transactions.
+          example: "4010002000300000"
+    ReverseRightTimePayment:
+      required:
+        - cardNumber
+        - merchantNumber
+        - paymentAmount
+      type: object
+      properties:
+        merchantNumber:
+          type: string
+          description: Merchant number for the right time payment transaction reversal. The merchant number is decrypted so you can view the merchant number before the transaction occurs.
+          example: "456009212349823"
+        cardNumber:
+          type: string
+          description: Card number of the to be reversed transaction. The card number is decrypted.
+          example: "4010002000300000"
+        paymentAmount:
+          type: string
+          description: Amount of the authorization request. This must be the same value that posted as the right time payment.
+          example: "10.99"
+        paymentSourceCode:
+          type: string
+          description: |
+            Code representing the location where a right time payment transaction originated.
+            - 00 - Unknown
+            - 01 - Teller
+            - 02 - ATM
+            - 03 - Retailer
+            - 04 - Online Banking
+            - 05 - Mail
+            - 06 - Western Union
+          example: MAIL
+          enum:
+            - UNKNOWN
+            - TELLER
+            - ATM
+            - RETAILER
+            - ONLINE_BANKING
+            - MAIL
+            - WESTERN_UNION
+        paymentTypeCode:
+          type: string
+          description: |
+            Code representing the monetary form or medium in which the right time payment was received.
+            - 00 - Unknown
+            - 01 - Check
+            - 02 - Money order
+            - 03 - Cash
+            - 04 - Credit card
+            - 05 - Debit card
+            - 06 - Electronic funds transfer (EFT)
+            - 07 - Wire transfer
+            - 08 - Coupon
+          example: CASH
+          enum:
+            - UNKNOWN
+            - CHECK
+            - MONEY_ORDER
+            - CASH
+            - CREDIT_CARD
+            - DEBIT_CARD
+            - EFT
+            - WIRE_TRANSFER
+            - COUPON
+        transactionDate:
+          type: string
+          description: Date used to back date a single-message payment monetary transaction.If a past date is entered, it cannot exceed 365 days in the past. Future dating of payment monetaries is not allowed.
+          format: date
+          example: 2023-09-05
+    PaymentSearchRequest:
+      required:
+        - accountNumber
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          description: Account identifier on the system of record.
+          example: "12345678"
+    SearchPaymentResponse:
       type: object
       properties:
         count:
           type: integer
-          description: Total number of transactions for the given account number.
-        transactions:
+          description: Number of payments for the account.
+          example: 3
+        payments:
           type: array
           items:
-            $ref: '#/components/schemas/AccountTransaction'
-        warningInfo:
-          $ref: '#/components/schemas/Warning'
-    FilterCriteria:
+            $ref: "#/components/schemas/Payment"
+    Payment:
+      title: Payment
       type: object
       properties:
-        filterBy:
+        paymentDate:
           type: string
-          description: "### Filter applied to account transaction search. One or many filter combinations are allowed.\n\nMERCHANT_NAME - Merchant Name\n\nAMOUNT_FROM - The amount from which the transactions are to be filtered. Valid format is upto two decimal digits. \n\nAMOUNT_TO - The amount till which the transactions are to be filtered. Valid format is upto two decimal digits.\n\nFROM_DATE - The date from which the transactions are to be filtered.Valid format is YYYY-MM-DD.\n\nTO_DATE - The date till which the transactions are to be filtered.Valid format is YYYY-MM-DD.\n\nSTATUS - The status of the transactions. Valid statuses are  POSTED/DECLINED/PENDING/APPROVED/REVERSED.\n\nTRANSACTION_CODE - Describes the type of transaction done on the account.\n"
-          enum:
-          - MERCHANT_NAME
-          - AMOUNT_FROM
-          - AMOUNT_TO
-          - FROM_DATE
-          - TO_DATE
-          - STATUS
-          - TRANSACTION_CODE
-        filterValue:
-          type: string
-          description: ' The filter value for which transactions need to be filtered.'
-    AccountTransaction:
-      type: object
-      properties:
-        authorizationCode:
-          type: string
-          description: Authorization approval code for the transaction.
-          example: "121052"
-        merchantCategoryCode:
-          type: string
-          description: Merchant category code (MCC) associated with the transaction.National code that classifies the card acceptor’s type of business, product, or service
-          example: "6011"
-        merchantCity:
-          type: string
-          description: Regulation E City, meaining the specific city where terminal is located.
-          example: Chicago
-        merchantState:
-          type: string
-          description: Regulation Merchant State, meaning the specific state where the terminal is located.
-          example: IL
-        transactionDateTime:
-          type: string
-          description: Date and time of the transaction.
-          format: date-time
-          example: 2014-10-02T15:01:23.045Z
-        transactedCardOrAccountNumber:
-          type: string
-          description: transactedCardOrAccountNumber field is for monetary transactions.It will have the following possible values- card number (card type transactions), account number (account type transactions) or spaces (system generated transactions).
-          example: 400010xxxxxx3000
-        statusDescription:
-          type: string
-          description: It is  combination of status code and it's description when the transaction status is declined.
-          example: 64-PI LOST
-        merchantName:
-          type: string
-          description: Merchant Name.
-          example: BALANCE TRANSFER CASH
-        transactionAmount:
-          type: string
-          description: Amount on a particular transaction.Valid format is two decimal digits.
-          example: "1299.00"
-        transactionType:
-          type: string
-          description: Indicates the type of transaction that was made on the card.It is interlinked with transaction code. Valid Values when transaction status is Posted.[Sale,Cash Advance,Return,Merchandise Sale Reversal,Cash Advance Reversal,Return Reversal,Merchandise Sale Amount Adjustment,Cash Advance Amount Adjustment,Return Amount Adjustment,Payment,Payment Reversal,Payment Amount Adjustment,Specific Credit Amount Adjustment,Cash Advance Item Charge Refund,Late Charge Refund,Merchandise Finance Charge Refund,Cash Advance Finance Charge Refund,Backdated Payment Adjustment,Merchandise Item Charge Refund, Overlimit Charge Refund,Credit Life Insurance Fee Refund,Backdate Cash Advance and Sales Adjustment,Small Balance Charge-off,Charge Off Total Account,Charge Off Cash Advance Interest,Charge Off Billed Late Charges,Charge Off Merchandise Interest and Service Charges,Charge Off Credit Life Insurance, Charge Off All Finance Charges,Charge Off All Current Cash Advance Interest,Charge Off All Current Merchandise Interest,Charge Off Cycle-to-Date Late Charges,Charge Off Billed Cash Advance Item Charges Charge Off Billed Merchandise Item Charges,Charge Off Billed Overlimit Fees,Charge Off Cycle-to-Date Cash Advance Item Charges,Charge Off Cycle-to-Date Merchandise Item Charges,Charge Off Cycle-to-Date Overlimit Fees,Account Transfer,Finance Charge (item charge),Reserved for restricted use,Reserved for restricted use,Late Charge,Credit Life Insurance Charge,Cash Advance Finance Charge,Merchandise Finance Charge,Overlimit Account Message,Reserved for restricted use,Account Level Processing Strategy Change Message,Reserved for restricted use,Account Balance Details for MULTRAN Accounts,Backdated Cash Advance Finance Charge,Backdated Payment Interest Adjustment,Cash Advance Item Charge,Merchandise Item Charge,Overlimit Charge,Interest Earned or Credit Interest,Service Charge or Statement Charge,Cash Advance Item Charge,Fee or Finance Charge Rebate,Backdated Payment or Cash Advance Adjustment,Skip Payment Certificate Message,Retail Special Details,Airline Itinerary, Special Details,First Data use only.] Below transaction type are for the transaction status Pending or Declined for *** CREDIT.[Authorization adjustment,Activation code notification message for token provisioning via step-up authentication processing,Check authorization approved,Preauthorization request approved,Account status inquiry service or payment account status inquiry,Cash advance authorization approved,Cash advance authorization declined,Cash advance authorization approved by expansion,Override declined cash advance,Cash advance authorization approved by positive identification,Cash referral,Cash advance authorization approved by name,Cash advance authorization manually declined,Duplicate authorization,Cash authorization approved without issuer contact,Check authorization declined,  Merchandise authorization approved without issuer contact,Preauthorization request denied,Balance inquiry approved,Issuer’s adjustment,Reserved for restricted use,Check system error - declined, Return posted check,Merchandise authorization approved,In-store return,Merchandise authorization declined,Merchandise authorization approved by expansio,Right-time payment,-Override declined merchandise authorization,Merchandise authorization approved by positive identification,Right-time pay/reversal, Merchandise referral,Merchandise authorization approved by name,Merchandise authorization manually declined,Permanent authorization request,Pay unposted check,Visa and Mastercard person-to-person payment transaction reversal,Visa and Mastercard person-to-person payment transaction decline,Permanent authorization adjustment,Merchandise return adjustment,Merchandise return declined,Merchandise return approved,Merchandise return adjustment declined,Return unposted check,Account status check via a token provisioning request resulted in an approved response,Token provision decision,Token maintenance, such as activation, deactivation, suspension, exception, or replacement,Token has been granted, linked to the cardholder account, and provisioned,Private label ETC return posted at the time of return,Manual override cash advance authorization,Manual override merchandise authorization.]
-        transactionStatus:
-          type: string
-          description: |
-            Status of the transaction.
-
-            POSTED
-
-            APPROVED
-
-            DECLINED
-
-            PENDING
-
-            POSTED
-        responseCode:
-          type: string
-          description: This field represents authorization response - either approval code or denial code
-        responseCodeDescription:
-          type: string
-          description: This field provide description for response code.
-        transactionCode:
-          type: string
-          description: "Code assigned to particular transaction.This field is not populated in response instead description with respect to this field is populated in transaction type field. Below are the valid values of transaction code and it's description when transaction status is Posted. \n   - 253- Sale\n   - 254- Cash Advance\n   - 255- Return\n   - 256- Merchandise Sale Reversal\n   - 257- Cash Advance Reversal\n   - 258- Return Reversal\n   - 259- Merchandise Sale Amount Adjustment\n   - 260- Cash Advance Amount Adjustment\n   - 261- Return Amount Adjustment\n   - 271- Payment\n   - 272- Payment Reversal\n   - 273- Payment Amount Adjustment\n   - 280- Specific Credit Amount Adjustment\n   - 281- Cash Advance Item Charge Refund\n   - 282  Late Charge Refund\n   - 283  Merchandise Finance Charge Refund\n   - 284  Cash Advance Finance Charge Refund\n   - 285  Backdated Payment Adjustment\n   - 286  Merchandise Item Charge Refund\n   - 287  Overlimit Charge Refund\n   - 288  Credit Life Insurance Fee Refund\n   - 290  Backdate Cash Advance and Sales Adjustment\n   - 370  Small Balance Charge-off\n   - 371  Charge Off Total Account\n   - 372  Charge Off Cash Advance Interest\n   - 373  Charge Off Billed Late Charges\n   - 374  Charge Off Merchandise Interest and Service Charges\n   - 375  Charge Off Credit Life Insurance\n   - 376  Charge Off All Finance Charges\n   - 377  Charge Off All Current Cash Advance Interest\n   - 378  Charge Off All Current Merchandise Interest\n   - 379  Charge Off Cycle-to-Date Late Charges\n   - 380  Charge Off Billed Cash Advance Item Charges\n   - 381  Charge Off Billed Merchandise Item Charges\n   - 382  Charge Off Billed Overlimit Fees\n   - 383  Charge Off Cycle-to-Date Cash Advance Item Charges\n   - 384  Charge Off Cycle-to-Date Merchandise Item Charges\n   - 385  Charge Off Cycle-to-Date Overlimit Fees\n   - 400  Account Transfer\n   - 900  Finance Charge (item charge)\n   - 959  Reserved for restricted use\n   - 960  Reserved for restricted use\n   - 961  Late Charge\n   - 962  Credit Life Insurance Charge\n   - 963  Cash Advance Finance Charge\n   - 964  Merchandise Finance Charge\n   - 965  Overlimit Account Message\n   - 966  Reserved for restricted use\n   - 967  Account Level Processing Strategy Change Message\n   - 976  Reserved for restricted use\n   - 978  Reserved for restricted use\n   - 979  Reserved for restricted use\n   - 981  Account Balance Details for MULTRAN Accounts\n   - 984  Backdated Cash Advance Finance Charge\n   - 985  Backdated Payment Interest Adjustment\n   - 986  Cash Advance Item Charge\n   - 987  Merchandise Item Charge\n   - 988  Overlimit Charge\n   - 989  Interest Earned or Credit Interest\n   - 990  Service Charge or Statement Charge\n   - 991  Cash Advance Item Charge\n   - 992  Fee or Finance Charge Rebate\n   - 993  Backdated Payment or Cash Advance Adjustment\n   - 994  Skip Payment Certificate Message\n   - 997  Retail Special Details\n   - 998  Airline Itinerary Special Details\n   - 999  First Data use only. \n\n\n   Below transaction codes and description are for the transaction status Pending or Declined.\n\n   - AA  Authorization adjustment\n   - AC  Activation code notification message for token provisioning via step-up authentication processing\n   - AK  Check authorization approved.\n   - AP  Preauthorization request approved\n   - AS  Account status inquiry service or payment account status inquiry\n   - CA  Cash advance authorization approved\n   - CD  Cash advance authorization declined\n   - CE  Cash advance authorization approved by expansion\n   - CO  Override declined cash advance\n   - CP  Cash advance authorization approved by positive identification\n   - CS  Cash referral\n   - CT  Cash advance authorization approved by name\n   - CX  Cash advance authorization manually declined\n   - DA  Duplicate authorization\n   - DC  Cash authorization approved without issuer contact\n   - DK  Check authorization declined\n   - DM  Merchandise authorization approved without issuer contact\n   - DP  Preauthorization request denied\n   - EC  Balance inquiry approved\n   - IA  Issuer’s adjustment\n   - IV  Reserved for restricted use\n   - KE  Check system error - declined\n   - KR  Return posted check\n   - MA  Merchandise authorization approved\n   - MC  In-store return\n   - MD  Merchandise authorization declined\n   - ME  Merchandise authorization approved by expansion\n   - MI  Right-time payment\n   - MO  Override declined merchandise authorization\n   - MP  Merchandise authorization approved by positive identification\n   - MR  Right-time pay/reversal\n   - MS  Merchandise referral\n   - MT  Merchandise authorization approved by name\n   - MX  Merchandise authorization manually declined\n   - PA  Permanent authorization request\n   - PK  Pay unposted check\n   - PR  Visa and Mastercard person-to-person payment transaction reversal\n   - PX  Visa and Mastercard person-to-person payment transaction decline\n   - PZ  Permanent authorization adjustment\n   - QA  Merchandise return adjustment\n   - QD  Merchandise return declined\n   - QQ  Reserved for restricted use\n   - QR  Merchandise return approved\n   - QZ  Merchandise return adjustment declined\n   - RK  Return unposted check\n   - TA  Account status check via a token provisioning request resulted in an approved response\n   - TD  Token provision decision\n   - TM  Token maintenance, such as activation, deactivation, suspension, exception, or replacement\n   - TN  Token has been granted, linked to the cardholder account, and provisioned\n   - VA  Private label ETC return posted at the time of return\n   - XC  Manual override cash advance authorization\n   - XM  Manual override merchandise authorization.\"\n"
-        declinedTransactionDetails:
-          $ref: '#/components/schemas/DeclinedAcctTransactionDetails'
-        pendingTransactionDetails:
-          $ref: '#/components/schemas/PendingAcctTransactionDetails'
-        postedTransactionDetails:
-          $ref: '#/components/schemas/PostedAcctTransactionDetails'
-    DeclinedAcctTransactionDetails:
-      type: object
-      properties:
-        cardholderAccountNumber:
-          type: string
-          description: This field will have account number associated to cardholder.It should be masked
-          example: xxxxx6789
-        transactionDescription:
-          type: string
-          description: Gives the description regarding the transaction.
-          example: OVERLIMIT FEE REFUND
-        merchantNumber:
-          type: string
-          description: Merchant's account number
-          example: xxxxx6789
-        declinedReasonCode:
-          type: string
-          description: Reason code for declined transactions.This is combination of code and it's description.
-          example: 64-PI LOST
-        expandedReasonCode:
-          type: string
-          description: code for the expansion
-        authorizationResponseDescription:
-          type: string
-          description: Description of the authorization response.
-          example: PI-LOST
-      description: The tag is appicable for declined Credit transactions
-    PendingAcctTransactionDetails:
-      type: object
-      properties:
-        cardholderAccountNumber:
-          type: string
-          description: This field will have account number associated to the cardholder.
-          example: xxxxx6789
-        transactionDescription:
-          type: string
-          description: This field tells the transaction description.
-          example: OVERLIMIT FEE REFUND
-        merchantNumber:
-          type: string
-          description: Merchant's account number
-          example: xxxxx6789
-        originalAuthAdjustmentAmount:
-          type: string
-          description: This gives the original auth amount which is the difference between the authorized amount and the transaction. Valid format is upto two decimal digits.
-          example: "40.00"
-      description: The tag is appicable for pending Credit transactions
-    PostedAcctTransactionDetails:
-      type: object
-      properties:
-        cardholderAccountNumber:
-          type: string
-          description: This field will have account number associated with cardholder.
-          example: xxxxx6789
-        transactionDescription:
-          type: string
-          description: This field gives description about transaction
-          example: BALANCE TRANSFER CASH
-        promotionId:
-          type: string
-          description: Promotion identification. Identifies the promotion to which the transaction was posted.
-        postingDate:
-          type: string
-          description: Posting date of the transaction.
+          description: Date on which the payment was posted to the account.
           format: date
-          example: 2014-10-02
-        detailTransactionIdentifier:
+          example: 1990-08-24
+        paymentAmount:
           type: string
-          description: Detail around transaction id of particular transaction
-          example: "084101656063080"
-        referenceNumber:
+          description: Payment amount posted to the account.
+          example: "1000.00"
+        dueDate:
           type: string
-          description: Reference number assigned to the transaction.
-          example: 85548362L00XTMK3P
-      description: The tag is appicable for posted Credit transactions.
-    AccountSearchRequest:
-      required:
-      - accountNumber
-      type: object
-      properties:
-        accountNumber:
+          description: Payment due date for the account.
+          format: date
+          example: 1990-08-24
+        effectiveDate:
           type: string
-          description: Identifies account of the cardholder.
-          example: "123456789"
-    AccountSearchResponse:
-      title: AccountSearchResponse
-      type: object
-      properties:
-        accountType:
+          description: Date when payment becomes effective.
+          format: date
+          example: 1990-08-24
+        cycleDate:
           type: string
-          description: "The type of the account.\n- Control \n- Individual Pay  \n- Sub-Account\n- Consumer\n"
-          example: Consumer
+          description: Date of the billing cycle for the account.
+          format: date
+          example: 1990-08-24
+        paymentDueAmount:
+          type: string
+          description: Minimum payment amount due for the account.
+          example: "30.00"
+        reversalCode:
+          type: string
+          description: Code that indicates whether a payment reversal was posted for this payment.Check if the code returned is transaction code = 272, show 'Reversed' else 'Not Reversed'.
+          example: Reversed
+          enum:
+            - Reversed
+            - Not Reversed
         description:
           type: string
-          description: The product description associated with the account.
-          example: VISA Classic
-        customerName:
-          type: string
-          description: Customer name associated with the account.
-          example: Doe, Jesse H
-        association:
-          type: string
-          description: The type of user linked with the account.
-          example: PRIMARY
+          description: Description of the action taken on the account.
+          example: Payments
           enum:
-          - PRIMARY
-          - SECONDARY
-          - AUTHORIZED_USER
-          - GUARANTOR_OR_CO-SIGNER
-        accountStatus:
+            - Payments
+            - Payment Reversal
+            - Adjustments
+            - Unknown
+        daysDelinquent:
           type: string
-          description: Status of the account.
-          example: NORMAL
-          enum:
-          - NORMAL
-          - AUTHORIZATION_PROHIBITED
-          - BANKRUPT
-          - CLOSED
-          - FROZEN
-          - INTEREST_PROHIBITED
-          - REVOKED
-          - CHARGED_OFF
-        accountStatusReason:
-          type: string
-          description: "Reason for the account status.\n\n- 00 - Normal  \n- 10 - Natural disaster  \n- 35 - Account in Collections  \n- 68 - Legally paid in full for less than the full balance  \n- 80 - Charged off account paid in full  \n- 85 - Closed due to Adaptive Control overlimit strategy  \n- 86 - Closed due to Adaptive Control delinquent strategy  \n- 87 - Closed due to Adaptive Control reissue strategy  \n- 88 - Fraud  \n- 89 - Bankrupt  \n- 91 - Closed due to account transfer  \n- 90 - Closed due to delinquency action code  \n- 92 - Closed in the reissue process due to delinquent and overlimit  \n- 93 - Closed in the reissue process due to REISSUE TERMS  \n- 94 - Closed in the reissue process due to INCLUDE/EXCLUDE STATES  \n- 95 - Closed in the reissue process due to an external status other than 'A' or space  \n- 96 - Closed in the reissue process due to inactive option  \n- 97 - Closed by customer  \n- 98 - Closed by FI  \n- 99 - Abandoned  \n- nn - Undefined  \n"
-          example: 00–Normal
-        accountTransferStatus:
-          type: string
-          description: |
-            Type of account transfer performed.
-            - NO_TRANSFER_INVOLVEMENT - no transfer involvement on this account
-            - ORIGINAL_TRANSFER_ACCOUNT - original transfer account (aka from account)
-            - NEW_TRANSFER_ACCOUNT - new transfer account (aka to account)
-            - ORIGINAL_ACCOUNT - original account (aka from combined account)
-            - NEW_COMBINED_ACCOUNT - new combined account (aka to combined account)
-          example: NO_TRANSFER_INVOLVEMENT
-          enum:
-          - NO_TRANSFER_INVOLVEMENT
-          - ORIGINAL_TRANSFER_ACCOUNT
-          - NEW_TRANSFER_ACCOUNT
-          - ORIGINAL_ACCOUNT
-          - NEW_COMBINED_ACCOUNT
-        accountUsageStatus:
-          type: string
-          description: |
-            Represents current internal status of account.
-            - NEVER_ACTIVE - Never active
-            - PREVIOUSLY_ACTIVE - Account has been active but is not currently active
-            - ACTIVE - Currently active account
-            - DELINQUENT_ACCOUNT - Currently delinquent account or an account delinquent in its last three cycles
-          example: NEVER_ACTIVE
-          enum:
-          - NEVER_ACTIVE
-          - PREVIOUSLY_ACTIVE
-          - ACTIVE
-          - DELINQUENT_ACCOUNT
-        authorizationCode:
-          type: string
-          description: Authorization approval code for the transaction.
-          example: "0"
-        automaticPaymentCode:
-          type: string
-          description: Payment code for the account.
-          example: "4"
-        automaticPaymentFlag:
-          type: string
-          description: "Indicates the use of the automatic payment option. If used, this determines if the payment is automatically deducted from a cardholder’s checking or savings account. \nThis flag also determines the production of hard copy debit memos or Automated Clearinghouse (ACH) tapes.  \n- blank - Do not use the automatic payment option  \n- 0 - Use the automatic payment option. Create debit memos as hard copy.  \n- 1 - Reserved for future use.  \n- 2 - Use the automatic payment option. The Federal Reserve receives an ACH tape with offsets at the principal level. The System automatically deducts payment from the cardholder’s checking or savings account.  \n- 3 - Use the automatic payment option. The Federal Reserve receives an ACH tape with offsets at the agent level. The System automatically deducts payment from the cardholder’s checking or savings account.  \n- 4 - Use the automatic payment option. The principal receives an ACH tape with offsets at the principal level. The System does not automatically deduct payment from the cardholder’s checking or savings account. Use code 4 if you want to verify that funds exist in the cardholder’s checking or savings account before deducting the payment.  \n- 5 - Use the automatic payment option. The system receives an ACH tape with offsets at the principal level. The System automatically deducts payment from the cardholder’s checking or savings account.  \n- 6 - Use the automatic payment option. The system receives an ACH tape with offsets at the agent level. The System automatically deducts payment from the cardholder’s checking or savings account.  \n- 7 - Use the automatic payment option. The principal receives an ACH tape with offsets at the principal level. The System automatically deducts payment from the cardholder’s checking or savings account.  \n- 8 - Use the automatic payment option. The principal receives an ACH tape with offsets at the agent level. The System automatically deducts payment from the cardholder’s checking or savings account.  \n- 9 - Use the automatic payment option. The agent receives an ACH tape with offsets at the agent level. The System automatically deducts payment from the cardholder’s checking or savings account.\n"
-          example: "1"
-        cashBalance:
-          type: string
-          description: Account cash balance.
-          example: "30.00"
-        collectorCode:
-          type: string
-          example: "000"
-        currentBalanceAmount:
-          type: string
-          description: Current balance of the account.
-          example: "3000.00"
-        coveredByMilitaryLendingAct:
-          type: boolean
-          description: Indicates if the borrower is covered under the Military Lending Act.
-          example: true
-        expirationDate:
-          type: string
-          description: Account expiration date.
-          format: MM/YYYY
-          example: 02/2029
-        highBalanceDate:
-          type: string
-          description: Date on which the account reached the highest balance.
-          format: date
-          example: 2022-01-09
-        highBalanceAmount:
-          type: string
-          description: Highest balance reached on the account.
-          example: "90.00"
-        interestAccrualCode:
-          type: string
-          description: This code value indicates if any interest accrual rules apply to this credit account. The expected value is either be blank without a value, Y, or N.
-          example: "N"
-        plasticReplacementIndicator:
-          type: string
-          description: This value will indicate if the plastic card has expired and needs to be replaced. The expected value is either Y or N.
-          example: "Y"
-        lastNonMonetaryDate:
-          type: string
-          description: Date of the last non-monetary maintenance update to the account.
-          format: date
-          example: 2020-09-23
-        lastStatementBalanceAmount:
-          type: string
-          description: Balance amount of the last statement.
-          example: "2500.00"
-        lastStatusChangeDate:
-          type: string
-          description: Date on which the status was last changed.
-          format: date
-          example: 2020-09-23
-        lifestyleCode:
-          type: string
-          description: The lifestyle index code.
-          example: "1234567"
-        memberId:
-          type: string
-          description: Identifier of another account associated with the principal customer on the account.
-          example: "411411"
-        nextCycleDate:
-          type: string
-          description: Date on which the next cycle is due.
-          format: date
-          example: 2022-12-09
-        openedDate:
-          type: string
-          description: Date on which the account was opened.
-          format: date
-          example: 2020-09-23
-        plasticCount:
-          type: integer
-          description: Number of plastic cards issued which are associated to the account.
-          example: 1
-        prepayCode:
-          type: string
-          description: "Indicates if prepayment is allowed for the account.\n- 0 - Not Allowed.  \n- 9 - Allowed for all transactions.\n"
-          example: "0"
-        secured:
-          type: string
-          description: |
-            Indicates whether the account is secured.
-          example: NOT_SECURED
-          enum:
-          - NOT_SECURED
-          - SECURED
-          - SECURED_BY_AGENT_FI
-        serviceMember:
-          type: boolean
-          description: Indicates if the account type is service member/military.
-          example: false
-        serviceStartDate:
-          type: string
-          description: Date when active military service starts.
-          format: date
-          example: 2021-12-23
-        serviceEndDate:
-          type: string
-          description: Date when military service ends.
-          format: date
-          example: 2021-11-23
-        vip:
-          type: boolean
-          description: Indicates whether the primary account owner is a very important person (VIP).
-          example: true
-    LimitsRequest:
-      required:
-      - accountNumber
-      type: object
-      properties:
-        accountNumber:
-          type: string
-          description: Account identifier on the system of record.
-          example: "123456789"
-        creditLimit:
-          maximum: 999999999999999
-          type: string
-          description: Credit limit for the account, provide in whole monetary units. User cannot update if a temporary credit limit is in effect.
-          example: "3000"
-        cashLimit:
-          $ref: '#/components/schemas/UpdateCashLimit'
-        temporaryCreditLimit:
-          $ref: '#/components/schemas/UpdateTemporaryCreditLimit'
-    StatementSearchRequest:
-      title: StatementSearchRequest
-      required:
-      - accountNumber
-      type: object
-      properties:
-        accountNumber:
-          type: string
-          description: Account identifier on the system of record.
-          example: "123456789"
-        priorAccountNumber:
-          type: string
-          description: Migrated account number.
-          example: "987456123"
-        fromDate:
-          type: string
-          description: Defines the starting date range covered by the statement. If fromDate is given, toDate is required. If not given, the response will show 3 months of statement data.
-          format: date
-        toDate:
-          type: string
-          description: Defines the ending date range covered by the statement. If toDate is given, fromDate is required. If not given, the response will show 3 months of statement data.
-          format: date
-    StatementSearchResponse:
-      type: object
-      properties:
-        cardNumber:
-          type: array
-          description: Between 16 and 19 digits for card number identifier. Applies to both summary and detail responses. Displays all the card numbers associated with the account passed in the request.
-          example:
-          - "4257691000200020"
-          - "4257691000200021"
-          items:
-            type: string
-        statementDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatementDetails'
-        warningInfo:
-          $ref: '#/components/schemas/Warning'
-    StatementDetails:
-      title: StatementDetails
-      type: object
-      properties:
-        statementDate:
-          type: string
-          description: Date on which the statement was produced.
-          format: date
-          example: 2021-12-30
-        statementEndingBalance:
-          type: string
-          description: Ending balance of the account on this statement. Negative balances denoted with a negative sign such as -1500.00.
-          example: "1500.00"
+          description: Number of days delinquent.
+          example: "5"
         delinquentAmount:
           type: string
-          description: Total amount billed as past due at the time the statement was generated.
+          description: Amount delinquent on the account.
           example: "100.00"
-        statementFinanceChargeAmount:
+        fixPaymentAmount:
           type: string
-          description: Amount that is charged on the balance that is carried from one payment period to next.
-          example: "10.00"
-        minimumPaymentDueAmount:
+          description: Fixed Payment Amount.
+          example: "100.00"
+        paymentTicketIdentifier:
           type: string
-          description: Minimum amount required to pay on or before the payment due date to avoid a late fee. It is lower than the total outstanding balance.
-          example: "200.00"
-        paymentDueDate:
-          type: string
-          description: Date by which credit card bill must be paid. Applies to both summary and detail responses.
-          format: MM-DD
-          example: 12-25
-        statementOpeningBalanceAmount:
-          type: string
-          description: Balance for this account at the beginning of the cycle.
-          example: "3000.00"
-        statementDebitAmount:
-          type: string
-          description: Used to calculate Total amount of debit transactions.
-          example: "1500.00"
-        statementSalesAmount:
-          type: string
-          description: Used to calculate Total amount of sales transactions.
-          example: "12.09"
-        statementOtherCreditsAmount:
-          type: string
-          description: Used to calculate Total amount of credit transactions.
-          example: "15.15"
-        statementPaymentAmount:
-          type: string
-          description: Used to calculate Total amount of payment transactions.
-          example: "400.00"
-        accountStatusCode:
-          type: string
-          description: Status code and description assigned to the account that indicates an account has a special condition that drives authorization declines, card reissue, letter suppression, statement generation, waiving finance charges/fees, and reporting.
-          example: NORMAL
-          enum:
-          - NORMAL
-          - AUTHORIZATION_PROHIBITED
-          - BANKRUPT
-          - CLOSED
-          - FROZEN
-          - INTEREST_PROHIBITED
-          - REVOKED
-          - CHARGED_OFF
-        yearToDateInterestAmount:
-          type: string
-          description: Finance charges amount assessed from the beginning of the calendar year through the end of year statement.
-          example: "30.00"
-        purchaseCount:
-          type: integer
-          description: Total number of debit transactions posted to the account.
-          example: 15
-        creditCount:
-          type: integer
-          description: Total number of credit transactions posted to the account.
-          example: 5
-        paymentsCount:
-          type: integer
-          description: Total number of payment transactions posted to the account.
-          example: 10
-        daysInBillingCycle:
-          type: integer
-          description: Number of days in one billing cycle covered by the statement.
-          example: 31
-        billingCycleCode:
-          type: integer
-          description: Code assign to each billing cycle. Billing cycle is the length of time between the last statement closing date and the next closing date.
-          example: 28
-        sinceLastStatementInterestAmount:
-          type: string
-          description: Amount of interest charged from last cycle.
-          example: "1.09"
-        overlimitFees:
-          type: string
-          description: Fee charged when balance goes over the credit limit.
-          example: "5.00"
-        skipPaymentFlag:
-          type: string
-          description: Indicates if there is an account-level skip payment in effect. Values are either "Yes" or "No".
-          example: "No"
-        statementCreditLineAmount:
-          type: string
-          description: Total credit limit established for the account.
-          example: "5000.00"
-        availableCreditRemaining:
-          type: string
-          description: Total credit limit amount available on the account.
-          example: "4000.00"
-        statementTotals:
-          $ref: '#/components/schemas/StatementTotals'
-        statementTransactionDetails:
-          $ref: '#/components/schemas/StatementTransactionsResponse'
-    StatementTotals:
-      title: StatementTotals
-      type: object
-      properties:
-        adjustments:
-          type: string
-          description: Total adjustment transaction amount in statement.
-          example: "99485.00"
-        cashAdvance:
-          type: string
-          description: Total cash advance transaction amount in statement.
-          example: "1692.00"
-        credit:
-          type: string
-          description: Total credit transaction amount in statement.
-          example: "10100.00"
-        payment:
-          type: string
-          description: Total payment transaction amount in statement.
-          example: "665572.00"
-        purchase:
-          type: string
-          description: Total purchase transaction amount in statement.
-          example: "39181.00"
-    pdfIdsResponse:
-      title: pdfIDsResponse
-      type: object
-      properties:
-        pdfs:
-          type: array
-          description: The list of PDFs with their statement date, link to download, and the unique identifer of the statement found and used answer the specific request.
-          items:
-            $ref: '#/components/schemas/pdfDetails'
-    pdfDetails:
-      title: PdfDetails
-      type: object
-      properties:
-        statementDate:
-          type: string
-          description: The unique statement identifier related to the documentId.
-          format: Date
-          example: 2022-05-31
-        docId:
-          type: string
-          description: The specific document Id reference to get the pdf binary.
-          example: E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB
-        link:
-          type: string
-          description: The link to GET call for the PDF Binary file of the statement.
-          example: https://card.dsp.apimz.onefiserv.net/v2/statements/search/pdf/E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB
-    StatementTransactionsResponse:
-      title: StatementTransactionsResponse
-      type: object
-      properties:
-        totalTransactionsCount:
-          type: integer
-          description: Total number of transactions reported in the returned statements.
-          example: 1200
-        statementTransactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatementTransaction'
-    StatementTransaction:
-      title: StatementTransaction
-      type: object
-      properties:
-        cardOrAccountNumber:
-          type: string
-          description: Card number or account number associated with the transaction.
-          example: "4000200030004000"
-        cardOrAccountTransactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionsForCardOrAccountResponse'
-    TransactionsForCardOrAccountResponse:
-      title: TransactionsForCardOrAccount
-      type: object
-      properties:
-        authorizationCode:
-          type: string
-          description: Authorization approval code for the transaction.
-          example: "606"
-        currencyCode:
-          type: string
-          description: Code representing the type of currency involved in the transaction. This is the ISO 4217 three-digit code.
-          example: "840"
-        issuerAmount:
-          type: string
-          description: Amount of the transaction.
-          example: "10.00"
-        merchandiseDescription:
-          type: string
-          description: Merchandise description of the transaction.
-          example: shoes
-        merchantAccount:
-          type: string
-          description: Merchant account number associated with the transaction.
-          example: "1234567890124067"
-        merchantCategoryCode:
-          type: string
-          description: Merchant category code (MCC) associated with the transaction.
-          example: "6010"
-        merchantDescription:
-          type: string
-          description: Description of the merchant in the transaction.
-          example: Store1
-        merchantCity:
-          type: string
-          description: Name of the city in which the merchant is located.
-          example: Newark
-        merchantState:
-          type: string
-          description: "Merchant State.  \nAL Alabama | AK Alaska | AS American Samoa (US Territory) | AZ Arizona | AR Arkansas  \nCA California | CO Colorado | CT Connecticut | DE Delaware | DC District of Columbia  \nFM Federated States of Micronesia (US Territory) | FSM Federated States of Micronesia (US Territory)  \nFL Florida | GA Georgia | GU Guam (US Territory) | GUM Guam (US Territory) | HI Hawaii  \nID Idaho | IL Illinois | IN Indiana | IA Iowa | KS Kansas | KY Kentucky  \nLA Louisiana | ME Maine | MH Marshall Islands (US Territory) | MHL Marshall Islands (US Territory)  \nMD Maryland | MA Massachusetts | MI Michigan | MN Minnesota | MS Mississippi  \nMO Missouri | MT Montana | NE Nebraska | NV Nevada | NH New Hampshire | NJ New Jersey  \nNM New Mexico | NY New York | NC North Carolina | ND North Dakota  \nMP Northern Mariana Islands (US Territory) | MNP Northern Mariana Islands (US Territory)  \nOH Ohio | OK Oklahoma | OR Oregon | PW Palau (US Territory) | PLW Palau (US Territory)  \nPA Pennsylvania | PR Puerto Rico (US Territory) | PRL Puerto Rico (US Territory) | RI Rhode Island  \nSC South Carolina | SD South Dakota | TN Tennessee | TX Texas | UT Utah   \nVT Vermont | VA Virginia | VI Virgin Islands (US Territory) | VIR Virgin Islands (US Territory)  \nWA Washington | WV West Virginia | WI Wisconsin | WY Wyoming\n"
-          example: NJ
+          description: Payment Ticket Identifier.
+          example: "3424234"
         postDate:
           type: string
-          description: Posting date of the transaction.
+          description: Date the payment posted to the account.
           format: date
-          example: 2022-01-11
-        transactedCardOrAccountNumber:
+          example: 1990-08-24
+        transactionAmount:
           type: string
-          description: Card number or account number associated with the transaction. Value is masked.
-          example: 400020XXXXXX4000
-        transactionAccountNumber:
-          type: string
-          description: Account number associated with the transaction.
-          example: "1234567890124067"
+          description: Dollar-and-cent amount of the payment posted to the account.
+          example: "1990.00"
         transactionCode:
           type: string
-          description: Code used to identify the transaction.
-          example: "251"
-        transactionDate:
-          type: string
-          description: Date of the transaction.
-          format: date
-          example: 2021-04-24
-    UpdateCashLimit:
-      title: CashLimit
-      required:
-      - limitType
+          description: Code identifying the type of payment transaction.
+          example: "271"
+        interestFeesDistribution:
+          type: array
+          items:
+            $ref: "#/components/schemas/InterestFeesDistribution"
+    InterestFeesDistribution:
+      title: InterestFeesDistribution
       type: object
       properties:
-        limitType:
+        paymentBalanceDescription:
           type: string
-          description: Indicates type of cash limit.
-          enum:
-          - AMOUNT
-          - PERCENT
-        amount:
-          maximum: 9999999999
+          description: Text describing the balance.
+          example: REV Merchandise
+        balanceId:
           type: string
-          description: Cash limit amount, provide in whole monetary units. If the limitType is AMOUNT, this field is required.
-          example: "2000"
-        percent:
-          maximum: 100
+          description: System-generated identifier of the balance.
+          example: "2002701"
+        paymentChangeToPrincipalAmount:
           type: string
-          description: Provide the percent of the credit limit used to calculate the cash limit. If limitType is PERCENT, this field is required.
-          example: "25"
-    UpdateTemporaryCreditLimit:
-      title: TemporaryLimit
+          description: Amount of payment applied to principal.
+          example: "109.45"
+        paymentFeeAdjustmentAmount:
+          type: string
+          description: Amount of payment applied to interest and fees.
+          example: "38.35"
+    PaymentHoldSearchRequest:
       required:
-      - setLimit
-      type: object
-      properties:
-        setLimit:
-          type: boolean
-          description: Provide "true" in the setLimit to set a temporary credit limit; the amount and endDate are required.  If a temporary credit limit already exists (setLimit already set to "true"), the user can provide an update to the amount and endDate. Provide "false" if do not want to set temporary credit limit. If "false", then amount and endDate is not needed.An error should be thrown if amount or endDate is attempted to update while "false".
-          example: true
-        amount:
-          maximum: 9999999999999999
-          type: string
-          description: Temporary amount, provide in whole monetary units. Required if the setLimit is set to 'true'.
-          example: "3500"
-        endDate:
-          maxLength: 10
-          type: string
-          description: Date temporary limit expires. Must be in UTC format, Must be equal to or greater than today's processing date; maximum date is 2049-12-30.  Required if temporary 'amount' is updated.
-          format: date
-          example: 2022-06-30
-    AccountLimitSearchRequest:
-      required:
-      - accountNumber
+        - accountNumber
       type: object
       properties:
         accountNumber:
           type: string
-          description: Account number of the cardholder.
+          description: Account identifier.
           example: "12345678"
-    AccountLimitSearchResponse:
+    PaymentHoldSearchResponse:
       type: object
       properties:
-        currentBalanceAmount:
+        floatPayments:
+          type: integer
+          description: Number of float payment records associated with the account.
+          example: 3
+        paymentHolds:
+          type: array
+          items:
+            $ref: "#/components/schemas/PaymentHold"
+    PaymentHold:
+      type: object
+      properties:
+        paymentEventIdentifier:
           type: string
-          description: Current balance on the account.
-          example: "3000.00"
-        creditLimitAmount:
+          description: Number that identifies receipt of a payment.
+          example: "99999667"
+        transactionCode:
+          type: integer
+          description: Transaction code associated with the payment. Valid values are 251,252,271,272 and 273.
+          example: 251
+        description:
           type: string
-          description: Permanent credit limit for the account.
-          example: "3000.00"
+          description: Payment description.
+          example: "251"
+          enum:
+            - Payment
+            - Payment_Reversal
+            - Payment_Adjustment
+            - Payment_Authorization
+        postingDate:
+          type: string
+          description: Date a payment transaction posted to an account.
+          format: date
+          example: 2014-10-02
+        effectiveDate:
+          type: string
+          description: Effective date of the payment.
+          format: date
+          example: 2014-10-02
+        paymentAmount:
+          type: string
+          description: Amount of the payment.
+          example: "4000.00"
+        ageOffDate:
+          type: string
+          description: Date by when the payment ages out then wiil no longer be searchable.
+          format: date
+          example: 2014-10-02
+        floatAmount:
+          type: integer
+          description: Whole-dollar amount of the payment that entered the payment float process.
+          example: 2501
+        floatExpirationDate:
+          type: string
+          description: Date the payment float process expires.
+          format: date
+          example: 2014-10-02
+        currentStatusText:
+          type: string
+          description: "Current status of the transaction. Values: • CH–Payment float amount and/or date changed • CL–Payment float cleared • EX–Payment float amount cleared due to exclusion • IN–Payment has been decisioned • MC–Payment has been matched • NS–Payment float amount at 100% • RV–Reversal or adjustment of payment • TR–Transferred due to an account."
+          example: TR–Transferred due to an account
+          enum:
+            - CH - Payment float amount and/or date changed
+            - CL - Payment float cleared
+            - EX - Payment float amount cleared due to exclusion
+            - IN - Payment has been decisioned
+            - MC - Payment has been matched
+            - NS - Payment float amount at 100%
+            - RV - Reversal or adjustment of payment
+            - TR - Transferred due to an account
         availableCreditAmount:
           type: string
-          description: Credit available for the account.
-          example: "3000.00"
-        cashLimitAmount:
-          type: string
-          description: Amount of the credit limit the account holder or cardholder can withdraw.
-          example: "3000.00"
-        availableCashAmount:
-          type: string
-          description: Cash available for the account.
-          example: "3000.00"
-        creditLineMaximumAmount:
-          type: string
-          description: Maximum credit limit allowed for accounts in whole monetary units.
-          example: "3000.00"
-        temporaryCreditLine:
-          type: boolean
-          description: Indicates if credit limit is temporary or not.Possible values - true or false.
-          example: true
-        previousCreditLimitAmount:
-          type: string
-          description: Previous temporary credit set up.
-          example: "2000.00"
-        temporaryCreditLimitAmount:
-          type: string
-          description: Temporary line of credit for the account.
-          example: "200.00"
-        temporaryCreditLineEndDate:
-          type: string
-          description: Date on which the temporary line of credit expires. This date must be equal to or greater than today's processing date.
-          format: date
-          example: 2023-09-09
-        billingCycle:
-          type: string
-          description: Billing cycle for the account.Possible values - 1-28
-          example: "10"
-        billingLevel:
-          type: string
-          description: Indicates whether billing occurs for the account at the company level (consolidated) or at the individual account level.Possible values - Blank/space,Consolidated and Individual. Billing level is not allowed for Consumer/Primary/Control Account.
-          example: Individual
-        lastpermanentCreditLimit:
-          type: string
-          description: Previous permanent credit limit assigned to the account.
+          description: Available credit amount for this account.
           example: "1000.00"
-        lastPermanentCreditLimitDate:
+        exclusionDate:
           type: string
-          description: Date on which the previous credit limit was assigned to the Account.
+          description: Date of when the account is no longer included in payment float processing.
           format: date
-          example: 2022-09-08
-        highBalanceDate:
+          example: 2014-10-02
+    PaymentHoldReleaseRequest:
+      required:
+        - floatAmount
+      type: object
+      properties:
+        floatAmount:
           type: string
-          description: Date on which the account reached the highest balance.
+          description: " Whole-dollar amount of the payment that entered the payment float process."
+          example: "2501"
+    PaymentHoldUpdateRequest:
+      required:
+        - floatAmount
+        - floatExpDate
+      type: object
+      properties:
+        floatAmount:
+          type: string
+          description: " Whole-dollar amount of the payment that entered the payment float process. If  newPaymentFloatAmt > than paymentAmountthen display error -Float Amount cannot be greater than Payment Amount."
+          example: "2501"
+        floatExpDate:
+          type: string
+          description: New Date the payment float process expires.If newPaymentFloatExpDate > than Age Off Datethen display Float Expiry Date cannot be greater than Age Off Date.
           format: date
-          example: 2022-09-07
-        highBalanceAmount:
+          example: 2014-10-02
+      description: floatAmount and floatExpDate are mandatory to call the update.
+    PaymentHoldRequest:
+      required:
+        - accountNumber
+        - paymentEventIdentifier
+      type: object
+      properties:
+        paymentEventIdentifier:
           type: string
-          description: Highest balance reached by the account.
-          example: "2000.0"
+          description: Number that identifies receipt of a payment.
+          example: "99999667"
+        accountNumber:
+          type: string
+          description: Account identifier
+          example: "12345678"
+        update:
+          $ref: "#/components/schemas/PaymentHoldUpdateRequest"
+        release:
+          $ref: "#/components/schemas/PaymentHoldReleaseRequest"
+    Error:
+      required:
+        - code
+        - message
+        - spanId
+        - timestamp
+        - traceId
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference [RFC3986] that identifies the problem type. When this member is not present, its value is assumed to be about:blank.
+        message:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+        instance:
+          type: string
+          description: " A URI reference that identifies the specific occurrence of the problem."
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization.
+        timestamp:
+          type: string
+          description: Date time of the error from a services.
+        code:
+          type: string
+          description: "Code generated code to identify better and quick the error type and services who trigger it [HTTP Method] - [artifact Id] - [code of the error(logic, action, etc)]. Example: 400-666-301 - where: 400=Http Status Code - 666=Id of the services that throw the error - 301=Not enough credit."
+        spanId:
+          type: string
+          description: Id generated given request on each service
+        traceId:
+          type: string
+          description: Id generated from a request on the first service and pass to other downstream services.
+        moreDetails:
+          type: array
+          description: List of multiple errors that may cause/triggerthe general error.
+          items:
+            $ref: "#/components/schemas/ErrorDetails"
+    ErrorDetails:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique code for error [artifact Id] - [code of the error(logic, action, etc)]
+        detail:
+          type: string
+          description: Human details  of the error.
     Warning:
       type: object
       properties:
         message:
           type: string
-          description: An explanation specific to this occurrence of the problem.
-          example: Partial response
+          description: A human-readable explanation specific to this occurrence of the problem.
+        spanId:
+          type: string
+          description: Id generated given request on each service.
+        traceId:
+          type: string
+          description: Id generated from a request on the first service and pass to other downstream services.
         warningDetails:
           type: array
-          description: List of multiple errors that may cause/trigger the general error.
+          description: List of multiple errors that may cause/triggerthe general error.
           items:
-            $ref: '#/components/schemas/WarningDetail'
+            $ref: "#/components/schemas/WarningDetail"
     WarningDetail:
       type: object
       properties:
         code:
           type: string
-          description: Unique code for error.
-          example: 206-45-7001
+          description: Unique code for error [artifact Id] - [code of the error(logic, action, etc)].
         detail:
           type: string
-          description: Details of the error.
-          example: Transaction results are >=1000. Please refine your search criteria.
+          description: Human details  of the error.
+        spanId:
+          type: string
+          description: Id generated given request on each service.
+        timestamp:
+          type: string
+          description: Date time of the error from a services.
   parameters:
-    userIdParam:
-      name: x-fapi-userId
+    omahaUserIdParam:
+      name: omahaUserId
       in: header
-      description: User on behalf of whom the request is being made. userId must be alphanumeric.
+      description: Optis Omaha user associated with user given in Authorization header. Configured in system while onboarding clients.
       required: false
       style: simple
       explode: false
       schema:
         type: string
-      example: JOHNDOE
-    authorizationParam:
-      name: Authorization
+      example: R6AX
+      x-mandatory: CREDIT
+      x-validations: Non Blank and Alphanumeric only, No CRLF
+    certDnParam:
+      name: certDn
       in: header
-      description: 'Retrieve an access token through the Access Token API. Access token is required in every request. Refer to documentation on access token (https://card.developer.fiserv.com/apis/token). Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization: Bearer <Access Token Value>'
-      required: true
+      description: Distinguished name of user given in Authorization header Configured in system while onboarding clients.
+      required: false
       style: simple
       explode: false
       schema:
         type: string
-      example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      example: cn=svc_jboss,ou=Services,O=fiserveft
+      x-mandatory: CREDIT, DEBIT,CREDIT_GATEWAY
+      x-validations: Not blank,No CRLF,Starts with CN=
+    userIdParam:
+      name: userId
+      in: header
+      description: userId of user who is making API call. This is used for auditing purpose to track down API calls if multiple users are calling APIs under same appId.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: FDSCARD
+      x-mandatory: CREDIT, DEBIT,CREDIT_GATEWAY
+      x-validations: Not blank,No CRLF
+    appIdParam:
+      name: appId
+      in: header
+      description: Unique onboarded applicationId for Domain API Clients, This is used for auditing purpose.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: APIMPortal, CardConsole
+      x-mandatory: CREDIT, DEBIT,CREDIT_GATEWAY
+      x-validations: Not blank,No CRLF
     clientIdParam:
       name: x-fapi-financial-id
       in: header
-      description: The 8-digit unique financial institute id assigned to each FI by Fiserv.
-      required: true
+      description: 8 digit unique financial institute id assigned to each FI while FI onboarding.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        maxLength: 8
+        type: string
+      example: "10000001"
+      x-mandatory: CREDIT-O, DEBIT-O,CREDIT_GATEWAY-O
+      x-validations: Not Blank,8 digit numeric only
+    authorizationParam:
+      name: Authorization
+      in: header
+      description: API Authorization with API user onboarded while onboarding clients.
+      required: false
       style: simple
       explode: false
       schema:
         type: string
-      example: "0012345678"
-    docIdParam:
-      name: docId
-      in: path
-      description: The documentId for any given statement.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        maxLength: 85
-        minLength: 1
-        pattern: ^[A-F0-9]+$
-        type: string
-        example: E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB
+      example: "Basic Base64(webServiceUserId): Base64(webServicePassword)"
+      x-mandatory: CREDIT, DEBIT,CREDIT_GATEWAY
+      x-validations: Not Blank,No CRLF, in specific format, Basic Base64(<webServiceUserId>:<webServicePassword>)checked in LDAP for existence (Gateway only)
   examples:
-    AccountSearch400:
+    PaymentHoldSearch400:
       value:
         type: https://card.developer.fiserv.com/cards/error#bad-request
         title: Bad Request
         detail: accountNumber is required.
-        instance: /v1/accounts/search
+        instance: /payments/v1/holds/search
         status: 400
-    AccountSearch401:
+    PaymentHoldSearch401:
       value:
         type: https://card.developer.fiserv.com/cards/error#unauthorized
         title: Unauthorized
         detail: Invalid Access Token
-        instance: /v1/accounts/search
+        instance: /payments/v1/holds/search
         status: 401
-    AccountSearch403:
+    PaymentHoldSearch403:
       value:
         type: https://card.developer.fiserv.com/cards/error#forbidden
         title: Forbidden
         detail: Unauthorized to perform request.
-        instance: /v1/accounts/search
+        instance: /payments/v1/holds/search
         status: 403
-    AccountSearch404:
+    PaymentHoldSearch404:
       value:
         type: https://card.developer.fiserv.com/cards/error#resource-not-found
         title: Resource Not Found
         detail: No matching search results found or you do not have sufficient access rights to get search results matching your criteria.
-        instance: /v1/accounts/search
+        instance: /payments/v1/holds/search
         status: 404
-    AccountSearch405:
+    PaymentHoldSearch405:
       value:
         type: https://card.developer.fiserv.com/cards/error#method-not-allowed
         title: Method Not Allowed
         detail: The HTTP method requested is not acceptable for this endpoint.
-        instance: /v1/accounts/search
+        instance: /payments/v1/holds/search
         status: 405
-    AccountSearch406:
+    PaymentHoldSearch406:
       value:
         type: https://card.developer.fiserv.com/cards/error#not-acceptable
         title: Not Acceptable
         detail: The content type being requested is not provided by this service.
-        instance: /v1/accounts/search
+        instance: /payments/v1/holds/search
         status: 406
-    AccountSearch415:
+    PaymentHoldSearch415:
       value:
         type: https://card.developer.fiserv.com/cards/error#unsupported-mediatype
         title: Unsupported Media type
         detail: The payload format is unsupported.
-        instance: /v1/accounts/search
+        instance: /payments/v1/holds/search
         status: 415
-    AccountSearch422:
+    PaymentHoldSearch422:
       value:
         type: https://card.developer.fiserv.com/cards/error#unprocessable-content
         title: Unprocessable Content
         detail: The service was not able to process this request.
-        instance: /v1/accounts/search
+        instance: /payments/v1/holds/search
         status: 422
-    Limits400:
+    PaymentHold400:
       value:
         type: https://card.developer.fiserv.com/cards/error#bad-request
         title: Bad Request
-        detail: CONTENT-TYPE header required. Supported content-type is application/json.
-        instance: /v1/limits
+        detail: accountNumber is required.
+        instance: /payments/v1/hold
         status: 400
-    Limits401:
+    PaymentHold401:
       value:
         type: https://card.developer.fiserv.com/cards/error#unauthorized
         title: Unauthorized
-        detail: Invalid Access Token
-        instance: /v1/limits
+        detail: Invalid access token.
+        instance: /payments/v1/hold
         status: 401
-    Limits403:
+    PaymentHold403:
       value:
         type: https://card.developer.fiserv.com/cards/error#forbidden
         title: Forbidden
         detail: Unauthorized to perform request.
-        instance: /v1/limits
+        instance: /payments/v1/hold
         status: 403
-    Limits404:
+    PaymentHold404:
       value:
         type: https://card.developer.fiserv.com/cards/error#resource-not-found
         title: Resource Not Found
-        detail: No matching search results found or you do not have sufficient access rights to get search results matching your criteria.
-        instance: /v1/limits
+        detail: Payment Hold update failed or you do not have sufficient access rights to get search results matching your criteria.
+        instance: /payments/v1/hold
         status: 404
-    Limits405:
+    PaymentHold405:
       value:
         type: https://card.developer.fiserv.com/cards/error#method-not-allowed
         title: Method Not Allowed
         detail: The HTTP method requested is not acceptable for this endpoint.
-        instance: /v1/limits
+        instance: /payments/v1/hold
         status: 405
-    Limits406:
+    PaymentHold406:
       value:
         type: https://card.developer.fiserv.com/cards/error#not-acceptable
         title: Not Acceptable
         detail: The content type being requested is not provided by this service.
-        instance: /v1/limits
+        instance: /payments/v1/hold
         status: 406
-    Limits409:
-      value:
-        type: https://card.developer.fiserv.com/cards/error#conflict
-        title: Conflict
-        detail: The current state of the target resource conflicts with this request.
-        instance: /v1/limits
-        status: 406
-    Limits415:
-      value:
-        type: https://card.developer.fiserv.com/cards/error#not-acceptable
-        title: Not Acceptable
-        detail: The payload format is unsupported.
-        instance: /v1/limits
-        status: 415
-    StatementSearch400:
-      value:
-        type: https://card.developer.fiserv.com/cards/error#bad-request
-        title: Bad Request
-        detail: CONTENT-TYPE header required. Supported content-type is application/json.
-        instance: /v1/accounts/statements/search
-        status: 400
-    StatementSearch401:
-      value:
-        type: https://card.developer.fiserv.com/cards/error#unauthorized
-        title: Unauthorized
-        detail: Invalid Access Token
-        instance: /v1/accounts/statements/search
-        status: 401
-    StatementSearch403:
-      value:
-        type: https://card.developer.fiserv.com/cards/error#forbidden
-        title: Forbidden
-        detail: Unauthorized to perform request.
-        instance: /v1/accounts/statements/search
-        status: 403
-    StatementSearch404:
-      value:
-        type: https://card.developer.fiserv.com/cards/error#resource-not-found
-        title: Resource Not Found
-        detail: No matching search results found or you do not have sufficient access rights to get search results matching your criteria.
-        instance: /v1/accounts/statements/search
-        status: 404
-    StatementSearch405:
-      value:
-        type: https://card.developer.fiserv.com/cards/error#method-not-allowed
-        title: Method Not Allowed
-        detail: The HTTP method requested is not acceptable for this endpoint.
-        instance: /v1/accounts/statements/search
-        status: 405
-    StatementSearch406:
-      value:
-        type: https://card.developer.fiserv.com/cards/error#not-acceptable
-        title: Not Acceptable
-        detail: The content type being requested is not provided by this service.
-        instance: /v1/accounts/statements/search
-        status: 406
-    StatementSearch415:
+    PaymentHold415:
       value:
         type: https://card.developer.fiserv.com/cards/error#unsupported-mediatype
         title: Unsupported Media type
         detail: The payload format is unsupported.
-        instance: /v1/accounts/statements/search
+        instance: /payments/v1/hold
         status: 415
-    StatementSearch422:
+    PaymentHold422:
       value:
         type: https://card.developer.fiserv.com/cards/error#unprocessable-content
         title: Unprocessable Content
         detail: The service was not able to process this request.
-        instance: /v1/accounts/statements/search
+        instance: /payments/v1/hold
         status: 422
-    AccountSearchResponseSummary:
-      value:
-        accountType: Consumer
-        description: VISA Classic
-        customerName: Doe, Jesse H
-        association: PRIMARY
-        accountStatus: NORMAL
-    AccountSearchResponseDetail:
-      value:
-        accountType: Consumer
-        description: VISA Classic
-        customerName: Doe, Jesse H
-        association: PRIMARY
-        accountStatus: NORMAL
-        accountStatusReason: 00–Normal
-        accountTransferStatus: NO_TRANSFER_INVOLVEMENT
-        accountUsageStatus: NEVER_ACTIVE
-        authorizationCode: "0"
-        automaticPaymentCode: "4"
-        automaticPaymentFlag: "1"
-        cashBalance: "30.00"
-        collectorCode: "000"
-        currentBalanceAmount: "3000.00"
-        coveredByMilitaryLendingAct: true
-        expirationDate: 02/2029
-        highBalanceDate: 2022-01-09
-        highBalanceAmount: "90.00"
-        interestAccrualCode: "Y"
-        plasticReplacementIndicator: "N"
-        lastNonMonetaryDate: 2020-09-23
-        lastStatementBalanceAmount: "2500.00"
-        lastStatusChangeDate: 2020-09-23
-        lifestyleCode: "1234567"
-        memberId: "411411"
-        nextCycleDate: 2022-12-09
-        openedDate: 2020-09-23
-        plasticCount: 1
-        prepayCode: "0"
-        secured: NOT_SECURED
-        serviceMember: false
-        serviceStartDate: 2021-12-23
-        serviceEndDate: 2021-11-23
-        vip: true
-    StatementSearchResponsePDF:
-      value:
-        statementDate: 2022-05-31
-        docId: E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB
-        link: https://card.dsp.apimz.onefiserv.net/v2/statements/search/pdf/356247932
-    StatementSearchResponseSummary:
-      value:
-        cardNumber:
-        - "4257691000200020"
-        - "4257691000200021"
-        statementDetails:
-        - statementDate: 2021-12-30
-          statementEndingBalance: "1500.00"
-          delinquentAmount: "100.00"
-          statementFinanceChargeAmount: "10.00"
-          minimumPaymentDueAmount: "200.00"
-          paymentDueDate: 12-25
-    StatementSearchResponseDetail:
-      value:
-        cardNumber:
-        - "4257691000200020"
-        - "4257691000200021"
-        statementDetails:
-        - statementDate: 2021-12-30
-          statementEndingBalance: "1500.00"
-          delinquentAmount: "100.00"
-          statementFinanceChargeAmount: "10.00"
-          minimumPaymentDueAmount: "200.00"
-          paymentDueDate: 12-25
-          statementOpeningBalanceAmount: "3000.00"
-          statementDebitAmount: "1500.00"
-          statementSalesAmount: "12.09"
-          statementOtherCreditsAmount: "15.15"
-          statementPaymentAmount: "400.00"
-          accountStatusCode: NORMAL
-          yearToDateInterestAmount: "30.00"
-          purchaseCount: 15
-          creditCount: 5
-          paymentsCount: 10
-          daysInBillingCycle: 31
-          billingCycleCode: 28
-          sinceLastStatementInterestAmount: "1.09"
-          overlimitFees: "5.00"
-          skipPaymentFlag: "No"
-          statementCreditLineAmount: "5000.00"
-          availableCreditRemaining: "4000.00"
-          statementTotals:
-            adjustments: "99485.00"
-            cashAdvance: "1692.00"
-            credit: "10100.00"
-            payment: "665572.00"
-            purchase: "39181.00"
-          statementTransactionDetails:
-            totalTransactionsCount: 1
-            statementTransactions:
-            - cardOrAccountNumber: "4000200030004000"
-              cardOrAccountTransactions:
-              - authorizationCode: "606"
-                currencyCode: "840"
-                issuerAmount: "10.00"
-                merchandiseDescription: shoes
-                merchantAccount: "1234567890124067"
-                merchantCategoryCode: "6010"
-                merchantDescription: Store1
-                merchantCity: Newark
-                merchantState: NJ
-                postDate: 2022-01-11
-                transactedCardOrAccountNumber: 400020XXXXXX4000
-                transactionAccountNumber: "1234567890124067"
-                transactionCode: "251"
-                transactionDate: 2021-04-24
   headers:
     interactionId:
-      description: unique transaction ID created for each request for tracking purposes
+      description: unique transaction ID created for each request for tracking purposes.
       style: simple
       explode: false
       schema:
         type: string
         example: 95ad42fb-afd1-2121-b794-3ed29342ks42
   securitySchemes:
-    BearerAuth:
+    bearerAuth:
       type: http
-      description: Enter 'Bearer ' followed by the access token.
       scheme: bearer
