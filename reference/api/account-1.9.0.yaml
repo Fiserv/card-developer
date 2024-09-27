@@ -19,7 +19,7 @@ tags:
   - name: Account Transaction
     description: Search for Account transactions.
 paths:
-  /v1/accounts/search:
+  /v1/accounts/details/search:
     post:
       tags:
         - Account Details
