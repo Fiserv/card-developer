@@ -3412,7 +3412,7 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: true
-      x-child-product-name: Cards v2.10.0
+      x-child-product-name: Cards v2.13.1
       x-group-name: Order
       x-proxy-name: Get orders v1 (deprecated)
   /v2/cards/order/search:
@@ -9326,7 +9326,7 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: true
-      x-child-product-name: Cards v2.10.0
+      x-child-product-name: Cards v2.13.1
       x-group-name: Limits
       x-proxy-name: Update daily limits v1 (deprecated)
   /v2/cards/limits/daily:
