@@ -6208,44 +6208,6 @@ Sets the cardholder limits to default values per card class.
 
 ## Order
 
-### Credit Order v3: Search using card number
-
-Retrieves the orders for the selected cardholder record.
-
-#### Request
-
-\***\*HTTP METHOD:** POST
-
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/order/search
-
-```
-{
-    "cardNumber": "4000200030004001"
-}
-```
-
-#### Response
-
-**HTTP Code:** 200 OK
-
-```
-{
-    "orders": [
-       {
-            "cardNumber": "400020XXXXXX4001",
-            "nonTransToken": "pSAZIXCAXrAo4001",
-            "transactionCode": "194",
-            "cardPlasticsCount": "001",
-            "specialHandling": "NONE",
-            "cardholderOrderInfo": {
-                "cardholderName": "Doe, John H",
-                "personalizedEmbossingText": "Home Team"
-            }
-        }
-    ]
-}
-```
-
 ### Credit Order v2: Search using card number
 
 Retrieves the orders for the selected cardholder record.
