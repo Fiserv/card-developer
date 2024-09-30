@@ -284,7 +284,7 @@ paths:
       x-child-product-name: Accounts v1.8.0
       x-proxy-name: Get Account
       x-group-name: Details
-      summary: Returns account information for the given account number based on the filter criteria passed which could be either 'summary' or 'detail'. Applies for credit only.
+      summary: Returns account information for the given account number based on the filter criteria passed which could be either summary or detail. Applies for credit only.
       operationId: getAccount
       parameters:
       - name: Authorization
