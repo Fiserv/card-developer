@@ -1,10 +1,10 @@
-## Activations
+# Activations
 
-### Credit Activate v1: Activate inactive card
+## Credit Activate v1: Activate inactive card
 
 This case activates a card.
 
-#### Request
+### Request
 
 **HTTP Method:** PUT
 
@@ -16,7 +16,7 @@ This case activates a card.
   }
 ```
 
-##### Response
+### Response
 
 **HTTP Code:** 200 OK
 
@@ -31,7 +31,7 @@ This case activates a card.
 
 This case demonstrates when the card is inactive.
 
-#### Request
+### Request
 
 **HTTP Method:** POST
 
@@ -43,7 +43,7 @@ This case demonstrates when the card is inactive.
   }
 ```
 
-#### Response
+### Response
 
 **HTTP Code:** 200 OK
 
@@ -58,7 +58,7 @@ This case demonstrates when the card is inactive.
 
 This case demonstrates when the card is active.
 
-#### Request
+### Request
 
 **HTTP Method:** POST
 
@@ -70,7 +70,7 @@ This case demonstrates when the card is active.
   }
 ```
 
-#### Response
+### Response
 
 **HTTP Code:** 200 OK
 
@@ -85,7 +85,7 @@ This case demonstrates when the card is active.
 
 This case activates a debit card.
 
-#### Request
+### Request
 
 **HTTP Method:** PUT
 
@@ -97,7 +97,7 @@ This case activates a debit card.
   }
 ```
 
-#### Response
+### Response
 
 **HTTP Code:** 200 OK
 
@@ -120,7 +120,7 @@ This case activates a debit card.
 
 This case activates a card using NTT.
 
-#### Request
+### Request
 
 **HTTP Method:** PUT
 
@@ -132,7 +132,7 @@ This case activates a card using NTT.
   }
 ```
 
-#### Response
+### Response
 
 **HTTP Code:** 200 OK
 
@@ -155,7 +155,7 @@ This case activates a card using NTT.
 
 This case demonstrates when the debit card is inactive.
 
-#### Request
+### Request
 
 **HTTP Method:** POST
 
@@ -167,7 +167,7 @@ This case demonstrates when the debit card is inactive.
   }
 ```
 
-#### Response
+### Response
 
 **HTTP Code:** 200 OK
 
@@ -186,7 +186,7 @@ This case demonstrates when the debit card is inactive.
 
 This case demonstrates when the debit card is inactive.
 
-#### Request
+### Request
 
 **HTTP Method:** POST
 
@@ -198,7 +198,7 @@ This case demonstrates when the debit card is inactive.
   }
 ```
 
-#### Response
+### Response
 
 **HTTP Code:** 200 OK
 
@@ -217,7 +217,7 @@ This case demonstrates when the debit card is inactive.
 
 This case demonstrates when the debit card is activated.
 
-#### Request
+### Request
 
 **HTTP Method:** POST
 
@@ -229,7 +229,7 @@ This case demonstrates when the debit card is activated.
   }
 ```
 
-#### Response
+### Response
 
 **HTTP Code:** 200 OK
 
@@ -250,7 +250,7 @@ This case demonstrates when the debit card is activated.
 
 This case demonstrates when the debit card is activated.
 
-#### Request
+### Request
 
 **HTTP Method:** POST
 
@@ -262,7 +262,7 @@ This case demonstrates when the debit card is activated.
   }
 ```
 
-#### Response
+### Response
 
 **HTTP Code:** 200 OK
 
