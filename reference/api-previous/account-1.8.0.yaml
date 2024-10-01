@@ -28,7 +28,7 @@ paths:
       tags:
       - Statements
       x-child-product-name: Accounts v1.8.0
-      x-proxy-name: Get Account Statements
+      x-proxy-name: Get Statements
       x-group-name: Statements
       summary: Search for statement information given the account. Applies to credit only.
       operationId: getStatements
@@ -277,7 +277,7 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-  /v1/accounts/search:
+  /v1/accounts/details/search:
     post:
       tags:
       - Details
