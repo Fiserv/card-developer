@@ -2,6 +2,7 @@
 
 Payment API gives financial institutions and account holders API features to manage and maintain their payment information through various touchpoints.
 
+**<span style="color:#ff6600;">Platform support</span>**: **CSL**=Credit Select 
 
 <style>
 .col-md-4 ul li {
@@ -62,5 +63,3 @@ Unlike posted payments, floating payments affect the cardholder’s available cr
 * Floating a payment does not increase the cardholder’s available credit until after the float days have passed.
 
 The float days is the amount of time between when an individual submits a payment and when the individual's bank moves funds from the account.
-
-
