@@ -4,9 +4,6 @@ Account API provides financial institutions and account holders API features to 
 
 **<span style="color:#ff6600;">Platform support</span>**: **CSL**=Credit Select 
 
-
-**<span style="color:#ff6600;">Availability:</span>** Debit Enhanced EPOC, Credit Gateway
-
  <h3 style="text-align: center">Features</h3>
 
 <style>
