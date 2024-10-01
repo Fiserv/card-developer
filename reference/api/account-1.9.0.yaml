@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.0
 info:
-  title: Accounts-Updated
+  title: Accounts
   description: Accounts Domain. All times will be in UTC standards.
   version: 1.9.0-Jun-24
 servers:
@@ -12,7 +12,7 @@ servers:
 security:
   - BearerAuth: []
 tags:
-  - name: Account Details
+  - name: Account Search
     description: Search for Account Details.
   - name: AcctLimits
     description: Update the credit limit, cash limit, or the temporary credit limit based on account number.
@@ -353,13 +353,13 @@ paths:
   /v1/accounts/search:
     post:
       tags:
-        - Account Details
+        - Account Search
       x-child-product-name: Account v1.9.0
-      x-proxy-name: Get Account Details
-      x-group-name: Account Details
+      x-proxy-name: Get Account
+      x-group-name: Account Search
 
       summary: Returns account information for the given account number based on the filter criteria passed which could be either 'summary' or 'detail'. Applies for credit only.
-      operationId: getAccountDetails
+      operationId: getAccount
       parameters:
         - name: Authorization
           in: header
