@@ -62,8 +62,14 @@
       link: docs/release-notes/account/account-overview.md
     - title: Account Sandbox
       sections:
-      - title: Account Statements Sandbox
-        link: docs/release-notes/account/Statements/account_statements_sandbox.md
+      - title: Details
+        link: docs/release-notes/account/Statements/accounts-details-sandbox.md
+      - title: Limits
+        link: docs/release-notes/account/Statements/account-limits-sandbox.md
+      - title: Statements
+        link: docs/release-notes/account/Statements/account-statements-sandbox.md
+      - title: Transactions
+        link: docs/release-notes/account/Statements/account-transaction-sandbox.md
 - sections:
   - title: Card
     sections:
