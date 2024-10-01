@@ -277,7 +277,7 @@ paths:
                       moreInfo: There was a problem handling your request. Please try again. If the problem persists please contact Support
                       messageid: 25557-84290371-1
       deprecated: false
-  /v1/accounts/details/search:
+  /v1/accounts/blah/search:
     post:
       tags:
       - Details
