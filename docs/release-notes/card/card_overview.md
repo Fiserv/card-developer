@@ -79,7 +79,7 @@ The following features are supported by Card Developer:
 <span style="color:#ff6600;">**Audit**</span> feature retrieves the up to six months of cardholder audit history. 
 
    * **Audit record details:** retrieves _audit records details_ for card numbers.
-   * **Audit log search"::** retrieves _audit log search_ for card numbers. Response time varies based on search criteria. 
+   * **Audit log search":** retrieves _audit log search_ for card numbers. Response time varies based on search criteria. 
   
  
 
