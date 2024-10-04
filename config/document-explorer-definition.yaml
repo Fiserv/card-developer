@@ -89,8 +89,13 @@
     sections:
     - title: Dispute Overview
       link: docs/release-notes/dispute/dispute-overview.md
-    - title: Dispute Sandbox
-      link: docs/release-notes/dispute/dispute-sandbox.md
+      sections:
+      - title: Dispute Create
+        link: docs/release-notes/dispute/dispute-create-sandbox.md
+      - title: Dispute Details
+        link: docs/release-notes/dispute/dispute-details-sandbox.md
+      - title: Dispute Update
+        link: docs/release-notes/dispute/dispute-update-sandbox.md
 - sections:
   - title: Fraud
     sections:
