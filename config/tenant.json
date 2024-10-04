@@ -55,7 +55,7 @@
   "product": {
     "featured": true,
     "logoURL": "https://raw.githubusercontent.com/Fiserv/Developer-Portal-Tenant-API/develop/assets/images/Portal_Logo.png",
-    "description": "<b>Empower your business with APIs.</b>",
+    "description": "Empower your business with Fiserv’s Card Service APIs to provide innovative and secure consumer experiences.",
     "longDescription":"</b>Empower your business with APIs.</b> <br> <br> Fiserv helps you harness the power of APIs specific to card services to spur innovation while remaining digitally relevant. We provide easy access to API functionality and help you create more favorable, intelligent, and secure consumer experiences. APIs from Fiserv provide a modern, intuitive and scalable service designed to give you a strategic business advantage.",
     "apiSpecification": "/v1/apis/CardDeveloper",
     "layout": "/v1/layouts/CardDeveloper",

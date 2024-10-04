@@ -2,7 +2,7 @@
 
 Dispute API gives financial institutions and cardholders a way to manage dispute cases for single or multiple transactions.
 
-**<span style="color:#ff6600;">Availability:</span>** Debit Enhanced EPOC, Credit Gateway
+**<span style="color:#ff6600;">Availability:</span>** **DBE**=Debit Enhanced EPOC
 
  <h3 style="text-align: center">Features</h3>
 
