@@ -2,7 +2,7 @@
 
 Fraud API gives financial institutions and cardholders a way to manage, mitigate fraud losses and create travel exemptions.
 
-<span style="color:#ff6600;">**Platform Support:</span> DBE**\=Debit Enhanced EPOC, **CGW**\=Credit Gateway, **CSL**\=Credit Select
+<span style="color:#ff6600;">**Platform Support:</span> DBE**\=Debit Enhanced EPOC, **CSL**\=Credit Select
 
  <h3 style="text-align: center">Features</h3>
 
