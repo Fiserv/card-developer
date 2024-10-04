@@ -39,7 +39,7 @@ tags:
   - name: Update Status
     description: Update the status of a card, including deactivating the card.
 paths:
-  /v1/accounts/search:
+  /v1/accounts/search (deprecated):
     post:
       tags:
         - Related Account
