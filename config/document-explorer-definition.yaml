@@ -89,7 +89,7 @@
     sections:
     - title: Dispute Overview
       link: docs/release-notes/dispute/dispute-overview.md
-    sections:
+      sections:
       - title: Dispute Create
         link: docs/release-notes/dispute/dispute-create-sandbox.md
       - title: Dispute Details
