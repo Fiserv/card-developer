@@ -6208,19 +6208,19 @@ Sets the cardholder limits to default values per card class.
 
 ## Order
 
-### Credit Order v3: Search using card number
+### Credit Order v2: Search using card number
 
 Retrieves the orders for the selected cardholder record.
 
 #### Request
 
-\***\*HTTP METHOD:** POST
+**HTTP Method:** POST
 
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/order/search
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/order/search
 
 ```
 {
-    "cardNumber": "4000200030004001"
+       "cardNumber": "4000200030004001"
 }
 ```
 
@@ -6231,7 +6231,7 @@ Retrieves the orders for the selected cardholder record.
 ```
 {
     "orders": [
-       {
+        {
             "cardNumber": "400020XXXXXX4001",
             "nonTransToken": "pSAZIXCAXrAo4001",
             "transactionCode": "194",
@@ -6260,12 +6260,12 @@ Cancel the selected order.
 {
       "cardNumber": "4000100020004001",
       "action": "CANCEL"
-  }
+}
 ```
 
 #### Response
 
-**HTTP Code:** 200
+**HTTP Code:** 200 OK
 
 ```
 {
@@ -6277,7 +6277,7 @@ Cancel the selected order.
 }
 ```
 
-### Debit Order v3: Search using card number
+### Debit Order v2: Search using card number
 
 Retrieves the orders for the selected cardholder record.
 
@@ -6285,7 +6285,7 @@ Retrieves the orders for the selected cardholder record.
 
 **HTTP Method:** POST
 
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/order/search
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/order/search
 
 ```
 {
@@ -6300,60 +6300,51 @@ Retrieves the orders for the selected cardholder record.
 
 ```
 {
-       "orders": [
-           {
-               "cardNumber": "400010XXXXXX4000",
-               "orderStatus": "PROCESSED",
-               "orderType": "CARD",
-               "rushType": "REGULAR",
-               "processedDate": "2022-08-03",
-               "orderId": "4974",
-               "orderDate": "2022-09-09",
-               "orderReason": "NEW",
-               "orderedBy": "Jesse Doe",
-               "memberNumber": "0",
-               "logo": "APIP",
-               "lastMaintenanceBy": "Jesse Doe",
-               "lastMaintainanceDate": "1990-08-24",
-               "lastMaintainanceTime": "12:00",
-               "cardholderOrderInfo": {
-                   "nameSequenceNumber": "1",
-                   "cardholderName": "Jesse Doe",
-                   "personalizedEmbossingText": "Home Team",
-                   "photoId": "EFGH",
-                   "plasticId": "PM001",
-                   "nameSuffix": "MD"
-               },
-               "orderAddress": {
-                   "addressLine1": "123 Any Street",
-                   "addressLine2": "Apt 100",
-                   "city": "Newark",
-                   "country": "USA",
-                   "state": "NewJersey",
-                   "zipCode": "12345",
-                   "addressType": "PRIMARY"
-               },
-               "cardMiscellaneous": {
-                   "cardClass": "AAA00",
-                   "emv": "CONTACT",
-                   "pinVendor": "1234",
-                   "vendor": "Home Supply"
-               },
-               "cardMailStatusDetails": {
-                   "producttype": "3",
-                   "embossingFacilityShipDate": "2023-10-02",
-                   "trackingNumber": "9400100020003000400050",
-                   "carrier": "Fedex",
-                   "shipmentStatus": "Out for Delivery",
-                   "shipmentMethod": "Next DAY AIR LETTER",
-                   "expectedDeliveryDate": "2023-10-08"
-               }
-           }
-       ]
-   }
+    "orders": [
+        {
+            "cardNumber": "400010XXXXXX3000",
+            "orderStatus": "ACTIVE",
+            "orderType": "CARD",
+            "rushType": "REGULAR",
+            "processedDate": "2022-08-03",
+            "orderId": "4974",
+            "orderDate": "2022-09-09",
+            "orderReason": "NEW",
+            "orderedBy": "Jesse Doe",
+            "memberNumber": "0",
+            "logo": "APIP",
+            "lastMaintenanceBy": "Jesse Doe",
+            "lastMaintainanceDate": "1990-08-24",
+            "lastMaintainanceTime": "12:00",
+            "cardholderOrderInfo": {
+                "nameSequenceNumber": "1",
+                "cardholderName": "Jesse Doe",
+                "personalizedEmbossingText": "Home Team",
+                "photoId": "EFGH",
+                "plasticId": "PM001",
+                "nameSuffix": "MD"
+            },
+            "orderAddress": {
+                "addressLine1": "123 Any Street",
+                "addressLine2": "Apt 100",
+                "city": "Newark",
+                "country": "USA",
+                "state": "NewJersey",
+                "zipCode": "12345",
+                "addressType": "PRIMARY"
+            },
+            "cardMiscellaneous": {
+                "cardClass": "AAA00",
+                "emv": "CONTACT",
+                "pinVendor": "1234",
+                "vendor": "Home Supply"
+            }
+        }
+    ]
+}
 ```
 
-### Debit Order v3: Search using NTT
+### Debit Order v2: Search using NTT
 
 Retrieves the orders for the selected cardholder record.
 
@@ -6361,12 +6352,13 @@ Retrieves the orders for the selected cardholder record.
 
 **HTTP Method:** POST
 
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v3/cards/order/search
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/order/search
 
 ```
 {
-      "nonTransToken": "WUPIL5DQTZGM3000",
-  }
+          "nonTransToken": "WUPIL5DQTZGM3000",
+          "memberNumber": "0"
+}
 ```
 
 #### Response
@@ -6375,57 +6367,48 @@ Retrieves the orders for the selected cardholder record.
 
 ```
 {
-      "orders": [
-          {
-               "nonTransToken": "piUVBJKZGfks4000",
-               "orderStatus": "PROCESSED",
-               "orderType": "CARD",
-               "rushType": "REGULAR",
-               "processedDate": "2022-08-03",
-               "orderId": "4974",
-               "orderDate": "2022-09-09",
-               "orderReason": "NEW",
-               "orderedBy": "Jesse Doe",
-               "memberNumber": "0",
-               "logo": "APIP",
-               "lastMaintenanceBy": "Jesse Doe",
-               "lastMaintainanceDate": "1990-08-24",
-               "lastMaintainanceTime": "12:00",
-               "cardholderOrderInfo": {
-                   "nameSequenceNumber": "1",
-                   "cardholderName": "Jesse Doe",
-                   "personalizedEmbossingText": "Home Team",
-                   "photoId": "EFGH",
-                   "plasticId": "PM001",
-                   "nameSuffix": "MD"
-               },
-               "orderAddress": {
-                   "addressLine1": "123 Any Street",
-                   "addressLine2": "Apt 100",
-                   "city": "Newark",
-                   "country": "USA",
-                   "state": "NewJersey",
-                   "zipCode": "12345",
-                   "addressType": "PRIMARY"
-               },
-               "cardMiscellaneous": {
-                   "cardClass": "AAA00",
-                   "emv": "CONTACT",
-                   "pinVendor": "1234",
-                   "vendor": "Home Supply"
-               },
-               "cardMailStatusDetails": {
-                   "producttype": "3",
-                   "embossingFacilityShipDate": "2023-10-02",
-                   "trackingNumber": "9400100020003000400050",
-                   "carrier": "Fedex",
-                   "shipmentStatus": "Out for Delivery",
-                   "shipmentMethod": "Next DAY AIR LETTER",
-                   "expectedDeliveryDate": "2023-10-08"
-               }
-           }
-      ]
-  }
+    "orders": [
+        {
+            "nonTransToken": "WUPIL5DQTZGM3000",
+            "orderStatus": "ACTIVE",
+            "orderType": "CARD",
+            "rushType": "REGULAR",
+            "processedDate": "2022-08-03",
+            "orderId": "4974",
+            "orderDate": "2022-09-09",
+            "orderReason": "NEW",
+            "orderedBy": "Jesse Doe",
+            "memberNumber": "0",
+            "logo": "APIP",
+            "lastMaintenanceBy": "Jesse Doe",
+            "lastMaintainanceDate": "1990-08-24",
+            "lastMaintainanceTime": "12:00",
+            "cardholderOrderInfo": {
+                "nameSequenceNumber": "1",
+                "cardholderName": "Jesse Doe",
+                "personalizedEmbossingText": "Home Team",
+                "photoId": "EFGH",
+                "plasticId": "PM001",
+                "nameSuffix": "MD"
+            },
+            "orderAddress": {
+                "addressLine1": "123 Any Street",
+                "addressLine2": "Apt 100",
+                "city": "Newark",
+                "country": "USA",
+                "state": "NewJersey",
+                "zipCode": "12345",
+                "addressType": "PRIMARY"
+            },
+            "cardMiscellaneous": {
+                "cardClass": "AAA00",
+                "emv": "CONTACT",
+                "pinVendor": "1234",
+                "vendor": "Home Supply"
+            }
+        }
+    ]
+}
 ```
 
 ### Debit Order v2: Cancel using card number
@@ -6446,7 +6429,7 @@ Cancel the selected order.
       "action": "CANCEL",
       "rushType": "NONE",
       "orderType": "CARD"
-  }
+}
 ```
 
 #### Response
@@ -6460,7 +6443,7 @@ Cancel the selected order.
           "action": "CANCEL",
           "orderId": "436"
       }
-  }
+}
 ```
 
 ### Debit Order v2: Cancel using NTT
@@ -6480,7 +6463,7 @@ Cancel the selected order.
       "action": " CANCEL",
       "rushType": "NONE",
       "orderType": "CARD"
-  }
+}
 ```
 
 #### Response
@@ -6494,7 +6477,7 @@ Cancel the selected order.
           "action": "CANCEL",
           "orderId": "436"
       }
-  }
+}
 ```
 
 ### Debit Order v2: Update using card number
@@ -6515,7 +6498,7 @@ Update rush type of the selected order.
       "action": "UPDATE",
       "rushType": "NONE",
       "orderType": "CARD"
-  }
+}
 ```
 
 #### Response
