@@ -2,7 +2,7 @@
 
  Card API gives a financial institutions and cardholders a robust set of features to help manage and maintain their card information.
 
-<span style="color:#ff6600;">**Platform support:**</span> **DBE**=Debit Enhanced EPOC, **CGW**=Credit Gateway, **CSL**=Credit Select 
+<span style="color:#ff6600;">**Platform support:**</span> **DBE**=Debit Enhanced EPOC, **CSL**=Credit Select 
 
 
 <span style="color:#ff6600;">**PAN tokenization:**</span>  The primary account number (PAN) is replaced with a surrogate value called a token. is replaced with a surrogate value called a token.  and _non-transaction_ tokens (NTT). This is a security upgrade because when you no longer pass encrypted card numbers, you eliminate the risk of decryption with a key; PAN NTT has no key and is tokenized, meaning it cannot be re-identified. By using NTTs, you can reinforce customer trust in your API product suite. 
@@ -163,4 +163,3 @@ The card identifier (PAN) is required to retrieve the relevant card details.
    * **Status:** updates the card status
    * **Search:** retrieves the card status 
 To perform maintenance on the card record, the cardholder ID (PAN) is provided to read the relevant record. They system returns the required schema that contains card details. Use this schema to edit the information and sent a request to update the record.
-
