@@ -83,7 +83,15 @@
     - title: Company Overview
       link: docs/release-notes/company/company-overview.md
     - title: Company Sandbox
-      link: docs/release-notes/company/company-sandbox.md
+    sections:
+      - title: Company Accounts
+        link: docs/release-notes/company/company-accounts-sandbox.md
+      - title: Company Demographics
+        link: docs/release-notes/company/company-demographics-sandbox.md
+      - title: Company Details
+        link: docs/release-notes/company/company-details-sandbox.md
+      - title: Company Notes and Memo
+        link: docs/release-notes/company/company-notes-sandbox.md
 - sections:
   - title: Dispute
     sections:
