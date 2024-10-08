@@ -1,16 +1,20 @@
 # Test Cases
 
+<span style="color:#ff6600;">**Card API Endpoints**</span>
+
+When testing these endpoints, please use the test cases and test data from the Sandbox.
+
 ## Activations
 
 ### Credit Activate v1: Activate inactive card
 
 This case activates a card.
 
-#### Request
-
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations
+
+#### Request
 
 ```
 {
@@ -18,7 +22,7 @@ This case activates a card.
   }
 ```
 
-#### Response
+##### Response
 
 **HTTP Code:** 200 OK
 
@@ -33,11 +37,11 @@ This case activates a card.
 
 This case demonstrates when the card is inactive.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
+#### Request
 
 ```
 {
@@ -60,11 +64,11 @@ This case demonstrates when the card is inactive.
 
 This case demonstrates when the card is active.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
+#### Request
 
 ```
 {
@@ -87,11 +91,11 @@ This case demonstrates when the card is active.
 
 This case activates a debit card.
 
-#### Request
-
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations
+
+#### Request
 
 ```
 {
@@ -122,11 +126,11 @@ This case activates a debit card.
 
 This case activates a card using NTT.
 
-#### Request
-
 **HTTP Method:** PUT
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations
+
+#### Request
 
 ```
 {
@@ -157,11 +161,11 @@ This case activates a card using NTT.
 
 This case demonstrates when the debit card is inactive.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
+#### Request
 
 ```
 {
@@ -188,11 +192,11 @@ This case demonstrates when the debit card is inactive.
 
 This case demonstrates when the debit card is inactive.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
+#### Request
 
 ```
 {
@@ -219,11 +223,11 @@ This case demonstrates when the debit card is inactive.
 
 This case demonstrates when the debit card is activated.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
+#### Request
 
 ```
 {
@@ -252,11 +256,11 @@ This case demonstrates when the debit card is activated.
 
 This case demonstrates when the debit card is activated.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/activations/search
+
+#### Request
 
 ```
 {
