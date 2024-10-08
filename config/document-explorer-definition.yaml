@@ -83,7 +83,7 @@
     - title: Company Overview
       link: docs/release-notes/company/company-overview.md
     - title: Company Sandbox
-    sections:
+      sections:
       - title: Company Accounts
         link: docs/release-notes/company/company-accounts-sandbox.md
       - title: Company Demographics
