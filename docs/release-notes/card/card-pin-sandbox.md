@@ -146,11 +146,11 @@ Update the PIN Offset for the selected cardholder record.
 
 Update the PIN Offset for the selected cardholder record.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/pinOffset
+
+#### Request
 
 ```
 {
@@ -158,3 +158,7 @@ Update the PIN Offset for the selected cardholder record.
    "pinOffset": "1234"
 }
 ```
+
+#### Response
+
+**HTTP Code:** 204 No Content
