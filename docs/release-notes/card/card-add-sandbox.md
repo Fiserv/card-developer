@@ -10,11 +10,11 @@ When testing these endpoints, please use the test cases and test data from the S
 
 This case retrieves a template to add a card using an account number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
+
+#### Request
 
 ```
 {
@@ -85,11 +85,11 @@ This case retrieves a template to add a card using an account number.
 
 This case adds a new credit card without using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
+#### Request
 
 ```
 {
@@ -206,11 +206,11 @@ This case adds a new credit card without using a card number.
 
 This case retrieves template using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
+
+#### Request
 
 ```
 {
@@ -310,11 +310,11 @@ This case retrieves template using a card number.
 
 This case retrieves template using a card number and member number.
 
-#### Request
-
 **HTTP Method:**POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
+
+#### Request
 
 ```
 {
@@ -415,11 +415,11 @@ This case retrieves template using a card number and member number.
 
 This case retrieves template using a card class.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
+
+#### Request
 
 ```
 {
@@ -519,11 +519,11 @@ This case retrieves template using a card class.
 
 This case retrieves template using NTT.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/template
+
+#### Request
 
 ```
 {
@@ -623,11 +623,11 @@ This case retrieves template using NTT.
 
 This case adds a new debit card using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
+#### Request
 
 ```
 {
@@ -796,11 +796,11 @@ This case adds a new debit card using a card number.
 
 This case adds a new debit card without using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
+#### Request
 
 ```
 {
@@ -969,11 +969,11 @@ This case adds a new debit card without using a card number.
 
 This case adds a new debit card without using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
+#### Request
 
 ```
 {
@@ -1147,11 +1147,11 @@ This case adds a new debit card without using a card number.
 
 This case adds a new debit card without using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
+#### Request
 
 ```
 {
@@ -1326,11 +1326,11 @@ This case adds a new debit card without using a card number.
 
 This case adds a new debit card without using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v2/cards/card
+
+#### Request
 
 ```
 {
@@ -1502,11 +1502,11 @@ This case adds a new debit card without using a card number.
 
 This case retrieves an NTT using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
+#### Request
 
 ```
 {
@@ -1529,11 +1529,11 @@ This case retrieves an NTT using a card number.
 
 This case retrieves an NTT using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
+#### Request
 
 ```
 {
@@ -1557,11 +1557,11 @@ This case retrieves an NTT using a card number.
 
 This case retrieves an NTT using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
+#### Request
 
 ```
 {
@@ -1585,11 +1585,11 @@ This case retrieves an NTT using a card number.
 
 This case retrieves a card number using NTT.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
+#### Request
 
 ```
 {
@@ -1612,11 +1612,11 @@ This case retrieves a card number using NTT.
 
 This case retrieves an NTT using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt/search
+
+#### Request
 
 ```
 {
@@ -1639,11 +1639,11 @@ This case retrieves an NTT using a card number.
 
 This case generates an NTT using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt
+
+#### Request
 
 ```
 {
@@ -1667,11 +1667,11 @@ This case generates an NTT using a card number.
 
 This case generates an NTT using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt
+
+#### Request
 
 ```
 {
@@ -1696,11 +1696,11 @@ This case generates an NTT using a card number.
 
 This case generates an NTT using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt
+
+#### Request
 
 ```
 {
@@ -1725,11 +1725,11 @@ This case generates an NTT using a card number.
 
 This case generates an NTT using a card number.
 
-#### Request
-
 **HTTP Method:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/cards/v1/cards/ntt
+
+#### Request
 
 ```
 {
