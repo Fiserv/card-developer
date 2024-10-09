@@ -165,8 +165,17 @@
     sections:
     - title: Fraud Overview
       link: docs/release-notes/fraud/fraud_overview.md
-    - title: Fraud Sandbox
-      link: docs/release-notes/fraud/new-fraud-sandbox.md
+      sections:
+      - title: Fraud Alerts
+        link: docs/release-notes/fraud/fraud-alerts-sandbox.md
+      - title: Fraud Case
+        link: docs/release-notes/fraud/fraud-case-sandbox.md
+      - title: Fraud Exemption
+        link: docs/release-notes/fraud/fraud-exemption-sandbox.md
+      - title: Fraud Travel Exemption
+        link: docs/release-notes/fraud/fraud-travel-exemptions-sandbox.md
+      - title: Fraud Verification
+        link: docs/release-notes/fraud/fraud-verification-sandbox.md
 - sections:
   - title: Payments
     sections:
