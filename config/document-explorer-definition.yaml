@@ -165,6 +165,7 @@
     sections:
     - title: Fraud Overview
       link: docs/release-notes/fraud/fraud_overview.md
+    - title: Fraud Sandbox
       sections:
       - title: Fraud Alerts
         link: docs/release-notes/fraud/fraud-alerts-sandbox.md
@@ -182,7 +183,13 @@
     - title: Payment Overview
       link: docs/release-notes/payments/payments-overview.md
     - title: Payment Sandbox
-      link: docs/release-notes/payments/payments-sandbox.md
+      sections:
+      - title: Payment Search
+        link: docs/release-notes/payments/payments-search-sandbox.md
+      - title: Payment Actions
+        link: docs/release-notes/payments/payment-actions-sandbox.md
+      - title: Payment Hold
+        link: docs/release-notes/payments/payment-hold-sandbox.md
 - sections:
   - title: Reward
     sections:
