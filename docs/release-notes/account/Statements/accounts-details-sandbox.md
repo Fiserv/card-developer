@@ -4,13 +4,16 @@
 
 ## Details
 
-### Search account with summary filter
+### Account Details v1: Search account information using summary filter
+
+This case retrieves the account details using summary filter.
 
 #### Request
 
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/accounts/v1/accounts/search?filter=summary
+
 
 ``` 
 {
@@ -29,7 +32,9 @@
     "accountStatus": "NORMAL"
 }
 ``` 
-### Search account with detail filter
+### Account Details v1: Search account details using detail filter
+
+This case retrieves the account information using detail filter.
 
 #### Request
 
