@@ -48,7 +48,7 @@ This case retrieves the limits for the selected account number.
 }
 ```
 
-## Account Limits v1: Update credit limit
+### Account Limits v1: Update credit limit
 
 This case updates the credit limit of the account.
 
