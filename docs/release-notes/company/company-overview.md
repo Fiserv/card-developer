@@ -2,7 +2,7 @@
 
 Business account processing links  employees of a single company together for authorizations, billing, and reporting purposes.
 
-**<span style="color:#ff6600;">Platform support</span>**: **CSL**=Credit Select 
+**<span style="color:#ff6600;">Platform Support</span>**: **CSL**=Credit Select 
 
 <style>
 .col-md-4 ul li {
