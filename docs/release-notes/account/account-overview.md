@@ -2,7 +2,7 @@
 
 Account API provides financial institutions and account holders API features to manage and maintain their account information through various touchpoints.
 
-**<span style="color:#ff6600;">Platform support</span>**: **CSL**=Credit Select 
+**<span style="color:#ff6600;">Platform Support</span>**: **CSL**=Credit Select 
 
  <h3 style="text-align: center">Features</h3>
 
