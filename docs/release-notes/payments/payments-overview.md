@@ -2,7 +2,7 @@
 
 Payment API gives financial institutions and account holders API features to manage and maintain their payment information through various touchpoints.
 
-**<span style="color:#ff6600;">Platform support</span>**: **CSL**=Credit Select 
+**<span style="color:#ff6600;">Platform Support</span>**: **CSL**=Credit Select 
 
 <style>
 .col-md-4 ul li {
