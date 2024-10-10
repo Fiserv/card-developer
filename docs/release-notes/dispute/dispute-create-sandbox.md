@@ -3,51 +3,58 @@
 <span style="color:#ff6600;">**Dispute API Endpoints**</span>
 
 ## Dispute create
-**Version 3**
 
-### Create claim V3: Single transaction ID
-Creates a dispute case for given transactions of a particular card number.
+### Dispute Create Claim V2- Single TransactionID
+
+Creates a dispute case for given transactions of a particular card number
 
 #### Request
+
 **HTTP METHOD:** POST
 
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v3/cases/claim
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v2/cases/claim
 
 ```
 {
   "cardNumber": "4000200030004000",
+  "errorBehaviour": "ABORT_ON_FIRST_NO_ROLLBACK",
+  "issuerOrAcquirer": "Issuer",
   "listOfTransactions": [
     {
       "transactionId": "{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200526\"}"
     }
   ]
-}
+
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
 
 ```
 {
   "caseId": "999999999",
-  "referenceId": "serv.net:___212344MBVKXK4K:0103b250-a424-4cd7-bfaa-807f0ff79d23",
   "caseItemIds": [
-    "transactionID[{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200526\"}]:caseItemId[999999999]"
+    "999999999"
   ]
 }
 ```
 
-### Create claim V3: Multiple transaction IDs
-Creates a dispute case for given transactions of a particular card number.
+### Dispute Create Claim V2- Multi TransactionID
+
+Creates a dispute case for given transactions of a particular card number
 
 #### Request
+
 **HTTP METHOD:** POST
 
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v3/cases/claim
-
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v2/cases/claim
 
 ```
 {
   "cardNumber": "4000200030004000",
+  "errorBehaviour": "ABORT_ON_FIRST_NO_ROLLBACK",
+  "issuerOrAcquirer": "Issuer",
   "listOfTransactions": [
     {
       "transactionId": "{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200526\"}"
@@ -58,85 +65,93 @@ Creates a dispute case for given transactions of a particular card number.
   ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 200 OK
 
 ```
 {
-    "caseId": "999999999",
-    "referenceId": "serv.net:___212344MBVKXK4K:0103b250-a424-4cd7-bfaa-807f0ff79d23",
-    "caseItemIds": [
-        "transactionID[{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200526\"}]:caseItemId[999999999]",
-        "transactionID[{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200527\"}]:caseItemId[999999998]"
-    ]
+  "caseId": "999999999",
+  "caseItemIds": [
+    "999999999",
+    "999999998"
+  ]
 }
 ```
-### Create claim V3: Partial scenario
-Creates a dispute case for given transactions of a particular card number.
+
+### Dispute Create Claim V2- Partial Scenario
+
+Creates a dispute case for given transactions of a particular card number
 
 #### Request
+
 **HTTP METHOD:** POST
 
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v3/cases/claim
-
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v2/cases/claim
 
 ```
 {
-    "cardNumber": "4000200030004000",
-    "listOfTransactions": [
-        {
-            "transactionId": "{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200526\"}"
-        },
-        {
-            "transactionId": "{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200527\"}"
-        },
-        {
-            "transactionId": "{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200528\"}"
-        }
-    ]
+  "cardNumber": "4000200030004000",
+  "errorBehaviour": "ABORT_ON_FIRST_NO_ROLLBACK",
+  "issuerOrAcquirer": "Issuer",
+  "listOfTransactions": [
+    {
+      "transactionId": "{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200526\"}"
+    },
+    {
+      "transactionId": "{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200527\"}"
+    },
+    {
+      "transactionId": "{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200528\"}"
+    }
+  ]
 }
 ```
+
 #### Response
+
 **HTTP Code:** 206 Partial Successful
 
 ```
 {
-     "caseId": "999999999",
-    "referenceId": "serv.net:___212344MBVKXK4K:0103b250-a424-4cd7-bfaa-807f0ff79d23",
+    "caseId": "999999999",
     "caseItemIds": [
-        "transactionID[{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200526\"}]:caseItemId[999999999]",
-        "transactionID[{\"lifeCycleKey\":\"12323301232312331\",\"activeKey\":\"0210\",\"duID\":\"11348539120200527\"}]:caseItemId[999999998]"
+        "999999999",
+        "999999998"
     ],
     "warningInfo": {
-        "message": "Draft caseitem could not be created for some of the transactionId(s)",
+        "message": "Draft case could not be created for some of the transactionIds",
         "warningDetails": [
             {
-                "code": "321",
-                "detail": "INFO: [3] transactionId - That transaction is already in use by 999999997.",
-                "spanId": "b4a6e572-dbf3-4edb-9cb4-ea295d504aa2",
-                "timestamp": "2023-01-09T13:40:43.087Z"
+                "code": "325",
+                "detail": "INFO: [3] transactionId - That transaction is already in use by 999999997",
+                "spanId": "219b5ea63f7a53e6",
+                "timestamp": "2024-05-21T07:43:41.259700487"
             }
         ]
     },
-    "instance": "/api/basepath",
+    "instance": "/cs/dispute/v2/cases/claim",
     "status": "206"
 }
 ```
 
- 
-### Questionnaire withdrawal nonfraud
-Submits a questionnaire for a case item. Questionnaires belongs in the Withdrawal-Nonfraud Flow.
+### Dispute Submit Questionnaire- Withdrawal- Non Fraud
+
+Submits the questionnaire for a case item. Questionnaires belongs to Withdrawal- Non Fraud Flow
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v1/cases/999999999/questionnaire
+
 ```
 {
   "caseItemIds": [
     "999999999"
   ],
-    "questionnaire": [
+  "questionnaire": [
         {
             "questionName": "QuestVar_CaseItem.Unauth_Participation",
             "questionValue": "Yes"
@@ -165,15 +180,17 @@ Submits a questionnaire for a case item. Questionnaires belongs in the Withdrawa
             "questionName": "QuestVar_CaseItem.OralNotificationDate",
             "questionValue": "04/10/2023"
         }
-    ]
+  ]
 }
-``` 
+```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "caseId": "999999999",
-  "referenceId": "serv.net:___212344MBVKXK4K:0103b250-a424-4cd7-bfaa-807f0ff79d23",
   "caseItemDetails": [
     {
       "caseItemType": "DISPUTE",
@@ -182,28 +199,24 @@ Submits a questionnaire for a case item. Questionnaires belongs in the Withdrawa
       "caseItemStateCodeDescription": "QUESTIONNAIRE_COMPLETE",
       "reasonCode": "105",
       "reasonCodeDescription": "CHARGED MORE THAN ONCE"
-        }
-    ]
+    }
+  ]
 }
 ```
-###  Questionnaire deposit nonfraud: Multi caseItem
-Submits the questionnaire for a case item. Questionnaires belongs to Deposit- Nonfraud Flow for Multi-case Items.
+
+### Dispute Submit Questionnaire- Deposit- Non Fraud- Multi CaseItem
+
+Submits the questionnaire for a case item. Questionnaires belongs to Deposit- Non Fraud Flow for Multi Case Items
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v1/cases/999999999/questionnaire
+
 ```
 {
-   "caseItemIds": [
-        "999999999"
-        "999999998"
-    ],
-    "questionnaire": [
-        {
-            "questionName": "QuestVar_CaseItem.Unauth_Participation",
-            "questionValue": "Yes"
-        }    "caseItemIds": [
+    "caseItemIds": [
         "999999999"
         "999999998"
     ],
@@ -246,13 +259,15 @@ Submits the questionnaire for a case item. Questionnaires belongs to Deposit- No
         }
     ]
 }
-``` 
+```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
- "caseId": "999999999",
-  "referenceId": "serv.net:___212344MBVKXK4K:0103b250-a424-4cd7-bfaa-807f0ff79d23",
+  "caseId": "999999999",
   "caseItemDetails": [
     {
       "caseItemType": "DISPUTE",
@@ -269,18 +284,23 @@ Submits the questionnaire for a case item. Questionnaires belongs to Deposit- No
       "caseItemStateCodeDescription": "QUESTIONNAIRE_COMPLETE",
       "reasonCode": "101",
       "reasonCodeDescription": "DEPOSIT NOT POSTED"
-        }
-    ]
+    }
+  ]
 }
 ```
-### Questionnaire payment merchant: Nonfraud
-Submits the questionnaire for a case item. Questionnaires belongs to Withdrawal- Nonfraud Flow.
+
+### Dispute Submit Questionnaire- Payment to Merchant- Non Fraud
+
+Submits the questionnaire for a case item. Questionnaires belongs to Withdrawal- Non Fraud Flow
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v1/cases/999999999/questionnaire
+
 ```
+{
     "caseItemIds": [
         "999999999"
     ],
@@ -355,13 +375,15 @@ Submits the questionnaire for a case item. Questionnaires belongs to Withdrawal-
         }
     ]
 }
-``` 
+```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
- "caseId": "999999999",
- "referenceId": "serv.net:___212344MBVKXK4K:0103b250-a424-4cd7-bfaa-807f0ff79d23",
+  "caseId": "999999999",
   "caseItemDetails": [
     {
       "caseItemType": "DISPUTE",
@@ -370,19 +392,21 @@ Submits the questionnaire for a case item. Questionnaires belongs to Withdrawal-
       "caseItemStateCodeDescription": "QUESTIONNAIRE_COMPLETE",
       "reasonCode": "137",
       "reasonCodeDescription": "CHARGED INCORRECT AMOUNT"
-        }
-    ]
+    }
+  ]
 }
 ```
 
+### Dispute Submit Questionnaire- Fraud
 
-### Questionnaire fraud
-Submits a questionnaire for a case item. Questionnaires belongs in the Fraud Flow.
+Submits the questionnaire for a case item. Questionnaires belongs to Fraud Flow
 
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v1/cases/999999999/questionnaire
+
 ```
 {
     "caseItemIds": [
@@ -435,13 +459,15 @@ Submits a questionnaire for a case item. Questionnaires belongs in the Fraud Flo
         }
     ]
 }
-``` 
+```
+
 #### Response
+
 **HTTP Code:** 200 OK
+
 ```
 {
   "caseId": "999999999",
-  "referenceId": "serv.net:___212344MBVKXK4K:0103b250-a424-4cd7-bfaa-807f0ff79d23",
   "caseItemDetails": [
     {
       "caseItemType": "FRAUD",
@@ -450,34 +476,36 @@ Submits a questionnaire for a case item. Questionnaires belongs in the Fraud Flo
       "caseItemStateCodeDescription": "QUESTIONNAIRE_COMPLETE",
       "reasonCode": "114",
       "reasonCodeDescription": "LOST"
-        }
-    ]
+    }
+  ]
 }
 ```
 
-### Finalize case: Single case item
-Finalize  intake for a case item.
+### Dispute Finalize case - Single Case Item
+
+Finalize the case intake for a case.
 
 #### Request
+
 **HTTP METHOD:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v1/cases/999999999/finalize
 
 ```
 {
-   "caseItemIds": [
+  "caseItemIds": [
     "999999999"
   ]
 }
 ```
- 
+
 #### Response
+
 **HTTP Code:** 200 OK
 
 ```
 {
   "caseId": "999999999",
-  "referenceId": "serv.net:___212344MBVKXK4K:0103b250-a424-4cd7-bfaa-807f0ff79d23",
   "caseItemDetails": [
     {
       "caseItemId": "999999999",
@@ -488,31 +516,32 @@ Finalize  intake for a case item.
 }
 ```
 
+### Dispute Finalize case - Multi Case Item
 
-### Finalize case: Multi case item
-Finalize intake for a  case with multple caseItemIds.
+Finalize the case intake for a case.
 
 #### Request
+
 **HTTP METHOD:** PATCH
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/dispute/v1/cases/999999999/finalize
 
 ```
 {
-   "caseItemIds": [
+  "caseItemIds": [
     "999999999",
     "999999998"
   ]
 }
 ```
- 
+
 #### Response
+
 **HTTP Code:** 200 OK
 
 ```
 {
-"caseId": "999999999",
- "referenceId": "serv.net:___212344MBVKXK4K:0103b250-a424-4cd7-bfaa-807f0ff79d23",
+  "caseId": "999999999",
   "caseItemDetails": [
     {
       "caseItemId": "999999999",
