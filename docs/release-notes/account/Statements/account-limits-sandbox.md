@@ -1,12 +1,15 @@
 # Test Cases
 
-##Limits
+## Limits
 
 <span style="color:#ff6600;">**Account API endpoints**</span>
 
-### Limits search
-Search of account limits.
+### Account Limits v1: Search limits using account number
+
+This case retrieves the limits for the selected account number.
+
 #### Request
+
 **HTTP METHOD:** POST
 
 **Target URL:** https://card-sandbox.api.fiservapps.com/cs/accounts/v1/accounts/limits/search
@@ -18,9 +21,11 @@ Search of account limits.
 }
 ```
 #### Response
+
 **HTTP code:** 200 OK
+
 ```
- {
+{
 
    
     "currentBalanceAmount": "6457.72",
@@ -43,62 +48,66 @@ Search of account limits.
 }
 ```
 
-## Limits update
+## Account Limits v1: Update credit limit
 
-Update of account limits.
-
-### Update credit limit
+This case updates the credit limit of the account.
 
 #### Request
-Update credit limit.
+
 **HTTP METHOD:** PATCH
 
-**Target URL:** https://card-sandbox.api.fiservapps.com /cs/v1/limits
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/v1/limits
 ```
 {
 
     "accountNumber": "123456789",
-	 "creditLimit": 8000
+    "creditLimit": 8000
 
 } 
 ```
 #### Response
 **HTTP code:** 204 No Content
 
- 
+### Account Limits v1: Update cash limit
 
-### Update cash limit
+This case updates the cash limit of the account.
 
 #### Request
+
 **HTTP METHOD:** PATCH
 
-**Target URL:** https://card-sandbox.api.fiservapps.com /cs/v1/limits
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/v1/limits
 ```
 {
 
     "accountNumber": "123456789",
-	"cashLimit": {
+	"cashLimit": 
+    {
         "limitType": "AMOUNT",
         "amount": 5000
     }
 
-} 
+}
 ```
 #### Response
+
 **HTTP code:** 204 No Content
 
-### Update Temporary-Credit Limit
+### Account Limits v1: Update temporary credit limit
+
+This case updates the temporary credit limit of the account.
 
 #### Request
-**Update temporary-credit limit**
+
 **HTTP METHOD:** PATCH
 
-**Target URL:** https://card-sandbox.api.fiservapps.com /cs/v1/limits
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/v1/limits
 ```
 {
 
     "accountNumber": "123456789",
-	  "temporaryCreditLimit": {
+	  "temporaryCreditLimit": 
+        {
 		"setLimit": true,
 		"amount": 5000,
 		"endDate": "2024-06-30"
@@ -107,23 +116,28 @@ Update credit limit.
 }
 ```
 #### Response
+
 **HTTP code:** 204 No Content
 
-### Remove temporary-credit limit
+### Account Limits v1: Remove temporary credit limit
+
+This case removes the temporary credit limit of the account.
 
 #### Request
-**Remove temporary-credit limit**
+
 **HTTP METHOD:** PATCH
 
-**Target URL:** https://card-sandbox.api.fiservapps.com /cs/v1/limits
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/v1/limits
 
 {
 
     "accountNumber": "123456789",
-	  "temporaryCreditLimit": {
+	  "temporaryCreditLimit": 
+        {
 		"setLimit": false
 	}
 
-} 
+}
 #### Response
+
 **HTTP code:** 204 No Content
