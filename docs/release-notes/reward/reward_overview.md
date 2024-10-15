@@ -7,7 +7,7 @@ uChoose Rewards APIs gives cardholders added value by letting them login to acce
 * earn additional points 
 * view point balances 
 
-<span style="color:#ff6600;">**Platform Support</span>: DBE**\=Debit Enhanced EPOC, **CGW**\=Credit Gateway, **CSL**\=Credit Select
+<span style="color:#ff6600;">**Platform Support</span>: DBE**\=Debit Enhanced EPOC, **CSL**\=Credit Select
  <h3 style="text-align: center">Features</h3>
 <style>
 .col-md-4 ul li {
