@@ -1,6 +1,8 @@
 # Company overview
 
-Business account processing links  employees of a single company together for authorizations, billing, and reporting purposes. 
+Business account processing links  employees of a single company together for authorizations, billing, and reporting purposes.
+
+**<span style="color:#ff6600;">Platform Support</span>**: **CSL**=Credit Select 
 
 <style>
 .col-md-4 ul li {
@@ -53,4 +55,3 @@ Retrieve and add, update and delete company demographic details.
   * The system has access to the subaccounts to verify all subaccounts have the correct billing cycle codes.
 
 **<span style="color:#ff6600;">Individual:</span>** Individual accounts receive a separate statement bill and the company or individual is responsible for payment.
-
