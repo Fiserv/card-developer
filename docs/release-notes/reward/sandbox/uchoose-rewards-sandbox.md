@@ -2,9 +2,9 @@
 
 <span style="color:#ff6600;">**Reward API endpoints**</span>
 
-## UChoose Rewards
+## uChoose Rewards
 
-### Uchoose Rewards v1: Retrieve SSO Link
+### uChoose Rewards v1: Retrieve SSO Link
 
 Retrieve SSO link for UChoose rewards.
 
@@ -39,7 +39,7 @@ Retrieve SSO link for UChoose rewards.
 }
 ```
 
-### Uchoose Rewards v1: Add cardholder rewards points
+### uChoose Rewards v1: Add cardholder rewards points
 
 Add reward points for cardholder.
 
@@ -89,7 +89,7 @@ Add reward points for cardholder.
 }
 ```
 
-### Uchoose Rewards v1: Redeem cardholder rewards points
+### uChoose Rewards v1: Redeem cardholder rewards points
 
 Redeem reward points for cardholder.
 
@@ -139,7 +139,7 @@ Redeem reward points for cardholder.
 }
 ```
 
-### Uchoose Rewards v1: Retrieve cardholder rewards points
+### uChoose Rewards v1: Retrieve cardholder rewards points
 
 Retrieve reward points for cardholder.
 
