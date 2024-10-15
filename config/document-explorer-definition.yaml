@@ -196,7 +196,11 @@
     - title: uChoose® Overview
       link: docs/release-notes/reward/reward_overview.md
     - title: Reward Sandbox
-      link: docs/release-notes/reward/reward_sandbox.md
+      sections:
+      - title: Rewards Offers
+        link: docs/release-notes/reward/sandbox/rewards-offers-sandbox.md
+      - title: uChoose Rewards
+        link: docs/release-notes/reward/sandbox/uchoose-rewards-sandbox.md
 - sections:
   - title: Webhook
     sections:
