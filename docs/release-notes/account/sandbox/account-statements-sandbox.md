@@ -93,7 +93,7 @@ This case retrieves the account statements using detail filter.
 }
 ```
 
-## Accounts Statements v1: Search account statement using summary filter
+### Accounts Statements v1: Search account statement using summary filter
 
 This case retrieves the account statements using summary filter.
 
