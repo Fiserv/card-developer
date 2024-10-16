@@ -202,39 +202,6 @@
       - title: uChoose Rewards
         link: docs/release-notes/reward/sandbox/uchoose-rewards-sandbox.md
 - sections:
-  - title: Webhook
-    sections:
-    - title: Overview
-      link: docs/release-notes/webhook/webhooks-Overview.md
-    - title: Card activation
-      link: docs/release-notes/webhook/cardactivation-1.0.0.md
-    - title: Card add
-      link: docs/release-notes/webhook/cardadd-1.0.0.md
-    - title: Card address
-      link: docs/release-notes/webhook/cardaddress-1.0.0.md
-    - title: Card contact info
-      link: docs/release-notes/webhook/cardcontactinfo-1.0.0.md
-    - title: Card dispute
-      link: docs/release-notes/webhook/carddispute-1.0.0.md
-    - title: Card expiration date
-      link: docs/release-notes/webhook/cardexpirationdate-1.0.0.md
-    - title: Card holder info
-      link: docs/release-notes/webhook/cardholderinfo-1.0.0.md
-    - title: Card limits
-      link: docs/release-notes/webhook/cardlimits-1.0.0.md
-    - title: Card pin offset
-      link: docs/release-notes/webhook/cardpinoffset-1.0.0.md
-    - title: Card reissue
-      link: docs/release-notes/webhook/cardreissue-1.0.0.md
-    - title: Card security info
-      link: docs/release-notes/webhook/cardsecurityinfo-1.0.0.md
-    - title: Card shipping
-      link: docs/release-notes/webhook/cardshipping-1.0.0.md
-    - title: Card status
-      link: docs/release-notes/webhook/cardstatus-1.0.0.md
-    - title: Webhook prior card logic
-      link: docs/release-notes/webhook/priorcardlogic-1.0.0.md
-- sections:
   - title: Release Notes
     sections:
     - title: Account
@@ -251,8 +218,6 @@
       link: docs/release-notes/payments/payment-release-note.md
     - title: Reward
       link: docs/release-notes/reward/reward-release-note.md
-    - title: Webhook
-      link: docs/release-notes/webhook/webhook-release-note.md
 - sections:
   - title: FAQ  
     link: docs/faq/faq.md
