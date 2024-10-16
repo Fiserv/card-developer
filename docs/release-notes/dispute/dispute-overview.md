@@ -4,7 +4,7 @@ Dispute API gives users a way to manage dispute cases for multiple or a single t
 
  
 
-**<span style="color:#ff6600;">Availability:</span>** Debit Enhanced EPOC, Credit Gateway
+**<span style="color:#ff6600;">Platform Support:</span>** **DBE**=Debit Enhanced EPOC
 
  <h3 style="text-align: center">Features</h3>
 
