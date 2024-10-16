@@ -178,7 +178,7 @@
       - title: Fraud Verification
         link: docs/release-notes/fraud/sandbox/fraud-verification-sandbox.md
 - sections:
-  - title: Payments
+  - title: Payment
     sections:
     - title: Payment Overview
       link: docs/release-notes/payments/payments-overview.md

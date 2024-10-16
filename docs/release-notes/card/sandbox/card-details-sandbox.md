@@ -276,9 +276,9 @@ This case retrieves the additional information using NTT.
   }
 ```
 
-### Debit Details v3: Update ATM preferences using NTT
+### Debit Details v3: Update ATM preferences using card number
 
-This case updates the ATM Preferences using a NTT.
+This case updates the ATM Preferences using a card number.
 
 #### Request
 
@@ -303,6 +303,8 @@ This case updates the ATM Preferences using a NTT.
 **HTTP Code:** 204 No Content
 
 ### Debit Details v3: Update ATM preferences using NTT
+
+This case updates the ATM Preferences using a NTT.
 
 #### Request
 

@@ -2,7 +2,7 @@
 
 Fraud API gives financial institutions and cardholders a way to manage, mitigate fraud losses and create travel exemptions.
 
-<span style="color:#ff6600;">**Platform Support:</span> DBE**\=Debit Enhanced EPOC, **CGW**\=Credit Gateway, **CSL**\=Credit Select
+<span style="color:#ff6600;">**Platform Support:</span> DBE**\=Debit Enhanced EPOC, **CSL**\=Credit Select
 
  <h3 style="text-align: center">Features</h3>
 
@@ -15,12 +15,12 @@ Fraud API gives financial institutions and cardholders a way to manage, mitigat
 <div class="row" style="text-align:center;" markdown=1>
 <div class="col-md-4" markdown=1>
 
-*   ![](https://card.developer.fiserv.com/sites/default/files/Alert_0.png)
-    
-    #### Cardholder Alerts
-    
-    Give cardholders security functionality to confirm potential fraud, unblock their card, and increase retention.
-    
+- ![](https://card.developer.fiserv.com/sites/default/files/Alert_0.png)
+
+  #### Cardholder Alerts
+
+  Give cardholders security functionality to confirm potential fraud, unblock their card, and increase retention.
+
 </div>
 <div class="col-md-4" markdown=1>
     
@@ -41,31 +41,33 @@ Fraud API gives financial institutions and cardholders a way to manage, mitigat
     
 </div>
 </div>
-    
 
-<span style="color:#ff6600;">**Verification**</span> to request a one-time-passcode (OTP) verification for a cardholder via text, voice or email. 
+<span style="color:#ff6600;">**Verification**</span> feature provides digital providers the ability to request an one-time-passcode (OTP) verification for a cardholder via Text, Voice or Email. **Note:** _OTP expires in 10 minutes_
 
-*   **Search Verification**: retrieves media addresses and methods that can be used for cardholder verification. Possible methods are Voice, Text and Email. Media addresses are semi-masked for cardholder's confidentiality.
-*   **OTP Verification:** generates an OTP for Cardholder verification. 
-*   **Validate Verification:** validates an OTP sent to a specified media address and method.
+- **Search Verification**: retrieves media addresses and methods that can be used for cardholder verification. Possible methods are Voice, Text and Email. Media addresses are semi-masked for cardholder's confidentiality.
+- **OTP Verification:** generates an OTP for Cardholder verification.
+- **Validate Verification:** validates an OTP sent to a specified media address and method.
 
-                           ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA3UAAAACCAMAAADIHwX2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJUExURQAAAKWlpaWlpaK/EAwAAAACdFJOUwCfFiND7QAAAAlwSFlzAAAXEQAAFxEByibzPwAAABxJREFUOE9jYBoFo2AU0BMwMozmulEwCugLGBkA2vsNz2Gb0lUAAAAASUVORK5CYII=)
+![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA3UAAAACCAMAAADIHwX2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJUExURQAAAKWlpaWlpaK/EAwAAAACdFJOUwCfFiND7QAAAAlwSFlzAAAXEQAAFxEByibzPwAAABxJREFUOE9jYBoFo2AU0BMwMozmulEwCugLGBkA2vsNz2Gb0lUAAAAASUVORK5CYII=)
 
 <span style="color:#ff6600;">**Fraud Alert API**</span> feature provides integration partners the ability to receive alerts for potential fraudulent transactions, retrieve case data for fraudulent cases, and notify Fiserv of the results of an alert notification.
 
-*   **Search Case**: retrieve information for fraud cases from Fiserv.
-*   **Alert Outcome:** notify Fiserv of updates to cases under review. Fiserv returns a response telling if the request is accepted or rejected and why.
-*   **Case Close**: notify Fiserv of a case for potential fraud being closed on the vendor platform.
+- **Search Case**: retrieve information for fraud cases from Fiserv.
+- **Alert Outcome:** notify Fiserv of updates to cases under review. Fiserv returns a response telling if the request is accepted or rejected and why.
+- **Case Close**: notify Fiserv of a case for potential fraud being closed on the vendor platform.
 
-<span style="color:#ff6600;">**Travel Exemptions API**</span> feature creates a collection of travel exemptions for a specific card number. Cardholder updates are captured and used by other web services with transaction authorization rules, reducing false declines. 
+<span style="color:#ff6600;">**Travel Exemptions API**</span> feature creates a collection of travel exemptions for a specific card number. Cardholder updates are captured and used by other web services with transaction authorization rules, reducing false declines.
 
-*   **Search Exemptions:** obtain information of existing travel exemptions for the specified card number.
-*   **Add Exemptions:** add travel exemptions for the requested primary account number (PAN), up to the maximum of two lists. Cardholders can make exemptions by state or country.
-*   **Update Exemptions:** update existing travel exemptions for the specified PAN.
-*   **Expire Exemptions:** terminate and replace existing travel exemptions and create a new travel exemptions list.
+- **Search Exemptions:** obtain information of existing travel exemptions for the specified card number.
+- **Add Exemptions:** add travel exemptions for the specified primary account number (PAN), up to the maximum of two lists. Cardholders can make exemptions by state or country.
+- **Update Exemptions:** update existing travel exemptions for the specified PAN.
+- **Expire Exemptions:** terminate and replace existing travel exemptions and create a new travel exemptions list.
 
+<span style="color:#ff6600;">**Fraud Case**</span> feature manages a case by way of retrieving detailed case information and viewing case comments.
 
-<span style="color:#ff6600;">**Update Fraud Case Details**</span> feature manages a case by way of retrieving detailed case information and viewing case comments.
+- **Details and History:** retrieve details and history related to fraud case using case number.
+- **Case Rules:** retrieve specified rules associated to a case.
+- **Search and Update:** search based on request criteria and manage any updates associated with the case.
 
 ### FAQs
 
@@ -79,7 +81,7 @@ Design of the consumer or internal user interface is outside of the scope of Tra
 
 #### Is there a unique error code the Travel Exemption feature detects a request to add a country in the financial institution’s exclusion list?
 
-Yes. The unique code for this scenario WS205.This is different than when a state or country validation can’t occur (e.g. CA for CAN) whose code is WS204.  
+Yes. The unique code for this scenario WS205.This is different than when a state or country validation can’t occur (e.g. CA for CAN) whose code is WS204.
 
 #### What is the Fraud Alert feature?
 
@@ -99,11 +101,11 @@ If a client is signed up for ARES, it executes within minutes. Similar to existi
 
 #### What is the Travel Exemptions feature?
 
-This is a RESTful message that allows an entity outside of the CWSi card management system to be able to update the cardholder record regarding state and country exemptions.  This will require coding to specification and completing a certifications process as well as interfacing the API to the user interface (for example:  digital app or online banking service).  
+This is a RESTful message that allows an entity outside of the CWSi card management system to be able to update the cardholder record regarding state and country exemptions.  This will require coding to specification and completing a certifications process as well as interfacing the API to the user interface (for example:  digital app or online banking service).
 
 #### How does the Travel Exemptions feature work?
 
-Updates will need to be made to the system you want to integrate so that your cardholder or internal staff can enter the necessary data.  That system sends an initial “getTrvlExemptionsList” so that current cardholder record information can be displayed.  Fiserv finds the cardholder’s record and sends all current state and country exemptions along with any location exclusions where you have indicated you don’t want automated exemptions configured.  The cardholder or internal staff make the changes and a follow up message (add, update or expire) is sent to Fiserv.  Fiserv reviews the information and sends back the response (success or error message).   
+Updates will need to be made to the system you want to integrate so that your cardholder or internal staff can enter the necessary data.  That system sends an initial “getTrvlExemptionsList” so that current cardholder record information can be displayed.  Fiserv finds the cardholder’s record and sends all current state and country exemptions along with any location exclusions where you have indicated you don’t want automated exemptions configured.  The cardholder or internal staff make the changes and a follow up message (add, update or expire) is sent to Fiserv.  Fiserv reviews the information and sends back the response (success or error message).
 
 #### What other risk services does my financial institution require prior to consuming the Travel Exemptions feature?
 
@@ -111,23 +113,23 @@ You need to utilize at least one of the following risk rule tools – TranBlocke
 
 #### What are the benefits of the Travel Exemptions feature to the financial institution and the cardholder?
 
-This feature offers the ability to integrate from your own applications into to the Fiserv risk systems in real-time.  It gives you flexibility to have your cardholders to self-service through existing tools they know. 
+This feature offers the ability to integrate from your own applications into to the Fiserv risk systems in real-time.  It gives you flexibility to have your cardholders to self-service through existing tools they know.
 
 #### Does the Travel Exemptions feature allow the cardholder to enter future travel plans?
 
-Yes, each cardholder can have two exemptions configured each containing up to 15 locations (states and/or countries).  Each exemption has start and end dates and times.   
+Yes, each cardholder can have two exemptions configured each containing up to 15 locations (states and/or countries).  Each exemption has start and end dates and times.
 
 #### Can different start and stop dates be set for different countries with the Travel Exemptions feature? For instance, if someone is traveling to five different countries, but to one country per week?
 
-No, exemptions are maintained by group; the group has its own start and end dates.  Each group can contain up to 15 locations (countries and/or states). 
+No, exemptions are maintained by group; the group has its own start and end dates.  Each group can contain up to 15 locations (countries and/or states).
 
 #### What list of countries should be displayed in the internal system that feeds the Travel Exemptions feature?
 
-A standard ISO country list can be used, the API requires 3-character country values and 2-character state values.  You will need to decide how you want to work with your exclusion list.  Some people don’t display these options and others choose to simply let the error message return and address it then. 
+A standard ISO country list can be used, the API requires 3-character country values and 2-character state values.  You will need to decide how you want to work with your exclusion list.  Some people don’t display these options and others choose to simply let the error message return and address it then.
 
 #### With the Travel Exemptions feature, how are exclusion groups created?
 
-This is done within the card management system of Debit Processing: Client CentralSM.  A maximum of two exclusion groups can be created.  A maximum of 51 State/Country codes can be part of an individual exclusion group.  The exclusion groups are kept at the client (LOGO) level and contain up to 50 BINs.  
+This is done within the card management system of Debit Processing: Client CentralSM.  A maximum of two exclusion groups can be created.  A maximum of 51 State/Country codes can be part of an individual exclusion group.  The exclusion groups are kept at the client (LOGO) level and contain up to 50 BINs.
 
 #### If a cardholder calls and says they are driving to a certain state. Is it best to list all of the states under the travel exemptions that they are driving through and the dates?
 
