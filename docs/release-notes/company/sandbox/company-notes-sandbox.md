@@ -105,32 +105,6 @@ This API is used for updating company notes.
 
 **HTTP Code:** 204 No Content
 
-### Company Notes v1: Update company memo
-
-This API is used for updating company memos.
-
-#### Request
-
-**HTTP METHOD:** PATCH
-
-**Target URL:** https://card-sandbox.api.fiservapps.com/cs/companies/v1/notes
-
-```
-{
-    "identifier": "001",
-    "companyIdentifier": "TEST0002",
-    "systemIdentifier": "3771",
-    "principalIdentifier": "0050",
-    "agentIdentifier": "0000",
-    "noteType": "MEMO",
-    "text": "Update Company Memo1"
-}
-```
-
-#### Response
-
-**HTTP Code:** 204 No Content
-
 ### Company Notes v1: Search company memos
 
 This API returns a list with one or multiple company memos with summary information.
@@ -203,3 +177,29 @@ This API is for adding company memos.
    "text": "CREDIT LIMIT DECREASED"
 }
 ```
+
+### Company Notes v1: Update company memo
+
+This API is used for updating company memos.
+
+#### Request
+
+**HTTP METHOD:** PATCH
+
+**Target URL:** https://card-sandbox.api.fiservapps.com/cs/companies/v1/notes
+
+```
+{
+    "identifier": "001",
+    "companyIdentifier": "TEST0002",
+    "systemIdentifier": "3771",
+    "principalIdentifier": "0050",
+    "agentIdentifier": "0000",
+    "noteType": "MEMO",
+    "text": "Update Company Memo1"
+}
+```
+
+#### Response
+
+**HTTP Code:** 204 No Content
