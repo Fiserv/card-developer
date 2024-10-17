@@ -4,11 +4,7 @@ info:
   title: Cards
   description: Card API provides the ability to manage a card, digitally display card details, activate cards online through various channels, search for transactions, and search for basic cardholder information using details other than a card number. All times expressed in UTC standard time.
   version: 2.13.0-Jun-2024
-servers:
-  - url: https://card.api.fiservapps.com/cs/cards
-    description: Production url
-  - url: https://card-sandbox.api.fiservapps.com/cs/cards
-    description: Sandbox url
+
 security:
   - BearerAuth: []
 tags:
@@ -47,6 +43,11 @@ paths:
       x-group-name: Related Account
       x-proxy-name: Search cardholder account details v1 (deprecated)
       summary: Retrieves the details of accounts associated with a given debit card.
+      servers:
+        - url: https://card.api.fiservapps.com/cs/cards
+          description: Production url
+        - url: https://card-sandbox.api.fiservapps.com/cs/cards
+          description: Sandbox url
       operationId: searchCardholderAccountDetails
       parameters:
         - name: Authorization
