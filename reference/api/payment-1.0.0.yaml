@@ -26,7 +26,7 @@
         x-child-product-name: Payment v1.0.0
         x-group-name: Payment Action
         x-proxy-name: payment Actions
-        summary: 'Use this method to update a fixed payment, update a recurring payment or delete an automatic payment. Only one operation can be performed at a time. <br><b> Servers: </b><br><p style="font-size:12px"><a href="https://card.api.fiservapps.com/cs/oauth2"> https://card.api.fiservapps.com/cs/oauth2 </a> - Production server (uses live data) <br> <a href="https://card-sandbox.api.fiservapps.com/cs/oauth2"> https://card-sandbox.api.fiservapps.com/cs/oauth2 </a> - Sandbox server (uses test data)</p>'
+        summary: 'Use this method to update a fixed payment, update a recurring payment or delete an automatic payment. Only one operation can be performed at a time. <br><b> Servers: </b><br><p style="font-size:13px"><a href="https://card.api.fiservapps.com/cs/oauth2"> https://card.api.fiservapps.com/cs/oauth2 </a> - Production server (uses live data) </p> <p style="font-size:13px"><a href="https://card-sandbox.api.fiservapps.com/cs/oauth2"> https://card-sandbox.api.fiservapps.com/cs/oauth2 </a> - Sandbox server (uses test data)</p>'
         operationId: paymentActions
         parameters:
         - name: Authorization
