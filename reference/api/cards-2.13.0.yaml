@@ -4306,7 +4306,7 @@ paths:
         - name: filter
           in: query
           description: |
-            User can retrieve SUMMARY or DETAIL records for transaction search. Default value is SUMMARY. DETAIL includes all the transaction search fields. SUMMARY includes only a subset of search fields.  
+            User can retrieve SUMMARY or DETAIL records for transaction search. Default value is SUMMARY. DETAIL includes all the transaction search fields( SUMMARY and DETAIL of transaction). SUMMARY includes only a subset of search fields.  
    
           required: true
           style: form
